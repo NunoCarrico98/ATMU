@@ -21,7 +21,7 @@ public class PlayerPush : MonoBehaviour {
         Physics2D.queriesStartInColliders = false;
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance, boxMask);
 
-        if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetMouseButtonDown(1))
+        if (hit.collider != null && hit.collider.gameObject.tag == "Pushable" && Input.GetMouseButton(1))
         {
             box = hit.collider.gameObject;
             box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
