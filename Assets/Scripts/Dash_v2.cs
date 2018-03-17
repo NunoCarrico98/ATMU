@@ -4,15 +4,15 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
 using UnityStandardAssets._2D;
 
-public class Dash : MonoBehaviour
+public class Dash_v2 : MonoBehaviour
 {
 
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-    [SerializeField] public int keyCountRight = 0;
-    [SerializeField] public int keyCountLeft = 0;
-    [SerializeField] public float timer = 0;
-    [SerializeField] public float timer2 = 0;
-    [SerializeField] public float secondTimer;
+    public int keyCount = 0;
+    public int numberOfPresses = 2;
+    public float timer = 0;
+    public float timer2 = 0;
+    public float secondTimer;
 
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private bool m_Grounded;            // Whether or not the player is grounded.
@@ -23,6 +23,7 @@ public class Dash : MonoBehaviour
     public float maxDistance = 3f;
     public float newPositionTimeCheck = 2f;
     public bool facingRight = true;
+    public bool checkif = false;
 
     private Rigidbody2D myRigidBody2D;
     private Vector2 vectorForDash = new Vector2(1, 0);
@@ -83,53 +84,47 @@ public class Dash : MonoBehaviour
         }*/
 
         //In this function we force the player too (CONTINUAR AMANHÃ)
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-;
-            keyCountRight++;
-            secondTimer = timer;
-            keyCountLeft = 0;
-        }
-
         if (Input.GetKeyDown(KeyCode.A))
         {
-            keyCountLeft++;
-            secondTimer = timer;
-            keyCountRight = 0;
+            facingRight = false;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            facingRight = true;
         }
 
-        //Reset number of presses on both keys
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+;
+            keyCount++;
+            secondTimer = timer;
+        }
+
+        //Reset number of presses on the Shift key
         if (timer - secondTimer > givenTime)
         {
-            keyCountRight = 0;
-            keyCountLeft = 0;
+            keyCount = 0;
             GetComponent<Platformer2DUserControl>().enabled = true;
         }
 
-        //Reset number of presses on the D key
-        if (keyCountRight > 2)
+        //Reset number of presses on the Shift key
+        if (keyCount > numberOfPresses)
         {
-            keyCountRight = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
-        }
-        //Reset number of presses on the A key
-        if (keyCountLeft > 2)
-        {
-            keyCountLeft = 0;
+            keyCount = 0;
             GetComponent<Platformer2DUserControl>().enabled = true;
         }
 
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountRight == 2 && (timer - secondTimer < givenTime))
+        //Dash right by double pressing the Shift key (within the given time)
+        if (keyCount == numberOfPresses && (timer - secondTimer < givenTime) && facingRight == true)
         {
             //oldPos = myRigidBody2D.position.x;
             GetComponent<Platformer2DUserControl>().enabled = false;
             myRigidBody2D.AddRelativeForce(vectorForDash, ForceMode2D.Impulse);
+            checkif = true;
         }
 
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountLeft == 2 && (timer - secondTimer < givenTime))
+        //Dash right by double pressing the Shift key (within the given time)
+        if (keyCount == numberOfPresses && (timer - secondTimer < givenTime) && facingRight == false)
         {
             //oldPos = myRigidBody2D.position.x;
             GetComponent<Platformer2DUserControl>().enabled = false;

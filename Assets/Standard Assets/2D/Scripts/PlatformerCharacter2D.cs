@@ -19,6 +19,9 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        public float sprintSpeed = 2f;
+        private float m_SpeedReset;
+        public bool sprint = true;
 
         private void Awake()
         {
@@ -27,6 +30,7 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+            m_SpeedReset = m_MaxSpeed; ;
         }
 
 
@@ -74,7 +78,20 @@ namespace UnityStandardAssets._2D
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
 
                 // Move the character
-                m_Rigidbody2D.velocity = new Vector2(move*m_MaxSpeed, m_Rigidbody2D.velocity.y);
+                /*if (sprint == true)
+                {
+                    if (Input.GetKeyDown(KeyCode.LeftShift) && m_Grounded)
+                    {
+                        m_MaxSpeed = sprintSpeed;
+                    }
+
+                    if (Input.GetKeyUp(KeyCode.LeftShift) && m_Grounded)
+                    {
+                        m_MaxSpeed = m_SpeedReset;
+                    }
+                }*/
+
+                m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
                 // If the input is moving the player right and the player is facing left...
                 if (move > 0 && !m_FacingRight)

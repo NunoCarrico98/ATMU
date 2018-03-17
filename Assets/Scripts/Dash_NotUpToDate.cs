@@ -4,8 +4,7 @@ using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
 using UnityStandardAssets._2D;
 
-public class Dash : MonoBehaviour
-{
+public class DashNotUpToDate : MonoBehaviour {
 
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
     [SerializeField] public int keyCountRight = 0;
@@ -18,11 +17,6 @@ public class Dash : MonoBehaviour
     private bool m_Grounded;            // Whether or not the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
     public int groundTrue = 0;
-    public float oldPos;
-    public float newPos;
-    public float maxDistance = 3f;
-    public float newPositionTimeCheck = 2f;
-    public bool facingRight = true;
 
     private Rigidbody2D myRigidBody2D;
     private Vector2 vectorForDash = new Vector2(1, 0);
@@ -30,7 +24,7 @@ public class Dash : MonoBehaviour
     public float givenTime = 1;
 
     // Use this for initialization
-    void Start()
+    void Start ()
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
         m_GroundCheck = transform.Find("GroundCheck");
@@ -48,7 +42,7 @@ public class Dash : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
                 m_Grounded = true;
 
-            if (m_Grounded == true)
+            if (m_Grounded == true) 
             {
                 groundTrue = 1;
             }
@@ -56,12 +50,6 @@ public class Dash : MonoBehaviour
             {
                 groundTrue = 0;
             }
-
-            /*if (myRigidBody2D.velocity.y * Time.deltaTime > 0)
-            {
-                jumpCount++;
-            }
-            if(jumpCount) */
         }
     }
 
@@ -69,41 +57,19 @@ public class Dash : MonoBehaviour
     void Update()
     {
         vectorForDash = new Vector2(dashSpeed, 0);
-        //A timer that is constantly working
-        timer += Time.deltaTime;
-        /*timer2 += Time.deltaTime;
-
-        if (timer2 > newPositionTimeCheck)
-        {
-            timer2 = 0;
-        }
-        if (timer <= newPositionTimeCheck)
-        {
-            newPos = myRigidBody2D.position.x;
-        }*/
 
         //In this function we force the player too (CONTINUAR AMANHÃ)
-
         if (Input.GetKeyDown(KeyCode.D))
         {
-;
+            keyCountLeft = 0;
             keyCountRight++;
             secondTimer = timer;
-            keyCountLeft = 0;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            keyCountLeft++;
-            secondTimer = timer;
-            keyCountRight = 0;
-        }
-
-        //Reset number of presses on both keys
+        //Reset number of presses on the D key
         if (timer - secondTimer > givenTime)
         {
             keyCountRight = 0;
-            keyCountLeft = 0;
             GetComponent<Platformer2DUserControl>().enabled = true;
         }
 
@@ -113,34 +79,82 @@ public class Dash : MonoBehaviour
             keyCountRight = 0;
             GetComponent<Platformer2DUserControl>().enabled = true;
         }
-        //Reset number of presses on the A key
-        if (keyCountLeft > 2)
-        {
-            keyCountLeft = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
-        }
 
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountRight == 2 && (timer - secondTimer < givenTime))
+        //Dash right when on ground by double pressing the D key (within the given time)
+        if (keyCountRight == 2 /*&& groundTrue == 1*/ && (timer - secondTimer < givenTime))
         {
             //oldPos = myRigidBody2D.position.x;
             GetComponent<Platformer2DUserControl>().enabled = false;
             myRigidBody2D.AddRelativeForce(vectorForDash, ForceMode2D.Impulse);
         }
 
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountLeft == 2 && (timer - secondTimer < givenTime))
+        //Count number of times player presses A and reset number of times player presses D
+        if (Input.GetKeyDown(KeyCode.A))
         {
-            //oldPos = myRigidBody2D.position.x;
-            GetComponent<Platformer2DUserControl>().enabled = false;
-            myRigidBody2D.AddRelativeForce(-1 * vectorForDash, ForceMode2D.Impulse);
+            keyCountRight = 0;
+            secondTimer = timer;
+            keyCountLeft++;
         }
 
-        /*if (newPos - oldPos > maxDistance)
+        //Dash left when on ground by double pressing the A key (within the given time)
+        if (keyCountLeft == 2 /*&& groundTrue == 1*/ && (timer - secondTimer < givenTime))
         {
-            myRigidBody2D.velocity.Set(0, myRigidBody2D.velocity.y);
-            //myRigidBody2D.position.x = oldPos + maxDistance;
-        }*/
+            GetComponent<Platformer2DUserControl>().enabled = false;
+            myRigidBody2D.AddRelativeForce(-1 * vectorForDash, ForceMode2D.Impulse);
             //myRigidBody2D.velocity = -transform.right * dashSpeed;
-        } 
+        }
+        //Reset number of presses on the A key
+        if (timer - secondTimer > givenTime)
+        {
+            keyCountLeft = 0;
+            GetComponent<Platformer2DUserControl>().enabled = true;
+            //myRigidBody2D.velocity = transform.right * dashSpeed;
+
+        }
+        //Reset number of presses on the A key
+        if (keyCountLeft > 2)
+        {
+            keyCountLeft = 0;
+            GetComponent<Platformer2DUserControl>().enabled = true;
+        }
+        //Reset timer so it doesn't get to big
+        if (timer > 999)
+        {
+            timer = 0;
+        }
+    }
+
+    /* Update is called once per frame
+    void Update ()
+    {
+        //In this function we force the player too (CONTINUAR AMANHÃ)
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            time = timeReset;
+            keyCountRight++;
+        }
+        if(keyCountRight == 2 && groundTrue == 1)
+        {
+            //myRigidBody2D.AddForce(dashSpeed, ForceMode2D.Impulse);
+            myRigidBody2D.velocity = transform.right * dashSpeed;
+        }
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            time = timeReset;
+            keyCountLeft++;
+        }
+        if (keyCountLeft == 2 && groundTrue == 1)
+        {
+            //myRigidBody2D.AddForce(dashSpeed, ForceMode2D.Impulse);
+            myRigidBody2D.velocity = -transform.right * dashSpeed;
+        }
+        time -= Time.deltaTime;
+        if (time <= 0)
+        {
+            time = timeReset;
+            keyCountRight = 0;
+            keyCountLeft = 0;
+        }
+
+    } */
 }
