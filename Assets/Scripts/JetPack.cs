@@ -6,12 +6,12 @@ public class JetPack : MonoBehaviour {
 
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
-    public Rigidbody2D myRigidBody2D;
-    public Vector2 ascendingSpeed = new Vector2(0,10);
-
     private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
     private bool m_Grounded;            // Whether or not the player is grounded.
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
+
+    public Rigidbody2D myRigidBody2D;
+    public Vector2 ascendingSpeed = new Vector2(0, 10);
 
     public float timer = 0.5f;          //Time that the player can fly with the jetpack
     private float addToTimer;           //Restarter for the timer
@@ -46,7 +46,7 @@ public class JetPack : MonoBehaviour {
     void Update ()
     {   
         //In this function we force the player too (CONTINUAR AMANHÃ)
-        if (Input.GetKeyUp(KeyCode.Space) || myRigidBody2D.velocity.y < -0.1)
+        if (Input.GetKeyUp(KeyCode.Space) || myRigidBody2D.velocity.y < 0)
         {
             jumpCount++;
         }
