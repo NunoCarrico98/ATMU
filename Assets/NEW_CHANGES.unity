@@ -28509,12 +28509,12 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -28525,6 +28525,10 @@ Prefab:
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -37261,6 +37265,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &577150082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 577150083}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &577150083
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 577150082}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.92, y: 0.08, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 780250300}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &577915086
 GameObject:
   m_ObjectHideFlags: 0
@@ -49733,6 +49765,7 @@ Transform:
   - {fileID: 1780782584}
   - {fileID: 531467354}
   - {fileID: 203418241}
+  - {fileID: 577150083}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -78433,12 +78466,12 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -78449,6 +78482,10 @@ Prefab:
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -120593,12 +120630,12 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -120609,6 +120646,10 @@ Prefab:
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -121758,7 +121799,7 @@ Prefab:
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_ConnectedAnchor.x
-      value: 1.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -121768,17 +121809,21 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -122619,12 +122664,12 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -122635,6 +122680,10 @@ Prefab:
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -123475,12 +123524,12 @@ Prefab:
     - target: {fileID: 114139322370591738, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 255327847161368060, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 50852172387828396, guid: 588e347177498c945ba494634d717a2b,
         type: 2}
@@ -123491,6 +123540,10 @@ Prefab:
         type: 2}
       propertyPath: m_AngularDrag
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1375592995125302, guid: 588e347177498c945ba494634d717a2b, type: 2}
+      propertyPath: m_TagString
+      value: Grabbable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 588e347177498c945ba494634d717a2b, type: 2}
@@ -135276,6 +135329,7 @@ GameObject:
   - component: {fileID: 2133611468}
   - component: {fileID: 2133611469}
   - component: {fileID: 2133611470}
+  - component: {fileID: 2133611471}
   m_Layer: 0
   m_Name: CharacterRobotBoy
   m_TagString: Player
@@ -135341,6 +135395,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3073
   sprintSpeed: 20
+  sprint: 1
 --- !u!50 &2133611464
 Rigidbody2D:
   serializedVersion: 4
@@ -135501,6 +135556,24 @@ MonoBehaviour:
   facingRight: 1
   dashSpeed: 5
   givenTime: 0.15
+--- !u!114 &2133611471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2133611460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91ca1444783f6e8459ad657dd62b4e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabbed: 0
+  distance: 1
+  holdpoint: {fileID: 577150083}
+  throwforce: 25
+  notgrabbed:
+    serializedVersion: 2
+    m_Bits: 4294965247
 --- !u!1 &2139145524
 GameObject:
   m_ObjectHideFlags: 0
