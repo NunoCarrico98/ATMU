@@ -135340,6 +135340,7 @@ MonoBehaviour:
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 3073
+  sprintSpeed: 20
 --- !u!50 &2133611464
 Rigidbody2D:
   serializedVersion: 4
@@ -135461,7 +135462,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133611460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: eda70ede83faab64399077342326fc90, type: 3}
   m_Name: 
@@ -135479,21 +135480,27 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133611460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2af563a8a1fd3f4f922844bfc3a86ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 707c018090755764d989811455a0cffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 3073
-  groundTrue: 0
-  myRigidBody2D: {fileID: 2133611464}
-  dashSpeed: 2
+    m_Bits: 0
   keyCountRight: 0
   keyCountLeft: 0
-  time: 1
-  timeReset: 0
+  timer: 0
+  timer2: 0
+  secondTimer: 0
+  groundTrue: 0
+  oldPos: 0
+  newPos: 0
+  maxDistance: 3
+  newPositionTimeCheck: 2
+  facingRight: 1
+  dashSpeed: 5
+  givenTime: 0.15
 --- !u!1 &2139145524
 GameObject:
   m_ObjectHideFlags: 0
