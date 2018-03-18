@@ -23,7 +23,12 @@ namespace UnityStandardAssets._2D
         private float m_SpeedReset;
         public bool sprint = true;
 
+        public float angle;
+        public Vector2 positionOnScreen;
+        public Vector2 mouseOnScreen;
+
         Transform playerGraphics;
+        Transform playerHead;
 
         private void Awake()
         {
@@ -34,6 +39,7 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_SpeedReset = m_MaxSpeed; ;
             playerGraphics = transform.Find("Graphics");
+            playerHead = transform.Find("RotatingHead");
             if (playerGraphics == null)
             {
                 Debug.LogError("Let's panic!! There's no 'Graphics' object as a child of the player");
@@ -100,18 +106,31 @@ namespace UnityStandardAssets._2D
 
                 m_Rigidbody2D.velocity = new Vector2(move * m_MaxSpeed, m_Rigidbody2D.velocity.y);
 
+                positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+                mouseOnScreen = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+                angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
                 // If the input is moving the player right and the player is facing left...
-                if (move > 0 && !m_FacingRight)
+                if (m_FacingRight == true && (angle > -90 && angle < 90))
                 {
                     // ... flip the player.
                     Flip();
                 }
-                    // Otherwise if the input is moving the player left and the player is facing right...
-                else if (move < 0 && m_FacingRight)
+                if (m_FacingRight == false && (angle < -90 || angle > 90))
                 {
                     // ... flip the player.
                     Flip();
                 }
+
+                //Flip player accordingly to it's head rotation
+                /*if (angle < -90 || angle > 90)
+                {
+                    m_FacingRight = true;
+                }*/
+                /*if (angle > -90 && angle < 90)
+                {
+                    m_FacingRight = false;
+                }*/
+
             }
             // If the player should jump...
             if (m_Grounded && jump && m_Anim.GetBool("Ground"))
@@ -133,6 +152,16 @@ namespace UnityStandardAssets._2D
             Vector3 theScale = playerGraphics.localScale;
             theScale.x *= -1;
             playerGraphics.localScale = theScale;
+
+            Vector3 theScale2 = playerHead.localScale;
+            theScale2.y *= -1;
+            playerHead.localScale = theScale2;
         }
+
+        float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
+        {
+            return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        }
+
     }
 }

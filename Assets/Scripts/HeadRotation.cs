@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HeadRotation : MonoBehaviour {
 
+    public float angle;
     public int rotationOffSet = 0;
 	// Use this for initialization
 	void Start () {
@@ -23,9 +24,9 @@ public class HeadRotation : MonoBehaviour {
         Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         //Get the angle between the points
-        float angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+        angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-        //Ta Daaa
+        //Apply rotation
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
     }
 
