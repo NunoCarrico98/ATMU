@@ -11,7 +11,10 @@ public class JetPack : MonoBehaviour {
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
 
     public Rigidbody2D myRigidBody2D;
-    public Vector2 ascendingSpeed = new Vector2(0, 10);
+    public float ascendingSpeed = 10f;
+    //public Vector2 ascendingSpeed = new Vector2(0, 10);
+    private Vector2 force;
+    private float h;
 
     public float timer = 0.5f;          //Time that the player can fly with the jetpack
     private float addToTimer;           //Restarter for the timer
@@ -44,7 +47,9 @@ public class JetPack : MonoBehaviour {
         }
     }
     void Update ()
-    {   
+    {
+        h = Input.GetAxis("Horizontal");
+        force = new Vector2(h , ascendingSpeed);
         //In this function we force the player too (CONTINUAR AMANHÃ)
         if (Input.GetKeyUp(KeyCode.Space) || myRigidBody2D.velocity.y < 0)
         {
@@ -57,8 +62,9 @@ public class JetPack : MonoBehaviour {
             {
                 timer -= Time.deltaTime;
                 //myRigidBody2D.MovePosition((Vector3)myRigidBody2D.position + transform.up * ascendingSpeed);
-                myRigidBody2D.velocity = ascendingSpeed;
+                myRigidBody2D.velocity = force;
             }
+            //Reset timer and jump count
             if (m_Grounded == true)
             {
                 timer = addToTimer;

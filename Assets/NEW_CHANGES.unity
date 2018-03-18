@@ -135328,8 +135328,8 @@ GameObject:
   - component: {fileID: 2133611461}
   - component: {fileID: 2133611468}
   - component: {fileID: 2133611469}
-  - component: {fileID: 2133611470}
   - component: {fileID: 2133611471}
+  - component: {fileID: 2133611470}
   m_Layer: 0
   m_Name: CharacterRobotBoy
   m_TagString: Player
@@ -135410,7 +135410,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.5
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 10
   m_Material: {fileID: 6200000, guid: 6611adc1f9452f24ca6f245537e2e323, type: 2}
   m_Interpolate: 1
@@ -135502,7 +135502,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2133611460}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1429b35c2ece0b4ca4daea77db1796b, type: 3}
   m_Name: 
@@ -135526,7 +135526,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 3073
   myRigidBody2D: {fileID: 2133611464}
-  ascendingSpeed: {x: 0, y: 10}
+  ascendingSpeed: 10
   timer: 0.8
   jumpCount: 0
 --- !u!114 &2133611470
@@ -135537,25 +135537,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2133611460}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 707c018090755764d989811455a0cffa, type: 3}
+  m_Script: {fileID: 11500000, guid: b7e8b974ea484da4884a068b5786043b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 0
-  keyCountRight: 0
-  keyCountLeft: 0
-  timer: 0
-  timer2: 0
-  secondTimer: 0
-  groundTrue: 0
-  oldPos: 0
-  newPos: 0
-  maxDistance: 3
-  newPositionTimeCheck: 2
-  facingRight: 1
+    m_Bits: 3073
+  numberOfPresses: 1
   dashSpeed: 5
-  givenTime: 0.15
+  clickTime: 0.15
+  cooldown: 0.3
+  onlyDashOnGround: 0
+  y: 0
 --- !u!114 &2133611471
 MonoBehaviour:
   m_ObjectHideFlags: 0
