@@ -9,7 +9,7 @@ public class DashV2 : MonoBehaviour
 
     [SerializeField] private LayerMask m_WhatIsGround;      // A mask determining what is ground to the character
     private int keyCount = 0;
-    public int numberOfPresses = 2;
+    public int numberOfPresses = 1;
     private float timer = 0;
     private float secondTimer;
 
@@ -20,9 +20,9 @@ public class DashV2 : MonoBehaviour
 
     private Rigidbody2D myRigidBody2D;
     private Vector2 vectorForDash = new Vector2(1, 0);
-    public float dashSpeed = 1f;
-    public float clickTime = 1;
-    public float cooldown = 0.5f;
+    public float dashSpeed = 5f;
+    public float clickTime = 0.15f;
+    public float cooldown = 0.3f;
     private bool activateCooldown = false;
     private float pressTime;
     public bool onlyDashOnGround = false;
@@ -51,11 +51,11 @@ public class DashV2 : MonoBehaviour
         timer += Time.deltaTime;
 
         //In this function we force the player too (CONTINUAR AMANHÃ)
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             facingRight = false;
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             facingRight = true;
         }
@@ -84,7 +84,7 @@ public class DashV2 : MonoBehaviour
         if (onlyDashOnGround == false)
         {
             //Dash right by double pressing the Shift key (within the given time)
-            if (keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == true)
+            if (Input.GetKey(KeyCode.D) && keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == true)
             {
                 GetComponent<Platformer2DUserControl>().enabled = false;
                 myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
@@ -93,7 +93,7 @@ public class DashV2 : MonoBehaviour
             }
 
             //Dash left by double pressing the Shift key (within the given time)
-            if (keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == false)
+            if (Input.GetKey(KeyCode.A) && keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == false)
             {
                 GetComponent<Platformer2DUserControl>().enabled = false;
                 myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);
@@ -105,7 +105,7 @@ public class DashV2 : MonoBehaviour
         if (onlyDashOnGround == true)
         {
             //Dash right by double pressing the Shift key (within the given time)
-            if (keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == true && m_Grounded == true)
+            if (Input.GetKey(KeyCode.D) && keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == true && m_Grounded == true)
             {
                 GetComponent<Platformer2DUserControl>().enabled = false;
                 myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
@@ -114,7 +114,7 @@ public class DashV2 : MonoBehaviour
             }
 
             //Dash left by double pressing the Shift key (within the given time)
-            if (keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == false && m_Grounded == true)
+            if (Input.GetKey(KeyCode.A) && keyCount == numberOfPresses && (timer - secondTimer < clickTime) && facingRight == false && m_Grounded == true)
             {
                 GetComponent<Platformer2DUserControl>().enabled = false;
                 myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);

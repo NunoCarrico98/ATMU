@@ -15,12 +15,13 @@ namespace UnityStandardAssets._2D
         private Vector3 m_LastTargetPosition;
         private Vector3 m_CurrentVelocity;
         private Vector3 m_LookAheadPos;
+        public Vector3 cameraInitialPos = new Vector3(0, 0, 0);
 
         // Use this for initialization
         private void Start()
         {
-            m_LastTargetPosition = target.position;
-            m_OffsetZ = (transform.position - target.position).z;
+            m_LastTargetPosition = target.position + cameraInitialPos + cameraInitialPos;
+            m_OffsetZ = (transform.position - target.position + cameraInitialPos).z;
             transform.parent = null;
         }
 
@@ -29,7 +30,7 @@ namespace UnityStandardAssets._2D
         private void Update()
         {
             // only update lookahead pos if accelerating or changed direction
-            float xMoveDelta = (target.position - m_LastTargetPosition).x;
+            float xMoveDelta = (target.position + cameraInitialPos - m_LastTargetPosition).x;
 
             bool updateLookAheadTarget = Mathf.Abs(xMoveDelta) > lookAheadMoveThreshold;
 
@@ -42,12 +43,12 @@ namespace UnityStandardAssets._2D
                 m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
             }
 
-            Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward*m_OffsetZ;
+            Vector3 aheadTargetPos = target.position + cameraInitialPos + m_LookAheadPos + Vector3.forward*m_OffsetZ;
             Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
             transform.position = newPos;
 
-            m_LastTargetPosition = target.position;
+            m_LastTargetPosition = target.position + cameraInitialPos;
         }
     }
 }
