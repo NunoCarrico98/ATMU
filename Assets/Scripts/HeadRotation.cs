@@ -27,6 +27,7 @@ public class HeadRotation : MonoBehaviour {
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
         //Apply rotation
+        //if ((angle < 17 && angle > -180) || (angle > 165))
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
     }
 
