@@ -23,6 +23,8 @@ namespace UnityStandardAssets._2D
         private float m_SpeedReset;
         public bool sprint = true;
 
+        Transform playerGraphics;
+
         private void Awake()
         {
             // Setting up references.
@@ -31,6 +33,11 @@ namespace UnityStandardAssets._2D
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
             m_SpeedReset = m_MaxSpeed; ;
+            playerGraphics = transform.Find("Graphics");
+            if (playerGraphics == null)
+            {
+                Debug.LogError("Let's panic!! There's no 'Graphics' object as a child of the player");
+            }
         }
 
 
@@ -123,9 +130,9 @@ namespace UnityStandardAssets._2D
             m_FacingRight = !m_FacingRight;
 
             // Multiply the player's x local scale by -1.
-            Vector3 theScale = transform.localScale;
+            Vector3 theScale = playerGraphics.localScale;
             theScale.x *= -1;
-            transform.localScale = theScale;
+            playerGraphics.localScale = theScale;
         }
     }
 }
