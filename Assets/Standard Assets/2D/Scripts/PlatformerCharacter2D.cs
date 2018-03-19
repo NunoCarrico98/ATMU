@@ -20,7 +20,7 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
         public float sprintSpeed = 2f;
-        private float m_SpeedReset;
+        //private float m_SpeedReset;
         public bool sprint = true;
 
         public float angle;
@@ -37,7 +37,7 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
-            m_SpeedReset = m_MaxSpeed; ;
+            //m_SpeedReset = m_MaxSpeed; ;
             playerGraphics = transform.Find("Graphics");
             playerHead = transform.Find("RotatingHead");
             if (playerGraphics == null)

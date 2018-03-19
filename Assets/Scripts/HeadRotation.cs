@@ -21,7 +21,7 @@ public class HeadRotation : MonoBehaviour {
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 
         //Get the Screen position of the mouse
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        Vector2 mouseOnScreen = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         //Get the angle between the points
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
