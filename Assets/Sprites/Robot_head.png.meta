@@ -4,14 +4,21 @@ timeCreated: 1521338216
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Robot_head_0
-    21300002: Robot_head_1
-    21300004: Robot_head_2
-    21300006: Robot_head_3
-    21300008: Robot_head_4
-    21300010: Robot_head_5
-    21300012: Robot_head_6
-    21300014: Robot_head_7
+    21300000: Idle
+    21300002: Jumping
+    21300004: JumpToFall
+    21300006: Falling
+    21300008: FallToIdle
+    21300010: R1
+    21300012: R2
+    21300014: R3
+    21300016: R4
+    21300018: R5
+    21300020: R6
+    21300022: R7
+    21300024: R8
+    21300026: R9
+    21300028: R10
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -138,7 +145,147 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Robot_head_0
+      name: Idle
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Jumping
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 80
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpToFall
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 80
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Falling
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 80
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: FallToIdle
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 80
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 60
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R2
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 60
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R3
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 60
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R4
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 60
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 60
+        width: 20
+        height: 20
+      alignment: 9
+      pivot: {x: 0.525, y: 0.585}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: R6
       rect:
         serializedVersion: 2
         x: 0
@@ -146,13 +293,13 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 9
-      pivot: {x: 0.5, y: 0.585}
+      pivot: {x: 0.525, y: 0.585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Robot_head_1
+      name: R7
       rect:
         serializedVersion: 2
         x: 20
@@ -160,13 +307,13 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 9
-      pivot: {x: 0.5, y: 0.585}
+      pivot: {x: 0.525, y: 0.585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Robot_head_2
+      name: R8
       rect:
         serializedVersion: 2
         x: 40
@@ -174,77 +321,35 @@ TextureImporter:
         width: 20
         height: 20
       alignment: 9
-      pivot: {x: 0.5, y: 0.585}
+      pivot: {x: 0.525, y: 0.585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Robot_head_3
+      name: R9
       rect:
         serializedVersion: 2
-        x: 0
-        y: 20
+        x: 60
+        y: 40
         width: 20
         height: 20
       alignment: 9
-      pivot: {x: 0.5, y: 0.585}
+      pivot: {x: 0.525, y: 0.585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Robot_head_4
+      name: R10
       rect:
         serializedVersion: 2
-        x: 20
-        y: 20
+        x: 80
+        y: 40
         width: 20
         height: 20
       alignment: 9
-      pivot: {x: 0.5, y: 0.585}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Robot_head_5
-      rect:
-        serializedVersion: 2
-        x: 40
-        y: 20
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.585}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Robot_head_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.585}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Robot_head_7
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 0
-        width: 20
-        height: 20
-      alignment: 9
-      pivot: {x: 0.5, y: 0.585}
+      pivot: {x: 0.525, y: 0.585}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
