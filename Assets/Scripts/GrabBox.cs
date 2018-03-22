@@ -22,7 +22,7 @@ public class GrabBox : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetButtonDown("Use"))
+        if (Input.GetButtonDown("Fire2"))
         {
 
             if (!grabbed)

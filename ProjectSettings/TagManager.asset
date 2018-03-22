@@ -19,7 +19,7 @@ TagManager:
   - Backgrounds
   - Floors
   - Boxes
-  - 
+  - Foreground
   - 
   - 
   - 
@@ -52,6 +52,6 @@ TagManager:
   - name: Player
     uniqueID: 2330857585
     locked: 0
-  - name: Forground
+  - name: Foreground
     uniqueID: 2811607843
     locked: 0
