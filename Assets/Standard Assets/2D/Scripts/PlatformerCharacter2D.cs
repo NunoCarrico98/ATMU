@@ -27,8 +27,9 @@ namespace UnityStandardAssets._2D
         public Vector2 positionOnScreen;
         public Vector2 mouseOnScreen;
 
-        Transform playerGraphics;
-        Transform playerHead;
+        private Transform playerGraphics;
+        private Transform playerHead;
+        private Transform boxHoldPoint;
 
         private void Awake()
         {
@@ -40,7 +41,8 @@ namespace UnityStandardAssets._2D
             //m_SpeedReset = m_MaxSpeed; ;
             playerGraphics = transform.Find("Graphics");
             playerHead = transform.Find("RotatingHead");
-            if (playerGraphics == null)
+            boxHoldPoint = transform.Find("BoxHoldPoint");
+            if (boxHoldPoint == null)
             {
                 Debug.LogError("Let's panic!! There's no 'Graphics' object as a child of the player");
             }
@@ -156,6 +158,10 @@ namespace UnityStandardAssets._2D
             Vector3 theScale2 = playerHead.localScale;
             theScale2.y *= -1;
             playerHead.localScale = theScale2;
+
+           /*Vector3 theScale3 = boxHoldPoint.localScale;
+            theScale3.x *= -1;
+            boxHoldPoint.localScale = theScale3;*/
         }
 
         float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
