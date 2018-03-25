@@ -11,9 +11,11 @@ public class GrabBox : MonoBehaviour
     private float xMouse;
     private float yMouse;
     private Vector2 direction;
+    private Transform rotateBoxPoint;
 
     public bool grabbed;
     RaycastHit2D hit;
+    RaycastHit2D hitBack;
     public float distance = 2f;
     public Transform holdpoint;
     public float throwforce;
@@ -22,11 +24,12 @@ public class GrabBox : MonoBehaviour
     public int angleOffSet = 0;
     public LayerMask notToHit;
     public GameObject box;
+    public bool backBox = false;
 
     // Use this for initialization
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -34,6 +37,11 @@ public class GrabBox : MonoBehaviour
     {
 
         FollowMouse();
+
+        direction = directionVector(positionOnScreen, mouseOnScreen);
+        direction = createVersor(direction);
+
+        rotateBoxPoint = transform.Find("RotateBoxPoint");
 
         if (Input.GetButtonDown("Fire2"))
         {
@@ -52,6 +60,11 @@ public class GrabBox : MonoBehaviour
                     hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
                 }
 
+                if (angle < -43 && angle > -120)
+                {
+                    hit = Physics2D.Raycast(transform.position, direction, 2);
+                }
+
                 if (hit.collider != null && hit.collider.tag == "Grabbable")
                 {
                     grabbed = true;
@@ -66,11 +79,52 @@ public class GrabBox : MonoBehaviour
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Collider2D>().enabled = false;
 
+            if (angle > -90 && angle < 90 && !backBox)
+            {
+                hitBack = Physics2D.Raycast(transform.position, Vector2.right, distance);
+            }
+            if (angle < -90 || angle > 90 && !backBox)
+            {
+                hitBack = Physics2D.Raycast(transform.position, Vector2.left, distance);
+            }
+
+            if (hitBack.collider != null && hitBack.collider.gameObject.transform.position.x < transform.position.x)
+            {
+                backBox = true;
+
+                if (angle >= 17 && angle < 180)
+                {
+                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + 170f));
+                }
+            }
+
+            if (hitBack.collider != null && hitBack.collider.gameObject.transform.position.x > transform.position.x)
+            {
+                if (angle >= 17 && angle < 180)
+                {
+                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + 170f));
+                }
+            }
+
+            if (hitBack.collider == null)
+            {
+                backBox = false;
+
+                if (angle > -90 && angle < 90)
+                {
+                    hitBack = Physics2D.Raycast(transform.position, Vector2.left, distance);
+                }
+                if (angle < -90 || angle > 90)
+                {
+                    hitBack = Physics2D.Raycast(transform.position, Vector2.right, distance);
+                }
+            }
 
             if (box.GetComponent<Rigidbody2D>() != null)
             {
                 direction = directionVector(positionOnScreen, mouseOnScreen);
                 direction = createVersor(direction);
+
                 if (Input.GetButtonUp("Fire2"))
                 {
                     keyCount += 1;
@@ -92,7 +146,7 @@ public class GrabBox : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
-                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
+                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;
                     box.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
                     grabbed = false;

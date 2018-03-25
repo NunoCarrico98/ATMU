@@ -36,12 +36,12 @@ public class BoxCheck : MonoBehaviour
         /* Initialize raycasts in all 4 directions */
         hitLeft = Physics2D.Raycast(transform.position, Vector2.left, distance);
         hitRight = Physics2D.Raycast(transform.position, Vector2.right, distance);
-        hitUp[0] = Physics2D.Raycast(transform.position - new Vector3(1, 0, 0), Vector2.up, distance);
+        hitUp[0] = Physics2D.Raycast(transform.position - new Vector3(0.7f, 0, 0), Vector2.up, distance);
         hitUp[1] = Physics2D.Raycast(transform.position, Vector2.up, distance);
-        hitUp[2] = Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), Vector2.up, distance);
-        hitDown[0] = Physics2D.Raycast(transform.position - new Vector3(1, 0, 0), Vector2.down, distance);
+        hitUp[2] = Physics2D.Raycast(transform.position + new Vector3(0.7f, 0, 0), Vector2.up, distance);
+        hitDown[0] = Physics2D.Raycast(transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
         hitDown[1] = Physics2D.Raycast(transform.position, Vector2.down, distance);
-        hitDown[2] = Physics2D.Raycast(transform.position + new Vector3(1, 0, 0), Vector2.down, distance);
+        hitDown[2] = Physics2D.Raycast(transform.position + new Vector3(0.7f, 0, 0), Vector2.down, distance);
 
         /* Detect collision to left raycast */
         if (hitLeft.collider != null && hitLeft.collider.tag == "BoxColliders")
@@ -113,7 +113,7 @@ public class BoxCheck : MonoBehaviour
     {
         Gizmos.color = Color.green;
 
-        Gizmos.DrawLine(new Vector3(transform.position.x - 1f, transform.position.y, 0), new Vector3(transform.position.x - 1f, transform.position.y + distance, 0));
+        Gizmos.DrawLine(new Vector3(transform.position.x - 0.7f, transform.position.y, 0), new Vector3(transform.position.x - 0.7f, transform.position.y + distance, 0));
     }
 
 }
