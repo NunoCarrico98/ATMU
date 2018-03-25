@@ -39,7 +39,7 @@ public class JetPack : MonoBehaviour {
             if (colliders[i].gameObject != gameObject)
                 m_Grounded = true;
 
-            /*if (myRigidBody2D.velocity.y * Time.deltaTime > 0)
+            /*if (myRigidBody2D.velocity.y * Time.deltaTime > 0)    
             {
                 jumpCount++;
             }

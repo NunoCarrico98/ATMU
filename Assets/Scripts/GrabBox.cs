@@ -7,6 +7,12 @@ public class GrabBox : MonoBehaviour
 
     private Transform graphics;
     private int count = 0;
+    private Vector2 positionOnScreen;
+    private Vector2 mouseOnScreen;
+    private float xMouse;
+    private float yMouse;
+    private Vector2 direction;
+    private Transform mouseObject;
 
     public bool grabbed;
     RaycastHit2D hit;
@@ -15,19 +21,24 @@ public class GrabBox : MonoBehaviour
     public float throwforce;
     public LayerMask notgrabbed;
     public float angle;
-    public int rotationOffSet = 0;
+    public int angleOffSet = 0;
+    public LayerMask notToHit;
 
 
     // Use this for initialization
     void Start()
     {
         graphics = transform.Find("Graphics");
+        mouseObject = transform.Find("Mouse Object");
+
     }
 
     // Update is called once per frame
     void Update()
     {
         FollowMouse();
+        mouseObject.position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+
 
 
         if (Input.GetButtonDown("Fire2"))
@@ -40,7 +51,7 @@ public class GrabBox : MonoBehaviour
                 if (angle > -90 && angle < 90)
                 {
                     count = 1;
-                    hit = Physics2D.Raycast(transform.position, Vector2.right * -1, distance);
+                    hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
                     //holdpoint.Translate(new Vector2(holdpoint.transform.position.x * -1, holdpoint.transform.position.y);
                 }
                 if (angle < -90 || angle > 90 && count == 1)
@@ -55,21 +66,36 @@ public class GrabBox : MonoBehaviour
 
                 }
             }
-            else if (!Physics2D.OverlapPoint(holdpoint.position, notgrabbed))
-            {
-                grabbed = false;
-
-                if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
-                {
-
-                    hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x, 1) * throwforce;
-                }
-            }
         }
 
         if (grabbed)
         {
             hit.collider.gameObject.transform.position = holdpoint.position;
+
+            //if (!Physics2D.OverlapPoint(holdpoint.position, notgrabbed))
+            //{
+
+            if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+            {
+                //direction = directionVector(new Vector2(positionOnScreen.x, positionOnScreen.y), 
+                //new Vector2(mouseObject.position.x, mouseObject.position.y));
+                direction = directionVector(positionOnScreen, mouseOnScreen);
+                direction = createVersor(direction);
+                //direction = Vector3.Normalize(directionVector(new Vector2(positionOnScreen.x * 10, positionOnScreen.y * 10), new Vector2(mouseOnScreen.x * 10, mouseOnScreen.y * 10)));
+                //hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce);
+                //hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce));
+                //RaycastHit2D hit2 = Physics2D.Raycast((Vector2)holdpoint.position, mouseOnScreen - (Vector2)holdpoint.position, distance, notToHit);
+
+                if (Input.GetButtonDown("Fire1"))
+                {
+
+                    //hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce));
+                    //mholdpoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + angleOffSet));
+                    hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
+                    grabbed = false;
+                }
+            }
+            //}
         }
 
 
@@ -80,17 +106,17 @@ public class GrabBox : MonoBehaviour
     {
         Gizmos.color = Color.green;
 
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * transform.localScale.x * distance);
+        Gizmos.DrawLine(transform.position, holdpoint.position);
     }
 
 
     public void FollowMouse()
     {
         //Get the Screen positions of the object
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
+        positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 
         //Get the Screen position of the mouse
-        Vector2 mouseOnScreen = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        mouseOnScreen = Camera.main.ScreenToViewportPoint(Input.mousePosition);
 
         //Get the angle between the points
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
@@ -98,7 +124,28 @@ public class GrabBox : MonoBehaviour
 
     public float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
     {
-        return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+        float xA = Mathf.Abs(a.x);
+        float xB = Mathf.Abs(b.x);
+        float yA = Mathf.Abs(a.y);
+        float yB = Mathf.Abs(b.y);
+        return Mathf.Atan2(yA - yB, xA - xB) * Mathf.Rad2Deg;
+    }
+
+    public Vector2 directionVector(Vector2 a, Vector2 b)
+    {
+        float xA = a.x;
+        float xB = b.x;
+        float yA = a.y;
+        float yB = b.y;
+
+        return (new Vector2((xB - xA), (yB - yA)));
+    }
+
+    public Vector2 createVersor(Vector2 a)
+    {
+        float norm = Mathf.Sqrt(Vector3.Dot(a, a));
+
+        return a / norm;
     }
 }
 

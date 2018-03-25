@@ -13,10 +13,6 @@ public class HeadRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        /*Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;      //Subtracting the position of the player with the mouse position
-        //difference.Normalize();     //Normalizing the vector. Meaning that all the sum of the vector will be equal to one
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;       //Find the angle in degrees
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + rotationOffSet);*/
         //Get the Screen positions of the object
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
 
