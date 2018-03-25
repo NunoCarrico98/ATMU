@@ -7,12 +7,14 @@ public class GrabBox : MonoBehaviour
 
     private Transform graphics;
     private int count = 0;
+    private int keyCount = 0;
     private Vector2 positionOnScreen;
     private Vector2 mouseOnScreen;
     private float xMouse;
     private float yMouse;
     private Vector2 direction;
     private Transform mouseObject;
+    private GameObject box;
 
     public bool grabbed;
     RaycastHit2D hit;
@@ -46,6 +48,7 @@ public class GrabBox : MonoBehaviour
 
             if (!grabbed)
             {
+
                 Physics2D.queriesStartInColliders = false;
 
                 if (angle > -90 && angle < 90)
@@ -63,42 +66,51 @@ public class GrabBox : MonoBehaviour
                 if (hit.collider != null && hit.collider.tag == "Grabbable")
                 {
                     grabbed = true;
-
                 }
             }
         }
 
         if (grabbed)
         {
-            hit.collider.gameObject.transform.position = holdpoint.position;
+            box = hit.collider.gameObject;
+            box.transform.position = holdpoint.position;
+            box.GetComponent<Rigidbody2D>().isKinematic = true;
+            box.GetComponent<Collider2D>().enabled = false;
 
-            //if (!Physics2D.OverlapPoint(holdpoint.position, notgrabbed))
-            //{
 
-            if (hit.collider.gameObject.GetComponent<Rigidbody2D>() != null)
+            if (box.GetComponent<Rigidbody2D>() != null)
             {
-                //direction = directionVector(new Vector2(positionOnScreen.x, positionOnScreen.y), 
-                //new Vector2(mouseObject.position.x, mouseObject.position.y));
                 direction = directionVector(positionOnScreen, mouseOnScreen);
                 direction = createVersor(direction);
-                //direction = Vector3.Normalize(directionVector(new Vector2(positionOnScreen.x * 10, positionOnScreen.y * 10), new Vector2(mouseOnScreen.x * 10, mouseOnScreen.y * 10)));
-                //hit.collider.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce);
-                //hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce));
-                //RaycastHit2D hit2 = Physics2D.Raycast((Vector2)holdpoint.position, mouseOnScreen - (Vector2)holdpoint.position, distance, notToHit);
+                if (Input.GetButtonUp("Fire2"))
+                {
+                    keyCount += 1;
+                    if (keyCount >= 2)
+                    {
+                        keyCount = 2;
+                    }
+                }
+
+                if (Input.GetButtonUp("Fire2") && keyCount == 2)
+                {
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
+                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                    box.GetComponent<Collider2D>().enabled = true;
+                    grabbed = false;
+                    keyCount = 0;
+                }
 
                 if (Input.GetButtonDown("Fire1"))
                 {
-
-                    //hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2((mouseOnScreen.x + angleOffSet) * throwforce, (mouseOnScreen.y + angleOffSet) * throwforce));
-                    //mholdpoint.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + angleOffSet));
-                    hit.collider.gameObject.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
+                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
+                    box.GetComponent<Collider2D>().enabled = true;
+                    box.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
                     grabbed = false;
+                    keyCount = 0;
                 }
             }
-            //}
         }
-
-
     }
 
 
