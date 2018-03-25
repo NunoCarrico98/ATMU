@@ -5,16 +5,12 @@ using UnityEngine;
 public class GrabBox : MonoBehaviour
 {
 
-    private Transform graphics;
-    private int count = 0;
     private int keyCount = 0;
     private Vector2 positionOnScreen;
     private Vector2 mouseOnScreen;
     private float xMouse;
     private float yMouse;
     private Vector2 direction;
-    private Transform mouseObject;
-    private GameObject box;
 
     public bool grabbed;
     RaycastHit2D hit;
@@ -25,23 +21,19 @@ public class GrabBox : MonoBehaviour
     public float angle;
     public int angleOffSet = 0;
     public LayerMask notToHit;
-
+    public GameObject box;
 
     // Use this for initialization
     void Start()
     {
-        graphics = transform.Find("Graphics");
-        mouseObject = transform.Find("Mouse Object");
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+
         FollowMouse();
-        mouseObject.position = Camera.main.ScreenToViewportPoint(Input.mousePosition);
-
-
 
         if (Input.GetButtonDown("Fire2"))
         {
@@ -53,14 +45,11 @@ public class GrabBox : MonoBehaviour
 
                 if (angle > -90 && angle < 90)
                 {
-                    count = 1;
                     hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
-                    //holdpoint.Translate(new Vector2(holdpoint.transform.position.x * -1, holdpoint.transform.position.y);
                 }
-                if (angle < -90 || angle > 90 && count == 1)
+                if (angle < -90 || angle > 90)
                 {
                     hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
-                    //holdpoint.Translate(new Vector2(holdpoint.transform.position.x * -1, holdpoint.transform.position.y));
                 }
 
                 if (hit.collider != null && hit.collider.tag == "Grabbable")
@@ -94,7 +83,7 @@ public class GrabBox : MonoBehaviour
                 if (Input.GetButtonUp("Fire2") && keyCount == 2)
                 {
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
-                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;
                     grabbed = false;
                     keyCount = 0;

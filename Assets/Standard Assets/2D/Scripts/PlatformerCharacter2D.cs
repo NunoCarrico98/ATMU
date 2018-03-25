@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-namespace UnityStandardAssets._2D
-{
+//namespace UnityStandardAssets._2D
+//{
     public class PlatformerCharacter2D : MonoBehaviour
     {
         [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
@@ -18,7 +18,7 @@ namespace UnityStandardAssets._2D
         const float k_CeilingRadius = .01f; // Radius of the overlap circle to determine if the player can stand up
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
-        private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        public bool m_FacingRight = true;  // For determining which way the player is currently facing.
         public float sprintSpeed = 2f;
         //private float m_SpeedReset;
         public bool sprint = true;
@@ -41,11 +41,11 @@ namespace UnityStandardAssets._2D
             //m_SpeedReset = m_MaxSpeed; ;
             playerGraphics = transform.Find("Graphics");
             playerHead = transform.Find("RotatingHead");
-            boxHoldPoint = transform.Find("BoxHoldPoint");
+            /*boxHoldPoint = transform.Find("BoxHoldPoint");
             if (boxHoldPoint == null)
             {
                 Debug.LogError("Let's panic!! There's no 'Graphics' object as a child of the player");
-            }
+            }*/
         }
 
 
@@ -170,4 +170,4 @@ namespace UnityStandardAssets._2D
         }
 
     }
-}
+//}
