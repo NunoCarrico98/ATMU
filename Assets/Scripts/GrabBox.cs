@@ -51,23 +51,39 @@ public class GrabBox : MonoBehaviour
 
                 Physics2D.queriesStartInColliders = false;
 
+                //If player is facing left create a raycast pointing left
                 if (angle > -90 && angle < 90)
                 {
                     hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
                 }
+                
+                //If player is facing right create a raycast pointing right
                 if (angle < -90 || angle > 90)
                 {
                     hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
                 }
 
+                //Raycast that follows mouse position on top side
                 if (angle < -43 && angle > -120)
                 {
                     hit = Physics2D.Raycast(transform.position, direction, 2);
                 }
 
+                //If raycast detects a grabbable object
                 if (hit.collider != null && hit.collider.tag == "Grabbable")
                 {
                     grabbed = true;
+                }
+
+                //If character is facing left draws a raycast pointing to it's back
+                if (angle > -90 && angle < 90 && backBox == false)
+                {
+                    hitBack = Physics2D.Raycast(transform.position, Vector2.right, distance);
+                }
+                //If character is facing right draws a raycast pointing to it's back
+                if (angle < -90 || angle > 90 && backBox == false)
+                {
+                    hitBack = Physics2D.Raycast(transform.position, Vector2.left, distance);
                 }
             }
         }
@@ -75,36 +91,31 @@ public class GrabBox : MonoBehaviour
         if (grabbed)
         {
             box = hit.collider.gameObject;
-            box.transform.position = holdpoint.position;
-            box.GetComponent<Rigidbody2D>().isKinematic = true;
-            box.GetComponent<Collider2D>().enabled = false;
+            box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
+            box.GetComponent<Rigidbody2D>().isKinematic = true;         //disable rigidbody
+            box.GetComponent<Collider2D>().enabled = false;         //disable collider 
 
-            if (angle > -90 && angle < 90 && !backBox)
-            {
-                hitBack = Physics2D.Raycast(transform.position, Vector2.right, distance);
-            }
-            if (angle < -90 || angle > 90 && !backBox)
-            {
-                hitBack = Physics2D.Raycast(transform.position, Vector2.left, distance);
-            }
 
+            /*      Limit rotation if there is a box on player's back     */
+
+            //If player is turned right with a box behind him
             if (hitBack.collider != null && hitBack.collider.gameObject.transform.position.x < transform.position.x)
             {
                 backBox = true;
 
-                if (angle >= 17 && angle < 180)
+                if (angle >= -60 && angle < 180)
                 {
                     rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + 170f));
                 }
             }
 
-            if (hitBack.collider != null && hitBack.collider.gameObject.transform.position.x > transform.position.x)
+            /*if (hitBack.collider != null && hitBack.collider.gameObject.transform.position.x > transform.position.x)
             {
                 if (angle >= 17 && angle < 180)
                 {
-                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + 170f));
+                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, -60f + 170f));
                 }
-            }
+            }*/
 
             if (hitBack.collider == null)
             {

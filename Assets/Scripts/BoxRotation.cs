@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BoxRotation : MonoBehaviour
 {
+    /* This Script is used on a GameObject Within the Character's GameObject
+    * 
+    *  It alows us to rotate a Box Hold Point accordingly to the mouse position
+    *  This way when the player is holding the box, it looks more dynamic to the player
+    *  
+    */
 
     public float angle;
     public int rotationOffSet = 0;
@@ -31,22 +37,28 @@ public class BoxRotation : MonoBehaviour
         //Get the angle between the points
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
-        //Apply rotation
-        if ((angle < 17 && angle > -180) || (angle == 180))
+        //Apply rotation proportional to the mouse position
+        if ((angle < 17 && angle > -180) || (angle == 180) && backBox == false)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
 
-        
-        if(angle >= 17 && angle < 90 && !backBox)
+        //If there's a box on player's back
+        if ((angle < -60 && angle > -180) || (angle == 180) && backBox == true)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
+        }
+
+
+        /*if(angle >= 17 && angle < 90 && backBox == false)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + rotationOffSet));
         }
 
-        if (angle < 180 && angle >= 90 && !backBox)
+        if (angle < 180 && angle >= 90 && backBox == false)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + rotationOffSet));
-        }
+        }*/
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
