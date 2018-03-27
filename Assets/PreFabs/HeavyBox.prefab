@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114680137060598806}
   - component: {fileID: 114416872363957746}
   m_Layer: 11
-  m_Name: Garbage_Block (17)
+  m_Name: HeavyBox
   m_TagString: Grabbable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

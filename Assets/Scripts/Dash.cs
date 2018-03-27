@@ -7,33 +7,35 @@ using UnityStandardAssets._2D;
 public class Dash : MonoBehaviour
 {
 
-    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
-    [SerializeField] public int keyCountRight = 0;
-    [SerializeField] public int keyCountLeft = 0;
-    [SerializeField] public float timer = 0;
-    [SerializeField] public float timer2 = 0;
-    [SerializeField] public float secondTimer;
+    [SerializeField] private LayerMask m_WhatIsGround;      // A mask determining what is ground to the character
+    private int keyCount = 0;
+    public int numberOfPresses = 1;
+    private float timer = 0;
+    private float secondTimer;
 
-    private Transform m_GroundCheck;    // A position marking where to check if the player is grounded.
-    private bool m_Grounded;            // Whether or not the player is grounded.
-    const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
-    public int groundTrue = 0;
-    public float oldPos;
-    public float newPos;
-    public float maxDistance = 3f;
-    public float newPositionTimeCheck = 2f;
-    public bool facingRight = true;
+    private Transform m_GroundCheck;        // A position marking where to check if the player is grounded.
+    private bool m_Grounded;                // Whether or not the player is grounded.
+    const float k_GroundedRadius = .2f;     // Radius of the overlap circle to determine if grounded
+    private bool facingRight = true;
 
     private Rigidbody2D myRigidBody2D;
     private Vector2 vectorForDash = new Vector2(1, 0);
-    public float dashSpeed = 1f;
-    public float givenTime = 1;
+    public float dashSpeed = 5f;
+    public float clickTime = 0.15f;
+    public float cooldown = 0.3f;
+    private bool activateCooldown = false;
+    private float pressTime;
+    public bool onlyDashOnGround = false;
+    public bool grabbed = false;
+    public float dashThrowforce = 120;
+    public float resetThrowforce;
 
     // Use this for initialization
     void Start()
     {
         myRigidBody2D = GetComponent<Rigidbody2D>();
         m_GroundCheck = transform.Find("GroundCheck");
+        resetThrowforce = GetComponent<GrabBox>().throwforce;
     }
 
     private void FixedUpdate()
@@ -47,100 +49,119 @@ public class Dash : MonoBehaviour
         {
             if (colliders[i].gameObject != gameObject)
                 m_Grounded = true;
+        }
+        vectorForDash = new Vector2(dashSpeed, 0);
+        //A timer that is constantly working
+        timer += Time.deltaTime;
 
-            if (m_Grounded == true)
+        //In this function we force the player too 
+        if (Input.GetKey(KeyCode.A))
+        {
+            facingRight = false;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            facingRight = true;
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && activateCooldown == false)
+        {
+            keyCount++;
+            secondTimer = timer;
+        }
+
+        //Reset number of presses on the assigned key
+        if (timer - secondTimer > clickTime + 0.2)
+        {
+            GetComponent<GrabBox>().throwforce = resetThrowforce;
+        }
+
+        //Reset number of presses on the assigned key
+        if (timer - secondTimer > clickTime)
+        {
+            keyCount = 0;
+            GetComponent<Platformer2DUserControl>().enabled = true;
+        }
+
+        //Reset number of presses on the assigned key
+        if (keyCount > numberOfPresses)
+        {
+            keyCount = 0;
+            GetComponent<Platformer2DUserControl>().enabled = true;
+        }
+
+        if (onlyDashOnGround == false)
+        {
+            //Dash right by pressing the assigned key (assigned number of times within the given time)
+            if (Input.GetKey(KeyCode.D) && keyCount == numberOfPresses &&
+                (timer - secondTimer < clickTime) && facingRight == true)
             {
-                groundTrue = 1;
-            }
-            else
-            {
-                groundTrue = 0;
+                ChangeThrowforce();
+                GetComponent<Platformer2DUserControl>().enabled = false;
+                myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
+                pressTime = timer;
+                activateCooldown = true;
             }
 
-            /*if (myRigidBody2D.velocity.y * Time.deltaTime > 0)
+            //Dash left by pressing the assigned key (assigned number of times within the given time)
+            if (Input.GetKey(KeyCode.A) && keyCount == numberOfPresses &&
+                (timer - secondTimer < clickTime) && facingRight == false)
             {
-                jumpCount++;
+                ChangeThrowforce();
+                GetComponent<Platformer2DUserControl>().enabled = false;
+                myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);
+                pressTime = timer;
+                activateCooldown = true;
             }
-            if(jumpCount) */
+        }
+
+        if (onlyDashOnGround == true)
+        {
+            //Dash right by pressing the assigned key (assigned number of times within the given time)
+            if (Input.GetKey(KeyCode.D) && keyCount == numberOfPresses &&
+                (timer - secondTimer < clickTime) && facingRight == true && m_Grounded == true)
+            {
+                ChangeThrowforce();
+                GetComponent<Platformer2DUserControl>().enabled = false;
+                myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
+                pressTime = timer;
+                activateCooldown = true;
+            }
+
+            //Dash left by pressing the assigned key (assigned number of times within the given time)
+            if (Input.GetKey(KeyCode.A) && keyCount == numberOfPresses &&
+                (timer - secondTimer < clickTime) && facingRight == false && m_Grounded == true)
+            {
+                ChangeThrowforce();
+                GetComponent<Platformer2DUserControl>().enabled = false;
+                myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);
+                pressTime = timer;
+                activateCooldown = true;
+            }
+        }
+
+        //Add a cooldown between dashes
+        if (activateCooldown == true)
+        {
+            if (timer - pressTime > cooldown)
+            {
+                activateCooldown = false;
+            }
+        }
+    }
+
+    public void ChangeThrowforce()
+    {
+        if (grabbed)
+        {
+            GetComponent<GrabBox>().throwforce = dashThrowforce;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        vectorForDash = new Vector2(dashSpeed, 0);
-        //A timer that is constantly working
-        timer += Time.deltaTime;
-        /*timer2 += Time.deltaTime;
-
-        if (timer2 > newPositionTimeCheck)
-        {
-            timer2 = 0;
-        }
-        if (timer <= newPositionTimeCheck)
-        {
-            newPos = myRigidBody2D.position.x;
-        }*/
-
-        //In this function we force the player too (CONTINUAR AMANHÃ)
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-;
-            keyCountRight++;
-            secondTimer = timer;
-            keyCountLeft = 0;
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            keyCountLeft++;
-            secondTimer = timer;
-            keyCountRight = 0;
-        }
-
-        //Reset number of presses on both keys
-        if (timer - secondTimer > givenTime)
-        {
-            keyCountRight = 0;
-            keyCountLeft = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
-        }
-
-        //Reset number of presses on the D key
-        if (keyCountRight > 2)
-        {
-            keyCountRight = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
-        }
-        //Reset number of presses on the A key
-        if (keyCountLeft > 2)
-        {
-            keyCountLeft = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
-        }
-
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountRight == 2 && (timer - secondTimer < givenTime))
-        {
-            //oldPos = myRigidBody2D.position.x;
-            GetComponent<Platformer2DUserControl>().enabled = false;
-            myRigidBody2D.AddRelativeForce(vectorForDash, ForceMode2D.Impulse);
-        }
-
-        //Dash right by double pressing the Space key (within the given time)
-        if (keyCountLeft == 2 && (timer - secondTimer < givenTime))
-        {
-            //oldPos = myRigidBody2D.position.x;
-            GetComponent<Platformer2DUserControl>().enabled = false;
-            myRigidBody2D.AddRelativeForce(-1 * vectorForDash, ForceMode2D.Impulse);
-        }
-
-        /*if (newPos - oldPos > maxDistance)
-        {
-            myRigidBody2D.velocity.Set(0, myRigidBody2D.velocity.y);
-            //myRigidBody2D.position.x = oldPos + maxDistance;
-        }*/
-            //myRigidBody2D.velocity = -transform.right * dashSpeed;
-        } 
+        grabbed = GetComponent<GrabBox>().grabbed;
+    }
 }

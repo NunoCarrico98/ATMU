@@ -15,8 +15,10 @@ public class BoxCheck : MonoBehaviour
     private RaycastHit2D hitRight;
     private RaycastHit2D[] hitUp = new RaycastHit2D[3];
     private RaycastHit2D[] hitDown = new RaycastHit2D[3];
+    //private Collider2D hitPlayer;
     private int count = 0;
     private Vector2 resetOffset;
+    private float slowSpeed;
 
     // Use this for initialization
     void Start()
@@ -29,7 +31,8 @@ public class BoxCheck : MonoBehaviour
     void Update()
     {
         angle = player.GetComponent<GrabBox>().angle;
-
+       // slowSpeed = GetComponent<PlatformerCharacter2D>().slowSpeed;
+       // hitPlayer = player.GetComponent<GrabBox>().hit.collider;
 
         FlipBoxCollider();
 
@@ -115,5 +118,21 @@ public class BoxCheck : MonoBehaviour
 
         Gizmos.DrawLine(new Vector3(transform.position.x - 0.7f, transform.position.y, 0), new Vector3(transform.position.x - 0.7f, transform.position.y + distance, 0));
     }
+
+    /*public void TwoBoxesVertical()
+    {
+        if(hitPlayer.gameObject.name == "LightBox")
+        {
+            if (hitUp[0].collider.gameObject.name == "LightBox" ||
+                hitUp[1].collider.gameObject.name == "LightBox" ||
+                hitUp[2].collider.gameObject.name == "LightBox")
+            {
+                player.GetComponent<PlatformerCharacter2D>().m_MaxSpeed = slowSpeed;
+                hitUp[0].collider.gameObject.transform.position = new Vector2(transform.position.x, hitUp[0].collider.gameObject.transform.position.y);
+                hitUp[1].collider.gameObject.transform.position = new Vector2(transform.position.x, hitUp[1].collider.gameObject.transform.position.y);
+                hitUp[2].collider.gameObject.transform.position = new Vector2(transform.position.x, hitUp[2].collider.gameObject.transform.position.y);
+            }
+        }
+    }*/
 
 }

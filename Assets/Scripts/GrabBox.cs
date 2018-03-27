@@ -15,9 +15,10 @@ public class GrabBox : MonoBehaviour
     private bool facingRight;
 
     public bool grabbed;
-    RaycastHit2D hit;
-    RaycastHit2D hitBack;
+    public RaycastHit2D hit;
+    public RaycastHit2D hitBack;
     public float distance = 2f;
+    public float distanceBack = 2f;
     public Transform holdpoint;
     public float throwforce;
     public LayerMask notgrabbed;
@@ -31,7 +32,7 @@ public class GrabBox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -48,9 +49,8 @@ public class GrabBox : MonoBehaviour
 
         if (Input.GetButtonDown("Fire2"))
         {
-
             if (!grabbed)
-            {
+            { 
 
                 Physics2D.queriesStartInColliders = false;
 
@@ -67,7 +67,7 @@ public class GrabBox : MonoBehaviour
                 }
 
                 //Raycast that follows mouse position on top side
-                if (angle < -43 && angle > -120)
+                if (angle < -40 && angle > -123)
                 {
                     hit = Physics2D.Raycast(transform.position, direction, 2);
                 }
@@ -90,13 +90,13 @@ public class GrabBox : MonoBehaviour
             //If character is facing left draws a raycast pointing to it's back
             if (facingRight == false)
             {
-                hitBack = Physics2D.Raycast(transform.position, Vector2.right, distance);
+                hitBack = Physics2D.Raycast(transform.position, Vector2.right, distanceBack);
             }
 
             //If character is facing right draws a raycast pointing to it's back
             if (facingRight == true)
             {
-                hitBack = Physics2D.Raycast(transform.position, Vector2.left, distance);
+                hitBack = Physics2D.Raycast(transform.position, Vector2.left, distanceBack);
             }
 
             /*      Limit rotation if there is a box on player's back     */
@@ -106,7 +106,7 @@ public class GrabBox : MonoBehaviour
             {
                 backBoxL = true;
 
-                if (angle >= -60 && angle < 180)
+                if (angle >= -55 && angle < 180)
                 {
                     rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + 170f));
                 }
@@ -117,7 +117,7 @@ public class GrabBox : MonoBehaviour
             {
                 backBoxR = true;
 
-                if (angle <= -100 ||( angle < 180 && angle > 17))
+                if (angle <= -110 ||( angle < 180 && angle > 17))
                 {
                     rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + 170f));
                 }

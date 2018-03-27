@@ -5,7 +5,7 @@ using UnityEngine;
 //{
 public class PlatformerCharacter2D : MonoBehaviour
 {
-    [SerializeField] private float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
+    /*[SerializeField]*/ public float m_MaxSpeed = 10f;                    // The fastest the player can travel in the x axis.
     [SerializeField] private float m_JumpForce = 400f;                  // Amount of force added when the player jumps.
     [Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;  // Amount of maxSpeed applied to crouching movement. 1 = 100%
     [SerializeField] private bool m_AirControl = false;                 // Whether or not a player can steer while jumping;
@@ -28,6 +28,7 @@ public class PlatformerCharacter2D : MonoBehaviour
     public float angle;
     public Vector2 positionOnScreen;
     public Vector2 mouseOnScreen;
+    public float slowSpeed = 6;
 
     private Transform playerGraphics;
     private Transform playerHead;
