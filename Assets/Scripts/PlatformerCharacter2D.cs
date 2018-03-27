@@ -22,6 +22,8 @@ public class PlatformerCharacter2D : MonoBehaviour
     public float sprintSpeed = 2f;
     //private float m_SpeedReset;
     public bool sprint = true;
+    public bool backBoxR;
+    public bool backBoxL;
 
     public float angle;
     public Vector2 positionOnScreen;
@@ -54,6 +56,9 @@ public class PlatformerCharacter2D : MonoBehaviour
     {
         //rotateBoxPoint = this.GetComponent<GrabBox>
         m_Grounded = false;
+
+        backBoxR = GetComponent<GrabBox>().backBoxR;
+        backBoxL = GetComponent<GrabBox>().backBoxL;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -115,12 +120,12 @@ public class PlatformerCharacter2D : MonoBehaviour
             angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
             // If the input is moving the player right and the player is facing left...
-            if (m_FacingRight == true && (angle > -90 && angle < 90))
+            if (m_FacingRight == true && (angle > -90 && angle < 90) && backBoxL == false)
             {
                 // ... flip the player.
                 Flip();
             }
-            if (m_FacingRight == false && (angle < -90 || angle > 90))
+            if (m_FacingRight == false && (angle < -90 || angle > 90) && backBoxR == false)
             {
                 // ... flip the player.
                 Flip();

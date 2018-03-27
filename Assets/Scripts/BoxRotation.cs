@@ -15,7 +15,8 @@ public class BoxRotation : MonoBehaviour
     public int rotationOffSet = 0;
     public Transform player;
 
-    private bool backBox;
+    private bool backBoxR;
+    private bool backBoxL;
 
     // Use this for initialization
     void Start()
@@ -26,7 +27,8 @@ public class BoxRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        backBox = player.GetComponent<GrabBox>().backBox;
+        backBoxR = player.GetComponent<GrabBox>().backBoxR;
+        backBoxL = player.GetComponent<GrabBox>().backBoxL;
 
         //Get the Screen positions of the object
         Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(transform.position);
@@ -38,13 +40,19 @@ public class BoxRotation : MonoBehaviour
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
         //Apply rotation proportional to the mouse position
-        if ((angle < 17 && angle > -180) || (angle == 180) && backBox == false)
+        if (((angle < 17 && angle > -180) || (angle == 180)) && (backBoxR == false && backBoxL == false))
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
 
         //If there's a box on player's back
-        if ((angle < -60 && angle > -180) || (angle == 180) && backBox == true)
+        if (((angle < -55 && angle > -180) || (angle == 180)) && backBoxL == true)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
+        }
+
+        //If there's a box on player's back
+        if ((angle < 17 && angle > -110) && backBoxR == true)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
