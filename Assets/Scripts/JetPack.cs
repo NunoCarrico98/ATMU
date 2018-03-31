@@ -48,9 +48,10 @@ public class JetPack : MonoBehaviour {
     }
     void Update ()
     {
-        h = Input.GetAxis("Horizontal");
+        h = myRigidBody2D.velocity.x;
         force = new Vector2(h , ascendingSpeed);
-        //In this function we force the player too (CONTINUAR AMANHÃ)
+        
+
         if (Input.GetKeyUp(KeyCode.Space) || myRigidBody2D.velocity.y < 0)
         {
             jumpCount++;
@@ -72,72 +73,4 @@ public class JetPack : MonoBehaviour {
             }
         }
     }
-
-   /* private void LateUpdate()
-    {
-        if(jumpCount > 100)
-        {
-            jumpCount = 0;
-        }
-    }*/
-
-
-
-    /*
-     * if (myRigidBody2D.velocity.y < 0)
-            {
-                fallingCheck = true;
-            }
-            else
-            {
-                fallingCheck = false;
-            }
-     */
-
-
-    /* public CharacterController CharCont;
-    public Vector3 currentVector = Vector3.up;
-    public float ascendingSpeed = 5f;
-    public float CurrentForce = 0;
-    public float MaxForce = 5;
-
-	// Update is called once per frame
-	void FixedUpdate() {
-		if(Input.GetKey(KeyCode.Space) && MaxForce > 0)
-        {
-            MaxForce -= Time.deltaTime;
-            if (CurrentForce < 1)
-                CurrentForce += Time.deltaTime * 10;
-            else
-                CurrentForce = 1;
-        }
-
-        if(MaxForce < 0 && CurrentForce > 0)
-        {
-            CurrentForce -= Time.deltaTime;
-        }
-        if(!Input.GetKey(KeyCode.Space))
-        {
-            if (CurrentForce > 0)
-                CurrentForce -= Time.deltaTime;
-            else CurrentForce = 0;
-
-            if (MaxForce < 5)
-                MaxForce += Time.deltaTime;
-            else
-                MaxForce = 5;
-        }
-        if (CurrentForce > 0)
-            UseJetPack();
-	}
-
-    public void UseJetPack()
-    {
-        currentVector = Vector3.up;
-
-        currentVector += transform.up * Input.GetAxis("Horizontal");
-        currentVector += transform.right * Input.GetAxis("Vertical");
-
-        CharCont.Move((currentVector * ascendingSpeed * Time.fixedDeltaTime - CharCont.velocity) * CurrentForce);
-    } */
 }

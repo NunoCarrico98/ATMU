@@ -38,8 +38,9 @@ public class Dash : MonoBehaviour
         resetThrowforce = GetComponent<GrabBox>().throwforce;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
+        grabbed = GetComponent<GrabBox>().grabbed;
         m_Grounded = false;
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -50,20 +51,11 @@ public class Dash : MonoBehaviour
             if (colliders[i].gameObject != gameObject)
                 m_Grounded = true;
         }
-        vectorForDash = new Vector2(dashSpeed, 0);
+
+        //vectorForDash = new Vector2(dashSpeed, 0);
+
         //A timer that is constantly working
         timer += Time.deltaTime;
-
-        //In this function we force the player too 
-        if (Input.GetKey(KeyCode.A))
-        {
-            facingRight = false;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            facingRight = true;
-        }
-
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && activateCooldown == false)
         {
@@ -95,22 +87,22 @@ public class Dash : MonoBehaviour
         {
             //Dash right by pressing the assigned key (assigned number of times within the given time)
             if (Input.GetKey(KeyCode.D) && keyCount == numberOfPresses &&
-                (timer - secondTimer < clickTime) && facingRight == true)
+                (timer - secondTimer < clickTime))
             {
                 ChangeThrowforce();
                 GetComponent<Platformer2DUserControl>().enabled = false;
-                myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
+                myRigidBody2D.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;
             }
 
             //Dash left by pressing the assigned key (assigned number of times within the given time)
             if (Input.GetKey(KeyCode.A) && keyCount == numberOfPresses &&
-                (timer - secondTimer < clickTime) && facingRight == false)
+                (timer - secondTimer < clickTime))
             {
                 ChangeThrowforce();
                 GetComponent<Platformer2DUserControl>().enabled = false;
-                myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);
+                myRigidBody2D.AddForce(Vector2.left * dashSpeed , ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;
             }
@@ -157,11 +149,5 @@ public class Dash : MonoBehaviour
         {
             GetComponent<GrabBox>().throwforce = dashThrowforce;
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        grabbed = GetComponent<GrabBox>().grabbed;
     }
 }
