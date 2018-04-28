@@ -16,6 +16,7 @@ public class CharacterMovement : MonoBehaviour
     private Transform playerHead;
     private Vector2 playerSize;
     private Vector2 boxSize;
+    private Animator characterAnim;
 
     private float angle = 0f;
     private bool backBoxR;
@@ -33,6 +34,7 @@ public class CharacterMovement : MonoBehaviour
         boxSize = new Vector2(playerSize.x, groundedSkin);
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
+        characterAnim = GetComponent<Animator>();
         playerGraphics = transform.Find("Graphics");
         playerHead = transform.Find("RotatingHead");
     }
@@ -55,11 +57,19 @@ public class CharacterMovement : MonoBehaviour
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveHorizontal * movementSpeed , myRigidbody2D.velocity.y);
         myRigidbody2D.velocity = movement;
+        characterAnim.SetBool("Ground", grounded);
+
+        // Set the vertical animation
+        characterAnim.SetFloat("vSpeed", myRigidbody2D.velocity.y);
+
+        // The Speed animator parameter is set to the absolute value of the horizontal input.
+        characterAnim.SetFloat("Speed", Mathf.Abs(moveHorizontal));
     }
 
     private void SetJumpRequest()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && grounded)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+            && grounded && characterAnim.GetBool("Ground"))
         {
             jumpRequest = true;
         }
@@ -74,6 +84,8 @@ public class CharacterMovement : MonoBehaviour
 
             jumpRequest = false;
             grounded = false;
+
+            characterAnim.SetBool("Ground", false);
         }
         else
         {
