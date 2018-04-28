@@ -84,8 +84,8 @@ public class GrabBox : MonoBehaviour
         {
             box = hit.collider.gameObject;
             box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
-            /*box.GetComponent<Rigidbody2D>().isKinematic = true;         //disable rigidbody
-            box.GetComponent<Collider2D>().enabled = false; */        //disable collider 
+            box.GetComponent<Rigidbody2D>().isKinematic = true;         //disable rigidbody
+            box.GetComponent<Collider2D>().enabled = false;         //disable collider 
 
             //If character is facing left draws a raycast pointing to it's back
             if (facingRight == false)
@@ -145,18 +145,18 @@ public class GrabBox : MonoBehaviour
 
                 if (Input.GetButtonUp("Fire2") && keyCount == 2)
                 {
-                    //box.GetComponent<Rigidbody2D>().isKinematic = false;
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
-                    //box.GetComponent<Collider2D>().enabled = true;
+                    box.GetComponent<Collider2D>().enabled = true;
                     grabbed = false;
                     keyCount = 0;
                 }
 
                 if (Input.GetButtonDown("Fire1"))
                 {
-                    //box.GetComponent<Rigidbody2D>().isKinematic = false;
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-                    //box.GetComponent<Collider2D>().enabled = true;
+                    box.GetComponent<Collider2D>().enabled = true;
                     box.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
                     grabbed = false;
                     keyCount = 0;
