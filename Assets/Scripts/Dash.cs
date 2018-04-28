@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityStandardAssets.CrossPlatformInput;
 using UnityEngine;
-using UnityStandardAssets._2D;
 
 public class Dash : MonoBehaviour
 {
