@@ -10,7 +10,7 @@ public class PressurePlate : MonoBehaviour
     private Vector2 upPos;
     private Vector2 downPos;
     private Animator anim;
-    
+
     private void Start()
     {
         anim = GetComponent<Animator>();

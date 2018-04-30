@@ -56,7 +56,7 @@ public class CharacterMovement : MonoBehaviour
     {
         // Move Player
         float moveHorizontal = Input.GetAxis("Horizontal");
-        Vector2 movement = new Vector2(moveHorizontal * movementSpeed , myRigidbody2D.velocity.y);
+        Vector2 movement = new Vector2(moveHorizontal * movementSpeed, myRigidbody2D.velocity.y);
         myRigidbody2D.velocity = movement;
 
         // Set movement animation
