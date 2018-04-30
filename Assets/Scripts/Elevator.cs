@@ -5,36 +5,21 @@ using UnityEngine;
 public class Elevator : MonoBehaviour
 {
     public GameObject pressurePlate;
-    public int howManyFloors = 1;
-    public float howLongIsTrip = 10f;
     public float elevatorSpeed = 5f;
-
-    private Vector2[] floors;
+    public float distanceToMove = 10f;
 
     private bool pressured;
-    private bool goDown;
-    private bool goUp;
-    private int upFloor;
-    private int downFloor;
-    private int currentFloor;
+
+    private Vector3 initialPos;
+    //private Vector3 midPos;
+    private Vector3 endPos;
 
     // Use this for initialization
     private void Start()
     {
-        goUp = false;
-        goDown = false;
-
-        upFloor = 0;
-        downFloor = howManyFloors;
-        currentFloor = 0;
-
-        floors[0] = transform.position;
-
-        for (int i = 1; i <= howManyFloors; i++)
-        {
-            floors[i] = new Vector2(transform.position.x, floors[i - 1].y + howLongIsTrip);
-        }
-
+        initialPos = transform.position;
+       // midPos = transform.position + Vector3.up * distanceToMove;
+        endPos = transform.position + Vector3.up * (2 * distanceToMove);
     }
 
     // Update is called once per frame
@@ -45,47 +30,11 @@ public class Elevator : MonoBehaviour
         IsPressured();
     }
 
-    private void SetCurrentFloor()
-    {
-        if (transform.position.y == floors[upFloor].y)
-        {
-            currentFloor = upFloor;
-            upFloor++;
-            goUp = true;
-
-            if (upFloor >= howManyFloors)
-            {
-                upFloor = howManyFloors;
-            }
-        }
-        else if (transform.position.y == floors[downFloor].y)
-        { 
-            currentFloor = downFloor;
-            downFloor--;
-            goDown = true;
-
-            if (downFloor <= 0)
-            {
-                downFloor = 0;
-            }
-        }
-    }
-
     private void IsPressured()
     {
         if (pressured)
         {
-            if(goUp)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, floors[currentFloor + 1], elevatorSpeed * Time.deltaTime);
-                goUp = false;
-            }
-
-            if(goDown)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, floors[currentFloor - 1], elevatorSpeed * Time.deltaTime);
-                goDown = false;
-            }
+            transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
         }
     }
 }

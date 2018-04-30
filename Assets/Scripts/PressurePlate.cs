@@ -5,10 +5,11 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public bool pressured;
-    public float moveSpeed = 5f;
+    public float speed = 5f;
+    public float distanceToMove = 10f;
 
-    private Vector2 upPos;
-    private Vector2 downPos;
+    private Vector3 initialPos;
+    private Vector3 endPos;
     private Animator anim;
 
     private void Start()
@@ -16,11 +17,15 @@ public class PressurePlate : MonoBehaviour
         anim = GetComponent<Animator>();
 
         pressured = false;
+
+        initialPos = transform.position;
+        endPos = transform.position + Vector3.down * distanceToMove;
     }
 
     private void Update()
     {
-        anim.SetBool("Pressured", pressured);
+        //anim.SetBool("Pressured", pressured);
+        MovePlate();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -36,6 +41,22 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerExit2D(Collider2D col)
     {
         pressured = false;
+    }
+
+    private void MovePlate()
+    {
+        if (pressured)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+        }
+        else if (transform.position == endPos)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, initialPos, speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = initialPos;
+        }
     }
 
 }
