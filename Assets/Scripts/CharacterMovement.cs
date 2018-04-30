@@ -54,9 +54,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void Movement()
     {
+        // Move Player
         float moveHorizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(moveHorizontal * movementSpeed , myRigidbody2D.velocity.y);
         myRigidbody2D.velocity = movement;
+
+        // Set movement animation
         characterAnim.SetBool("Ground", grounded);
 
         // Set the vertical animation
@@ -68,10 +71,15 @@ public class CharacterMovement : MonoBehaviour
 
     private void SetJumpRequest()
     {
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
-            && grounded && characterAnim.GetBool("Ground"))
+        // Check input 
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
-            jumpRequest = true;
+            // if on the ground
+            if (grounded)
+            {
+                // Ask for jump
+                jumpRequest = true;
+            }
         }
     }
 
@@ -79,16 +87,19 @@ public class CharacterMovement : MonoBehaviour
     {
         if (jumpRequest)
         {
+            // Character jumps
             Vector2 jump = new Vector2(0f, jumpForce);
             myRigidbody2D.AddForce(jump);
 
             jumpRequest = false;
             grounded = false;
 
+            // Set jumping animation
             characterAnim.SetBool("Ground", false);
         }
         else
         {
+            // Verify if player is touching the ground
             Vector2 boxCenter = (Vector2)transform.position + Vector2.down * (playerSize.y + boxSize.y) * 0.7f;
             grounded = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, whatIsGround) != null);
         }
@@ -96,7 +107,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void FlipPlayer()
     {
+        // Get angle bewtween mouse and player
         angle = GetComponent<GrabBox>().angle;
+
+        // Get if player has a box behind him
         backBoxR = GetComponent<GrabBox>().backBoxR;
         backBoxL = GetComponent<GrabBox>().backBoxL;
 
@@ -118,11 +132,12 @@ public class CharacterMovement : MonoBehaviour
         // Switch the way the player is labelled as facing.
         facingRight = !facingRight;
 
-        // Multiply the player's x local scale by -1.
+        // Flip the player's body.
         Vector3 theScale = playerGraphics.localScale;
         theScale.x *= -1;
         playerGraphics.localScale = theScale;
 
+        // Flip the player's head
         Vector3 theScale2 = playerHead.localScale;
         theScale2.y *= -1;
         playerHead.localScale = theScale2;
