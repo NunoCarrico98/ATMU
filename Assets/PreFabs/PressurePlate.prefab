@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 95556781843413702}
   m_Layer: 0
   m_Name: PressurePlate
-  m_TagString: Untagged
+  m_TagString: PressurePlate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressured: 0
-  moveSpeed: 9.5
+  moveSpeed: 5
 --- !u!212 &212911036618227310
 SpriteRenderer:
   m_ObjectHideFlags: 1
