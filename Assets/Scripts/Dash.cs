@@ -71,14 +71,14 @@ public class Dash : MonoBehaviour
         if (timer - secondTimer > clickTime)
         {
             keyCount = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
+            GetComponent<CharacterMovement>().enabled = true;
         }
 
         //Reset number of presses on the assigned key
         if (keyCount > numberOfPresses)
         {
             keyCount = 0;
-            GetComponent<Platformer2DUserControl>().enabled = true;
+            GetComponent<CharacterMovement>().enabled = true;
         }
 
         if (onlyDashOnGround == false)
@@ -88,7 +88,7 @@ public class Dash : MonoBehaviour
                 (timer - secondTimer < clickTime))
             {
                 ChangeThrowforce();
-                GetComponent<Platformer2DUserControl>().enabled = false;
+                GetComponent<CharacterMovement>().enabled = false;
                 myRigidBody2D.AddForce(Vector2.right * dashSpeed, ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;
@@ -99,7 +99,7 @@ public class Dash : MonoBehaviour
                 (timer - secondTimer < clickTime))
             {
                 ChangeThrowforce();
-                GetComponent<Platformer2DUserControl>().enabled = false;
+                GetComponent<CharacterMovement>().enabled = false;
                 myRigidBody2D.AddForce(Vector2.left * dashSpeed , ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;
@@ -113,7 +113,7 @@ public class Dash : MonoBehaviour
                 (timer - secondTimer < clickTime) && facingRight == true && m_Grounded == true)
             {
                 ChangeThrowforce();
-                GetComponent<Platformer2DUserControl>().enabled = false;
+                GetComponent<CharacterMovement>().enabled = false;
                 myRigidBody2D.AddForce(vectorForDash, ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;
@@ -124,7 +124,7 @@ public class Dash : MonoBehaviour
                 (timer - secondTimer < clickTime) && facingRight == false && m_Grounded == true)
             {
                 ChangeThrowforce();
-                GetComponent<Platformer2DUserControl>().enabled = false;
+                GetComponent<CharacterMovement>().enabled = false;
                 myRigidBody2D.AddForce(-1 * vectorForDash, ForceMode2D.Impulse);
                 pressTime = timer;
                 activateCooldown = true;

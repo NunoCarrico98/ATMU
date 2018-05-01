@@ -7,11 +7,11 @@ public class Elevator : MonoBehaviour
     public GameObject pressurePlate;
     public float elevatorSpeed = 5f;
     public float distanceToMove = 10f;
+    public float timerBeforeMove = 2f;
 
     private bool pressured;
-    private bool elevatorUp;
-    private bool elevatorDown;
     private int lastAction;
+    private float currentTime;
 
     private Vector3 initialPos;
     //private Vector3 midPos;
@@ -21,8 +21,7 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         lastAction = 1;
-        elevatorDown = false;
-        elevatorUp = false;
+        currentTime = 0;
 
         initialPos = transform.position;
         // midPos = transform.position + Vector3.up * distanceToMove;
@@ -35,7 +34,6 @@ public class Elevator : MonoBehaviour
         pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
 
         IsPressured();
-        IsElevatorOn();
     }
 
     private void IsPressured()
@@ -44,35 +42,38 @@ public class Elevator : MonoBehaviour
         {
             if (lastAction == 1)
             {
-                elevatorUp = true;
+                transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
+                StartTimer();
             }
             else
             {
-                elevatorDown = true;
+                transform.position = Vector3.MoveTowards(transform.position, initialPos, elevatorSpeed * Time.deltaTime);
+                StartTimer();
             }
         }
     }
 
-    private void IsElevatorOn()
+    private void StartTimer()
     {
-        if (elevatorUp)
+        if (transform.position == endPos)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
+            currentTime += Time.deltaTime;
 
-            if (transform.position == endPos)
+            if (currentTime >= timerBeforeMove)
             {
-                elevatorUp = false;
                 lastAction = 0;
+                currentTime = 0;
             }
         }
 
-        if (elevatorDown)
+        if (transform.position == initialPos)
         {
-            transform.position = Vector3.MoveTowards(transform.position, initialPos, elevatorSpeed * Time.deltaTime);
-            if (transform.position == initialPos)
+            currentTime += Time.deltaTime;
+
+            if (currentTime >= timerBeforeMove)
             {
-                elevatorDown = false;
                 lastAction = 1;
+                currentTime = 0;
             }
         }
     }
