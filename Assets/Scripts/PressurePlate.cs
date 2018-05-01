@@ -10,12 +10,9 @@ public class PressurePlate : MonoBehaviour
 
     private Vector3 initialPos;
     private Vector3 endPos;
-    private Animator anim;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
-
         pressured = false;
 
         initialPos = transform.position;
@@ -25,6 +22,7 @@ public class PressurePlate : MonoBehaviour
     private void Update()
     {
         MovePlateDown();
+        MovePlateUp();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -40,7 +38,6 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerExit2D(Collider2D col)
     {
         pressured = false;
-        MovePlateUp();
     }
 
     private void MovePlateDown()
@@ -54,7 +51,6 @@ public class PressurePlate : MonoBehaviour
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
-                Debug.Log(transform.position);
             }
         }
     }
