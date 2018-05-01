@@ -24,8 +24,7 @@ public class PressurePlate : MonoBehaviour
 
     private void Update()
     {
-        //anim.SetBool("Pressured", pressured);
-        MovePlate();
+        MovePlateDown();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -41,22 +40,37 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerExit2D(Collider2D col)
     {
         pressured = false;
+        MovePlateUp();
     }
 
-    private void MovePlate()
+    private void MovePlateDown()
     {
         if (pressured)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
-        }
-        else if (transform.position == endPos)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, initialPos, speed * Time.deltaTime);
-        }
-        else
-        {
-            transform.position = initialPos;
+            if (transform.position == endPos)
+            {
+                transform.position = endPos;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+                Debug.Log(transform.position);
+            }
         }
     }
 
+    private void MovePlateUp()
+    {
+        if (!pressured)
+        {
+            if (transform.position == initialPos)
+            {
+                transform.position = initialPos;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, initialPos, speed * Time.deltaTime);
+            }
+        }
+    }
 }
