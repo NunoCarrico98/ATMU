@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
-    public bool boxPressured;
-    public bool playerPressured;
     public bool pressured;
     public float speed = 5f;
     public float distanceToMove = 10f;
@@ -15,8 +13,7 @@ public class PressurePlate : MonoBehaviour
 
     private void Start()
     {
-        boxPressured = false;
-        playerPressured = false;
+        pressured = false;
 
         initialPos = transform.position;
         endPos = transform.position + Vector3.down * distanceToMove;
@@ -29,23 +26,15 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player")
+        if (col.gameObject.tag == "Player" ||
+            col.gameObject.tag == "Grabbable")
         {
-            playerPressured = true;
-            pressured = true;
-        }
-
-        if (col.gameObject.tag == "Grabbable")
-        {
-            boxPressured = true;
             pressured = true;
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        boxPressured = false;
-        playerPressured = false;
         pressured = false;
     }
 
