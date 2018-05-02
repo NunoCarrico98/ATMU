@@ -7,13 +7,11 @@ public class Elevator : MonoBehaviour
     public GameObject pressurePlate;
     public float elevatorSpeed = 5f;
     public float distanceToMove = 10f;
-    public float timerBeforeMove = 2f;
 
     private bool pressured;
     private bool elevatorUp;
     private bool elevatorDown;
     private int lastAction;
-    private float currentTime;
 
     private Vector3 initialPos;
     private Vector3 endPos;
@@ -22,7 +20,6 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         lastAction = 1;
-        currentTime = 0;
 
         initialPos = transform.position;
         endPos = transform.position + Vector3.up * distanceToMove;
@@ -34,6 +31,7 @@ public class Elevator : MonoBehaviour
         pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
 
         IsPressured();
+        //DisableRender();
     }
 
     private void IsPressured()
@@ -65,6 +63,14 @@ public class Elevator : MonoBehaviour
                 lastAction = 1;
                 elevatorDown = false;
             }
+        }
+    }
+
+    private void DisableRender()
+    {
+        if(transform.position == endPos)
+        {
+            gameObject.SetActive(false);
         }
     }
 }

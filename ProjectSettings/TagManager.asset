@@ -8,6 +8,7 @@ TagManager:
   - Grabbable
   - BoxColliders
   - PressurePlate
+  - Elevator
   layers:
   - Default
   - TransparentFX
