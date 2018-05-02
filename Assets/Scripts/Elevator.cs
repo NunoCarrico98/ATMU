@@ -9,7 +9,10 @@ public class Elevator : MonoBehaviour
     public float distanceToMove = 10f;
     public float timerBeforeMove = 2f;
 
-    private bool pressured;
+    private bool boxPressured;
+    private bool playerPressured;
+    private bool elevatorUp;
+    private bool elevatorDown;
     private int lastAction;
     private float currentTime;
 
@@ -29,24 +32,54 @@ public class Elevator : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
+        boxPressured = pressurePlate.GetComponent<PressurePlate>().boxPressured;
+        playerPressured = pressurePlate.GetComponent<PressurePlate>().playerPressured;
 
         IsPressured();
+        StartTimer();
     }
 
     private void IsPressured()
     {
-        if (pressured)
+        if (playerPressured && !boxPressured)
         {
             if (lastAction == 1)
             {
                 transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
-                StartTimer();
+                elevatorUp = true;
             }
             else
             {
                 transform.position = Vector3.MoveTowards(transform.position, initialPos, elevatorSpeed * Time.deltaTime);
-                StartTimer();
+                elevatorDown = true;
+            }
+        }
+
+        if (boxPressured && !playerPressured)
+        {
+            if (lastAction == 1)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
+                elevatorUp = true;
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, initialPos, elevatorSpeed * Time.deltaTime);
+                elevatorDown = true;
+            }
+        }
+
+        if (!boxPressured && !playerPressured)
+        {
+            if (elevatorUp)
+            {
+                lastAction = 0;
+                elevatorUp = false;
+            }
+            if (elevatorDown)
+            {
+                lastAction = 1;
+                elevatorDown = false;
             }
         }
     }
@@ -61,6 +94,7 @@ public class Elevator : MonoBehaviour
             {
                 lastAction = 0;
                 currentTime = 0;
+                elevatorUp = false;
             }
         }
 
@@ -72,6 +106,7 @@ public class Elevator : MonoBehaviour
             {
                 lastAction = 1;
                 currentTime = 0;
+                elevatorDown = false;
             }
         }
     }
