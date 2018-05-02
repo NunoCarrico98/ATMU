@@ -14,7 +14,6 @@ public class Elevator : MonoBehaviour
     private float currentTime;
 
     private Vector3 initialPos;
-    //private Vector3 midPos;
     private Vector3 endPos;
 
     // Use this for initialization
@@ -24,8 +23,7 @@ public class Elevator : MonoBehaviour
         currentTime = 0;
 
         initialPos = transform.position;
-        // midPos = transform.position + Vector3.up * distanceToMove;
-        endPos = transform.position + Vector3.up * (2 * distanceToMove);
+        endPos = transform.position + Vector3.up * distanceToMove;
     }
 
     // Update is called once per frame
