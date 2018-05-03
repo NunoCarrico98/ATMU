@@ -27,7 +27,8 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player" ||
-            col.gameObject.tag == "Grabbable")
+            col.gameObject.tag == "HeavyBox" ||
+            col.gameObject.tag == "LightBox")
         {
             pressured = true;
         }

@@ -38,12 +38,10 @@ GameObject:
   - component: {fileID: 212529071556661568}
   - component: {fileID: 50784712222349490}
   - component: {fileID: 61577146615983804}
-  - component: {fileID: 255612123103817618}
-  - component: {fileID: 114737303578311616}
   - component: {fileID: 114686169188957790}
   m_Layer: 11
   m_Name: LightBox
-  m_TagString: Grabbable
+  m_TagString: LightBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,24 +214,6 @@ MonoBehaviour:
   angle: 0
   player: {fileID: 0}
   offset: {x: 0, y: 0}
-  grabbed: 0
---- !u!114 &114737303578311616
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1217046857232818}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bfe5fb94779fad48a1d6d1467e98555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMass: 2
-  imovableMass: 0
-  beingPushed: 0
-  lastPos: {x: 0, y: 0, z: 0}
-  mode: 0
-  colliding: 0
 --- !u!212 &212529071556661568
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -278,20 +258,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!255 &255612123103817618
-FixedJoint2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1217046857232818}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 7.5, y: 3.4999995}
-  m_DampingRatio: 0
-  m_Frequency: 0

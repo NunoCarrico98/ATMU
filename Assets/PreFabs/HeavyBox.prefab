@@ -38,12 +38,10 @@ GameObject:
   - component: {fileID: 212537368619125414}
   - component: {fileID: 50652331390362886}
   - component: {fileID: 61846712586915998}
-  - component: {fileID: 255587013406148436}
-  - component: {fileID: 114805025566194242}
   - component: {fileID: 114139822524524268}
   m_Layer: 11
   m_Name: HeavyBox
-  m_TagString: Grabbable
+  m_TagString: HeavyBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -216,24 +214,6 @@ MonoBehaviour:
   angle: 0
   player: {fileID: 0}
   offset: {x: 0, y: 0}
-  grabbed: 0
---- !u!114 &114805025566194242
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1197911731805786}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bfe5fb94779fad48a1d6d1467e98555, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultMass: 2
-  imovableMass: 0
-  beingPushed: 0
-  lastPos: {x: 0, y: 0, z: 0}
-  mode: 0
-  colliding: 0
 --- !u!212 &212537368619125414
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -278,20 +258,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!255 &255587013406148436
-FixedJoint2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1197911731805786}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 7.5, y: 3.4999995}
-  m_DampingRatio: 0
-  m_Frequency: 0
