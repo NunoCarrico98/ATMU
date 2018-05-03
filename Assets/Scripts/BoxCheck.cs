@@ -48,12 +48,28 @@ public class BoxCheck : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D col)
+
+   /* private void BreakBox()
     {
-        if(col.gameObject.tag == "HeavyBox" && this.tag == "LightBox")
+        if(transform.tag == "HeavyBox")
+        {
+            if(transform.GetComponent<Collider2D>().bounds.Intersects())
+        }
+    }*/
+
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        /*if(col.collider.tag == "HeavyBox" && this.tag == "LightBox")
         {
             Destroy(this.gameObject);
+        }*/
+
+        if (col.gameObject.tag == "HeavyBox" && this.transform.Find("ColliderForBoxes").GetComponent<Collider2D>().tag == "BoxCollider")
+        {
+            Destroy(this.gameObject, 0.05f);
         }
+
     }
 
     public void FlipBoxCollider()

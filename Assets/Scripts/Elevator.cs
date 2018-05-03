@@ -5,13 +5,16 @@ using UnityEngine;
 public class Elevator : MonoBehaviour
 {
     public GameObject pressurePlate;
-    public float elevatorSpeed = 5f;
+    public float elevatorSpeedUp = 5f;
+    public float elevatorSpeedDown = 3f;
     public float distanceToMove = 10f;
+    [Range(1, 2)] public float acceleration = 0.1f;
 
     private bool pressured;
     private bool elevatorUp;
     private bool elevatorDown;
     private int lastAction;
+    private float currentSpeed;
 
     private Vector3 initialPos;
     private Vector3 endPos;
@@ -20,6 +23,8 @@ public class Elevator : MonoBehaviour
     private void Start()
     {
         lastAction = 1;
+
+        currentSpeed = elevatorSpeedUp / 8;
 
         initialPos = transform.position;
         endPos = transform.position + Vector3.up * distanceToMove;
@@ -38,30 +43,54 @@ public class Elevator : MonoBehaviour
     {
         if (pressured)
         {
+            lastAction = 1;
             if (lastAction == 1)
             {
-                transform.position = Vector3.MoveTowards(transform.position, endPos, elevatorSpeed * Time.deltaTime);
+                ElevatorAcceleration();
+                transform.position = Vector3.MoveTowards(transform.position, endPos, currentSpeed * Time.deltaTime);
                 elevatorUp = true;
-            }
-            else
-            {
-                transform.position = Vector3.MoveTowards(transform.position, initialPos, elevatorSpeed * Time.deltaTime);
-                elevatorDown = true;
             }
         }
 
         if (!pressured)
         {
+            if (lastAction != 1)
+            {
+                ElevatorAcceleration();
+                transform.position = Vector3.MoveTowards(transform.position, initialPos, currentSpeed * Time.deltaTime);
+                if (transform.position == initialPos) elevatorDown = true;
+            }
+
             if (elevatorUp)
             {
                 lastAction = 0;
                 elevatorUp = false;
+                currentSpeed = elevatorSpeedDown / 8;
             }
 
             if (elevatorDown)
             {
                 lastAction = 1;
                 elevatorDown = false;
+                currentSpeed = elevatorSpeedUp / 8;
+            }
+        }
+    }
+
+    private void ElevatorAcceleration()
+    {
+        if (lastAction == 1)
+        {
+            if (currentSpeed < elevatorSpeedUp)
+            {
+                currentSpeed *= acceleration;
+            }
+        }
+        else
+        {
+            if (currentSpeed < elevatorSpeedDown)
+            {
+                currentSpeed *= acceleration;
             }
         }
     }
