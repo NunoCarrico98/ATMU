@@ -9,6 +9,8 @@ TagManager:
   - Elevator
   - HeavyBox
   - LightBox
+  - Pushable
+  - BoxCollider
   layers:
   - Default
   - TransparentFX

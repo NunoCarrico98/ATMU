@@ -72,7 +72,7 @@ public class CharacterMovement : MonoBehaviour
     private void SetJumpRequest()
     {
         // Check input 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
         {
             // if on the ground
             if (grounded)
