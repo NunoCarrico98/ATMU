@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: PressurePlate
+  m_Name: PressurePlateBrush
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 1034678018930724, guid: 30f3466ec54ed0e40b979137fb1e65ed, type: 2}
