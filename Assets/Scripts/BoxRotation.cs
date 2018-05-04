@@ -17,7 +17,7 @@ public class BoxRotation : MonoBehaviour
 
     private bool backBoxR;
     private bool backBoxL;
-    private bool boxFoundBox;
+    private bool stopRotation;
 
     // Use this for initialization
     void Start()
@@ -41,7 +41,7 @@ public class BoxRotation : MonoBehaviour
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
         //Apply rotation proportional to the mouse position
-        if (((angle < 10 && angle > -180) || (angle == 180)) && (backBoxR == false && backBoxL == false))
+        if (((angle < 15 && angle > -180) || (angle == 180)) && (backBoxR == false && backBoxL == false))
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
@@ -53,7 +53,7 @@ public class BoxRotation : MonoBehaviour
         }
 
         //If there's a box on player's back
-        if ((angle < 19 && angle > -110) && backBoxR == true)
+        if ((angle < 15 && angle > -110) && backBoxR == true)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }

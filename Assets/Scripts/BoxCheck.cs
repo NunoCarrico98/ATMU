@@ -22,7 +22,6 @@ public class BoxCheck : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        angle = GetComponent<GrabBox>().angle;
         box = GetComponent<GrabBox>().box;
         grounded = GetComponent<CharacterMovement>().grounded;
 
@@ -39,7 +38,10 @@ public class BoxCheck : MonoBehaviour
         /* Detect collision to up raycast */
         if (hitDown[0].collider != null || hitDown[1].collider != null || hitDown[2].collider != null)
         {
-            boxFoundCollider = true;
+            if (box.transform.position.y > transform.position.y)
+            {
+                boxFoundCollider = true;
+            }
         }
 
         if (hitDown[0].collider == null || hitDown[1].collider == null || hitDown[2].collider == null)
@@ -50,14 +52,7 @@ public class BoxCheck : MonoBehaviour
 
     private void IsGrounded()
     {
-        if (grounded)
-        {
-            if (boxFoundCollider)
-            {
-
-            }
-        }
-        else
+        if (!grounded)
         {
             if (boxFoundCollider)
             {

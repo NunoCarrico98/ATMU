@@ -168,7 +168,7 @@ public class GrabBox : MonoBehaviour
 
                 if (angle >= -55 && angle < 180)
                 {
-                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + 170f));
+                    rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 15f + 170f));
                 }
             }
 
