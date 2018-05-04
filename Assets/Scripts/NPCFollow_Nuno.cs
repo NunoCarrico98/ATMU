@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCFollow : MonoBehaviour
+public class NPCFollow_Nuno : MonoBehaviour
 {
     public GameObject playerGO;
     public Transform playerT;
@@ -51,22 +51,32 @@ public class NPCFollow : MonoBehaviour
     {
         if (playerRigigbody.velocity.x > 0)
         {
-            targetPos = new Vector2(playerT.position.x - distanceFromPlayer, playerT.position.y);
+            SetPositionLeft();
         }
         else if (playerRigigbody.velocity.x < 0)
         {
-            targetPos = new Vector2(playerT.position.x + distanceFromPlayer, playerT.position.y);
+            SetPositionRight();
         }
         else
         {
             if (playerFacingRight)
             {
-                targetPos = new Vector2(playerT.position.x - distanceFromPlayer, playerT.position.y);
+                SetPositionLeft();
             }
             else
             {
-                targetPos = new Vector2(playerT.position.x + distanceFromPlayer, playerT.position.y);
+                SetPositionRight();
             }
         }
+    }
+
+    private void SetPositionLeft()
+    {
+        targetPos = new Vector2(playerT.position.x - distanceFromPlayer, playerT.position.y);
+    }
+
+    private void SetPositionRight()
+    {
+        targetPos = new Vector2(playerT.position.x + distanceFromPlayer, playerT.position.y);
     }
 }
