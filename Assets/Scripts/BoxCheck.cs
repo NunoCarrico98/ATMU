@@ -4,66 +4,69 @@ using UnityEngine;
 
 public class BoxCheck : MonoBehaviour
 {
-    public bool foundBox = false;
+    public bool boxFoundCollider = false;
     public float distance = 2f;
     public float angle;
 
-    private RaycastHit2D[] hitUp = new RaycastHit2D[3];
-    private GameObject player;
+    private RaycastHit2D[] hitDown = new RaycastHit2D[3];
+    private GameObject box;
+
+    private bool grounded = false;
 
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        angle = player.GetComponent<GrabBox>().angle;
+        angle = GetComponent<GrabBox>().angle;
+        box = GetComponent<GrabBox>().box;
+        grounded = GetComponent<CharacterMovement>().grounded;
 
-        hitUp[0] = Physics2D.Raycast(transform.position - new Vector3(0.7f, 0, 0), Vector2.up, distance);
-        hitUp[1] = Physics2D.Raycast(transform.position, Vector2.up, distance);
-        hitUp[2] = Physics2D.Raycast(transform.position + new Vector3(0.7f, 0, 0), Vector2.up, distance);
+        hitDown[0] = Physics2D.Raycast(box.transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
+        hitDown[1] = Physics2D.Raycast(box.transform.position, Vector2.down, distance);
+        hitDown[2] = Physics2D.Raycast(box.transform.position + new Vector3(0.7f, 0, 0), Vector2.down, distance);
 
+        CastRaycastOnGround();
+        IsGrounded();
+    }
+
+    private void CastRaycastOnGround()
+    {
         /* Detect collision to up raycast */
-        if ((hitUp[0].collider != null && hitUp[0].collider.tag == "BoxColliders") ||
-            (hitUp[1].collider != null && hitUp[1].collider.tag == "BoxColliders") ||
-            (hitUp[2].collider != null && hitUp[2].collider.tag == "BoxColliders"))
+        if (hitDown[0].collider != null || hitDown[1].collider != null || hitDown[2].collider != null)
         {
-            foundBox = true;
-            player.GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
-            player.GetComponent<GrabBox>().box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-            player.GetComponent<GrabBox>().box.GetComponent<Collider2D>().enabled = true;
-            player.GetComponent<GrabBox>().grabbed = false;
+            boxFoundCollider = true;
         }
-        if (hitUp[0].collider == null || hitUp[1].collider == null || hitUp[2].collider == null)
+
+        if (hitDown[0].collider == null || hitDown[1].collider == null || hitDown[2].collider == null)
         {
-            foundBox = false;
+            boxFoundCollider = false;
         }
     }
 
-
-   /* private void BreakBox()
+    private void IsGrounded()
     {
-        if(transform.tag == "HeavyBox")
+        if (grounded)
         {
-            if(transform.GetComponent<Collider2D>().bounds.Intersects())
+            if (boxFoundCollider)
+            {
+
+            }
         }
-    }*/
-
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        /*if(col.collider.tag == "HeavyBox" && this.tag == "LightBox")
+        else
         {
-            Destroy(this.gameObject);
-        }*/
-
-        if (col.gameObject.tag == "HeavyBox" && this.transform.Find("ColliderForBoxes").GetComponent<Collider2D>().tag == "BoxCollider")
-        {
-            Destroy(this.gameObject, 0.05f);
+            if (boxFoundCollider)
+            {
+                GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
+                box.GetComponent<Rigidbody2D>().isKinematic = false;
+                box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                box.GetComponent<Collider2D>().enabled = true;
+                GetComponent<GrabBox>().grabbed = false;
+            }
         }
-
     }
 }
