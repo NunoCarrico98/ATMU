@@ -11,6 +11,7 @@ TagManager:
   - LightBox
   - Pushable
   - BoxCollider
+  - NPCs
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Boxes
   - Foreground
   - Raycast
-  - Npcs
+  - NPCs
   - 
   - 
   - 
