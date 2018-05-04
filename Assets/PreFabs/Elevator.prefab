@@ -166,8 +166,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressurePlate: {fileID: 0}
-  elevatorSpeed: 10
+  elevatorSpeedUp: 5
+  elevatorSpeedDown: 3
   distanceToMove: 29
+  acceleration: 1.2
 --- !u!212 &212295505693064790
 SpriteRenderer:
   m_ObjectHideFlags: 1
