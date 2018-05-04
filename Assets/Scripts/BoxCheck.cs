@@ -7,26 +7,20 @@ public class BoxCheck : MonoBehaviour
     public bool foundBox = false;
     public float distance = 2f;
     public float angle;
-    public GameObject player;
-    public Vector2 offset;
 
     private RaycastHit2D[] hitUp = new RaycastHit2D[3];
-    private int count = 0;
-    private Vector2 resetOffset;
+    private GameObject player;
 
     // Use this for initialization
     void Start()
     {
-        offset = transform.Find("ColliderSide").GetComponent<Collider2D>().offset;
-        resetOffset = offset;
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
         angle = player.GetComponent<GrabBox>().angle;
-
-        FlipBoxCollider();
 
         hitUp[0] = Physics2D.Raycast(transform.position - new Vector3(0.7f, 0, 0), Vector2.up, distance);
         hitUp[1] = Physics2D.Raycast(transform.position, Vector2.up, distance);
@@ -38,6 +32,7 @@ public class BoxCheck : MonoBehaviour
             (hitUp[2].collider != null && hitUp[2].collider.tag == "BoxColliders"))
         {
             foundBox = true;
+            player.GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
             player.GetComponent<GrabBox>().box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             player.GetComponent<GrabBox>().box.GetComponent<Collider2D>().enabled = true;
             player.GetComponent<GrabBox>().grabbed = false;
@@ -70,19 +65,5 @@ public class BoxCheck : MonoBehaviour
             Destroy(this.gameObject, 0.05f);
         }
 
-    }
-
-    public void FlipBoxCollider()
-    {
-        if (angle < -90 || angle > 90 && count == 1)
-        {
-            transform.Find("ColliderSide").GetComponent<Collider2D>().offset = resetOffset;
-        }
-
-        if (angle > -90 && angle < 90)
-        {
-            count = 1;
-            transform.Find("ColliderSide").GetComponent<Collider2D>().offset = -offset;
-        }
     }
 }

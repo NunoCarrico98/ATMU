@@ -40,7 +40,7 @@ public class BoxRotation : MonoBehaviour
         angle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
 
         //Apply rotation proportional to the mouse position
-        if (((angle < 17 && angle > -180) || (angle == 180)) && (backBoxR == false && backBoxL == false))
+        if (((angle < 19 && angle > -180) || (angle == 180)) && (backBoxR == false && backBoxL == false))
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
@@ -56,17 +56,6 @@ public class BoxRotation : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
-
-
-        /*if(angle >= 17 && angle < 90 && backBox == false)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 17f + rotationOffSet));
-        }
-
-        if (angle < 180 && angle >= 90 && backBox == false)
-        {
-            transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + rotationOffSet));
-        }*/
     }
 
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)

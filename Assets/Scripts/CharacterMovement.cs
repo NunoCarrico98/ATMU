@@ -7,6 +7,7 @@ public class CharacterMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public bool facingRight;
     public bool jumpRequest;
+    public bool grounded;
     public float groundedSkin = 0.05f;
 
     [SerializeField] private float movementSpeed = 10f;
@@ -22,7 +23,6 @@ public class CharacterMovement : MonoBehaviour
     private float angle = 0f;
     private bool backBoxR;
     private bool backBoxL;
-    private bool grounded;
 
     // Use this for initialization
     private void Awake()

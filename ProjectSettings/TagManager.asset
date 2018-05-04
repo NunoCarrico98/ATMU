@@ -12,6 +12,7 @@ TagManager:
   - Pushable
   - BoxCollider
   - NPCs
+  - Terrain
   layers:
   - Default
   - TransparentFX
