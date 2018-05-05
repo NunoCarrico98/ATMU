@@ -18,12 +18,14 @@ public class Elevator : MonoBehaviour
 
     private Vector3 initialPos;
     private Vector3 endPos;
+    private Animator eleAnim;
 
     // Use this for initialization
     private void Start()
     {
-        lastAction = 1;
+        eleAnim = GetComponent<Animator>();
 
+        lastAction = 1;
         currentSpeed = elevatorSpeedUp / 8;
 
         initialPos = transform.position;
@@ -36,7 +38,20 @@ public class Elevator : MonoBehaviour
         pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
 
         IsPressured();
-        //DisableRender();
+        ElevatorAnim();
+    }
+
+    private void ElevatorAnim()
+    {
+        if (elevatorDown || elevatorUp)
+        {
+            eleAnim.SetBool("Move", true);
+        }
+
+        if(transform.position == endPos)
+        {
+            eleAnim.SetBool("Move", false);
+        }
     }
 
     private void IsPressured()
@@ -92,14 +107,6 @@ public class Elevator : MonoBehaviour
             {
                 currentSpeed *= acceleration;
             }
-        }
-    }
-
-    private void DisableRender()
-    {
-        if(transform.position == endPos)
-        {
-            gameObject.SetActive(false);
         }
     }
 }

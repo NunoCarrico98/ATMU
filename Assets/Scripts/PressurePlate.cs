@@ -8,8 +8,8 @@ public class PressurePlate : MonoBehaviour
     public float speed = 5f;
     public float distanceToMove = 10f;
 
-    private Vector3 initialPos;
-    private Vector3 endPos;
+   /* private Vector3 initialPos;
+    private Vector3 endPos;*/
     private Animator plateAnim;
     private Collider2D colUp;
     private Collider2D colDown;
@@ -24,8 +24,8 @@ public class PressurePlate : MonoBehaviour
         colUp.enabled = true;
         colDown.enabled = false;
 
-        initialPos = transform.position;
-        endPos = transform.position + Vector3.down * distanceToMove;
+        /*initialPos = transform.position;
+        endPos = transform.position + Vector3.down * distanceToMove;*/
     }
 
     private void Update()

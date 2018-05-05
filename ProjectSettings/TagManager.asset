@@ -13,6 +13,7 @@ TagManager:
   - BoxCollider
   - NPCs
   - Terrain
+  - Ungrababble
   layers:
   - Default
   - TransparentFX

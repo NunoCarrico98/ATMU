@@ -10,6 +10,5 @@ public class DestroyLightBox : MonoBehaviour
         {
             Destroy(this.gameObject, 0.05f);
         }
-
     }
 }
