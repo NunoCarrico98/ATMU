@@ -10,10 +10,19 @@ public class PressurePlate : MonoBehaviour
 
     private Vector3 initialPos;
     private Vector3 endPos;
+    private Animator plateAnim;
+    private Collider2D colUp;
+    private Collider2D colDown;
 
     private void Start()
     {
+        plateAnim = GetComponent<Animator>();
+        colUp = transform.Find("ColliderUp").GetComponent<BoxCollider2D>();
+        colDown = transform.Find("ColliderDown").GetComponent<BoxCollider2D>();
+
         pressured = false;
+        colUp.enabled = true;
+        colDown.enabled = false;
 
         initialPos = transform.position;
         endPos = transform.position + Vector3.down * distanceToMove;
@@ -41,34 +50,45 @@ public class PressurePlate : MonoBehaviour
 
     private void IsPressured()
     {
-        if (pressured) MovePlateDown();
+        if (pressured)
+        {
+            plateAnim.SetBool("PlateMove", true);
+            colUp.enabled = false;
+            colDown.enabled = true;
+        }
 
-        if (!pressured) MovePlateUp();
+        if (!pressured)
+        {
+            plateAnim.SetBool("PlateMove", false);
+            colUp.enabled = true;
+            colDown.enabled = false;
+        }
 
     }
 
-    private void MovePlateDown()
+   /* private void MovePlateDown()
     {
         if (transform.position == endPos)
         {
-            transform.position = endPos;
+            plateAnim.SetBool("PlateMove", false);
         }
         else
         {
+            plateAnim.SetBool("PlateMove", true);
             transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
         }
-    }
+    }*/
 
-    private void MovePlateUp()
+    /*private void MovePlateUp()
     { 
         if (transform.position == initialPos)
         {
-            transform.position = initialPos;
+            plateAnim.SetBool("PlateMove", false);
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, initialPos, speed* Time.deltaTime);
+            plateAnim.SetBool("PlateMove", true);
         }
 
-    }
+    }*/
 }
