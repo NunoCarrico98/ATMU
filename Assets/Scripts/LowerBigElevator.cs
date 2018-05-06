@@ -24,7 +24,7 @@ public class LowerBigElevator : MonoBehaviour
     {
         newPos = GameObject.Find("BigElevator").transform.Find("Waypoint").transform.position;
         newPos2 = GameObject.Find("BigElevator").transform.Find("Waypoint2").transform.position;
-        endPos = GameObject.Find("BigElevator").transform.Find("Waypoint2").transform.position;
+        endPos = GameObject.Find("BigElevator").transform.Find("Waypoint3").transform.position;
         bigEleAnim = GetComponent<Animator>();
         player = GameObject.Find("Player");
 
