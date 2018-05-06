@@ -18,7 +18,7 @@ public class CharacterMovement : MonoBehaviour
     private Transform playerHead;
     private Vector2 playerSize;
     private Vector2 boxSize;
-    private Animator characterAnim;
+    public Animator characterAnim;
 
     private float angle = 0f;
     private bool backBoxR;
