@@ -41,6 +41,22 @@ public class Elevator : MonoBehaviour
         ElevatorAnim();
     }
 
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.transform.tag == "Player")
+        {
+            col.transform.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.transform.tag == "Player")
+        {
+            col.transform.SetParent(null);
+        }
+    }
+
     private void ElevatorAnim()
     {
         if (elevatorDown || elevatorUp)
