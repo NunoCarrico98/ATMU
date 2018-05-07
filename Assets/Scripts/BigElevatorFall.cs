@@ -27,6 +27,8 @@ public class BigElevatorFall : MonoBehaviour
         endPos = transform.parent.transform.Find("Waypoint3").transform.position;
 
         player = GameObject.Find("Player").transform;
+
+        currentSpeed = bigFallSpeed;
     }
 
     // Update is called once per frame
@@ -42,8 +44,17 @@ public class BigElevatorFall : MonoBehaviour
         {
             if (transform.position == initialPos)
             {
+                col.transform.SetParent(transform.parent);
                 activateFall = true;
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "Player")
+        {
+            col.transform.SetParent(null);
         }
     }
 
