@@ -28,9 +28,9 @@ public class BigElevatorFall : MonoBehaviour
         elevator = GameObject.Find("BigElevator").transform;
         colliderBigElev = transform.parent.transform.Find("ColliderBigElevator");
 
-        initialPos = elevator.parent.transform.Find("Waypoint").transform.position;
-        midPos = elevator.parent.transform.Find("Waypoint2").transform.position;
-        endPos = elevator.parent.transform.Find("Waypoint3").transform.position;
+        initialPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint").transform.position;
+        midPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint2").transform.position;
+        endPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint3").transform.position;
 
         currentSpeed = smallFallSpeed;
     }
@@ -38,9 +38,8 @@ public class BigElevatorFall : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        IsFallActive();
         ElevatorFalls();
-        //ElevatorAcceleration();
+        ElevatorAcceleration();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -51,7 +50,7 @@ public class BigElevatorFall : MonoBehaviour
         }
     }
 
-    private void IsFallActive()
+    private void ElevatorFalls()
     {
         if (smallFall)
         {
@@ -67,41 +66,45 @@ public class BigElevatorFall : MonoBehaviour
 
             if (elevator.transform.position == midPos)
             {
+                elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
                 smallFall = false;
                 bigFall = true;
             }
-
-            if (elevator.transform.position == endPos)
-            {
-                bigFall = false;
-                player.GetComponent<CharacterMovement>().enabled = true;
-                player.transform.SetParent(null);
-            }
         }
-    }
 
-    private void ElevatorFalls()
-    {
         if (bigFall)
         {
             StartCoroutine(MidTimer());
         }
     }
 
-    /*private void ElevatorAcceleration()
+    private void ElevatorAcceleration()
     {
         if (bigFall)
         {
-            if (currentSpeed < bigFallSpeed)
+            if (elevator.position != midPos)
             {
-                currentSpeed *= acceleration;
+                if (currentSpeed < bigFallSpeed)
+                {
+                    currentSpeed *= acceleration;
+                }
             }
         }
-    }*/
+    }
 
     private IEnumerator MidTimer()
     {
         yield return new WaitForSeconds(waitTime);
+        elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+
         elevator.transform.position = Vector3.MoveTowards(elevator.transform.position, endPos, currentSpeed * Time.deltaTime);
+
+        if (elevator.position == endPos)
+        {
+            player.GetComponent<CharacterMovement>().enabled = true;
+            player.transform.SetParent(null);
+            elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            bigFall = false;
+        }
     }
 }
