@@ -18,98 +18,90 @@ public class BigElevatorFall : MonoBehaviour
     private Vector3 midPos;
     private Vector3 endPos;
     private Transform player;
+    private Transform elevator;
+    private Transform colliderBigElev;
 
     // Use this for initialization
     void Start()
     {
-        initialPos = transform.parent.transform.Find("Waypoint").transform.position;
-        midPos = transform.parent.transform.Find("Waypoint2").transform.position;
-        endPos = transform.parent.transform.Find("Waypoint3").transform.position;
-
         player = GameObject.Find("Player").transform;
+        elevator = GameObject.Find("BigElevator").transform;
+        colliderBigElev = transform.parent.transform.Find("ColliderBigElevator");
 
-        currentSpeed = bigFallSpeed;
+        initialPos = elevator.parent.transform.Find("Waypoint").transform.position;
+        midPos = elevator.parent.transform.Find("Waypoint2").transform.position;
+        endPos = elevator.parent.transform.Find("Waypoint3").transform.position;
+
+        currentSpeed = smallFallSpeed;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         IsFallActive();
         ElevatorFalls();
+        //ElevatorAcceleration();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.transform.tag == "Player")
         {
-            if (transform.position == initialPos)
-            {
-                col.transform.SetParent(transform.parent);
-                activateFall = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        if (col.transform.tag == "Player")
-        {
-            col.transform.SetParent(null);
+            smallFall = true;
         }
     }
 
     private void IsFallActive()
     {
-        if (activateFall)
+        if (smallFall)
         {
             player.GetComponent<CharacterMovement>().characterAnim.SetFloat("Speed", 0);
             player.GetComponent<CharacterMovement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+            player.transform.SetParent(elevator);
+            // colliderBigElev.GetComponent<BoxCollider2D>().enabled = false;
+            elevator.GetComponent<SpringJoint2D>().enabled = false;
+            elevator.GetComponent<Rigidbody2D>().isKinematic = true;
 
-            if (transform.position == initialPos)
-            {
-                smallFall = true;
-            }
+            elevator.transform.position = Vector3.MoveTowards(elevator.transform.position, midPos, smallFallSpeed * Time.deltaTime);
 
-            if (transform.position == midPos)
+            if (elevator.transform.position == midPos)
             {
                 smallFall = false;
                 bigFall = true;
             }
 
-            if (transform.position == endPos)
+            if (elevator.transform.position == endPos)
             {
+                bigFall = false;
                 player.GetComponent<CharacterMovement>().enabled = true;
-                activateFall = false;
+                player.transform.SetParent(null);
             }
         }
     }
 
     private void ElevatorFalls()
     {
-        if (smallFall)
-        {
-            transform.parent.position = Vector3.MoveTowards(transform.parent.position, midPos, smallFallSpeed * Time.deltaTime);
-        }
-
         if (bigFall)
         {
             StartCoroutine(MidTimer());
         }
     }
 
-    private void ElevatorAcceleration()
+    /*private void ElevatorAcceleration()
     {
-        if (currentSpeed < bigFallSpeed)
+        if (bigFall)
         {
-            currentSpeed *= acceleration;
+            if (currentSpeed < bigFallSpeed)
+            {
+                currentSpeed *= acceleration;
+            }
         }
-    }
+    }*/
 
     private IEnumerator MidTimer()
     {
         yield return new WaitForSeconds(waitTime);
-        transform.parent.position = Vector3.MoveTowards(transform.parent.position, endPos, currentSpeed * Time.deltaTime);
-        ElevatorAcceleration();
+        elevator.transform.position = Vector3.MoveTowards(elevator.transform.position, endPos, currentSpeed * Time.deltaTime);
     }
 }
