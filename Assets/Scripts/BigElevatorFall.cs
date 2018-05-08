@@ -8,8 +8,8 @@ public class BigElevatorFall : MonoBehaviour
     public float bigFallSpeed;
     [Range(1, 2)] public float acceleration = 0.1f;
     public float waitTime;
+    public float endWaitTime;
 
-    private bool activateFall;
     private bool smallFall;
     private bool bigFall;
     private float currentSpeed;
@@ -58,7 +58,8 @@ public class BigElevatorFall : MonoBehaviour
             player.GetComponent<CharacterMovement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             player.transform.SetParent(elevator);
-            // colliderBigElev.GetComponent<BoxCollider2D>().enabled = false;
+
+            colliderBigElev.GetComponent<BoxCollider2D>().enabled = false;
             elevator.GetComponent<SpringJoint2D>().enabled = false;
             elevator.GetComponent<Rigidbody2D>().isKinematic = true;
 
@@ -75,6 +76,7 @@ public class BigElevatorFall : MonoBehaviour
         if (bigFall)
         {
             StartCoroutine(MidTimer());
+            StartCoroutine(EndTimer());
         }
     }
 
@@ -101,9 +103,19 @@ public class BigElevatorFall : MonoBehaviour
 
         if (elevator.position == endPos)
         {
+            elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+
+        }
+    }
+
+    private IEnumerator EndTimer()
+    {
+        yield return new WaitForSeconds(endWaitTime);
+
+        if (elevator.position == endPos)
+        {
             player.GetComponent<CharacterMovement>().enabled = true;
             player.transform.SetParent(null);
-            elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
             bigFall = false;
         }
     }

@@ -24,7 +24,7 @@ public class CheckBoxesUp : MonoBehaviour
             }
 
             this.tag = "Ungrababble";
-           // this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            this.GetComponent<Rigidbody2D>().mass = 1000;
         }
     }
 
@@ -34,6 +34,7 @@ public class CheckBoxesUp : MonoBehaviour
         {
             lightBox = false;
             this.tag = "LightBox";
+            this.GetComponent<Rigidbody2D>().mass = 2;
 
         }
 
@@ -41,8 +42,7 @@ public class CheckBoxesUp : MonoBehaviour
         {
             heavyBox = false;
             this.tag = "HeavyBox";
+            this.GetComponent<Rigidbody2D>().mass = 4;
         }
-
-       // this.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     }
 }
