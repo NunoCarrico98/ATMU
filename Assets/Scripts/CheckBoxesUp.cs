@@ -11,7 +11,7 @@ public class CheckBoxesUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         if ((col.gameObject.tag == "HeavyBox" || col.gameObject.tag == "LightBox") && 
-            this.transform.Find("ColliderForBoxes").GetComponent<Collider2D>().tag == "BoxCollider")
+            this.transform.Find("ColliderForBoxes").transform.tag == "BoxCollider")
         {
             if (this.tag == "LightBox")
             {
@@ -24,7 +24,7 @@ public class CheckBoxesUp : MonoBehaviour
             }
 
             this.tag = "Ungrababble";
-            this.GetComponent<Rigidbody2D>().mass = 1000;
+            //this.GetComponent<Rigidbody2D>().mass = 1000;
         }
     }
 
