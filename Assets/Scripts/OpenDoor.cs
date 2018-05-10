@@ -11,13 +11,16 @@ public class OpenDoor : MonoBehaviour
 
     public Transform pressurePlate;
     public float distance = 10;
-    public float speed = 10; 
+    public float speed = 10;
+    public bool openUp = false;
+    public bool openDown = false;
 
     // Use this for initialization
     void Start()
     {
         initialPos = transform.position;
-        endPos = initialPos + Vector3.down * distance;
+
+        GetEndPos();
     }
 
     // Update is called once per frame
@@ -32,6 +35,19 @@ public class OpenDoor : MonoBehaviour
         else
         {
             transform.position = Vector3.MoveTowards(transform.position, initialPos, speed * Time.deltaTime);
+        }
+    }
+
+    private void GetEndPos()
+    {
+        if (openDown)
+        {
+            endPos = initialPos + Vector3.down * distance;
+        }
+
+        if (openUp)
+        {
+            endPos = initialPos + Vector3.up * distance;
         }
     }
 }

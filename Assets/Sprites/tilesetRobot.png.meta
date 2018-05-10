@@ -144,6 +144,9 @@ TextureImporter:
     21300274: tilesetRobot_126
     21300276: tilesetRobot_127
     21300278: tilesetRobot_128
+    21300280: tilesetRobot_129
+    21300282: tilesetRobot_130
+    21300284: tilesetRobot_131
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -2066,6 +2069,48 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 48
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tilesetRobot_129
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tilesetRobot_130
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: tilesetRobot_131
+      rect:
+        serializedVersion: 2
+        x: 96
         y: 224
         width: 16
         height: 16
