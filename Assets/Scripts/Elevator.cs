@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Elevator : MonoBehaviour
 {
+    public Sprite[] elevSprites;
     public GameObject pressurePlate;
     public float elevatorSpeedUp = 5f;
     public float elevatorSpeedDown = 3f;
@@ -59,14 +60,19 @@ public class Elevator : MonoBehaviour
 
     private void ElevatorAnim()
     {
-        if (elevatorDown || elevatorUp)
+        if (lastAction == 0)
         {
-            eleAnim.SetBool("Move", true);
+           transform.GetComponent<SpriteRenderer>().sprite = elevSprites[2];
         }
 
-        if (transform.position == endPos)
+        if (elevatorUp)
         {
-            eleAnim.SetBool("Move", false);
+            transform.GetComponent<SpriteRenderer>().sprite = elevSprites[1];
+        }
+
+        if(transform.position == endPos || transform.position == initialPos)
+        {
+            transform.GetComponent<SpriteRenderer>().sprite = elevSprites[0];
         }
     }
 

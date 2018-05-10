@@ -14,7 +14,6 @@ public class BigElevatorFall : MonoBehaviour
     private bool bigFall;
     private float currentSpeed;
 
-    private Vector3 initialPos;
     private Vector3 midPos;
     private Vector3 endPos;
     private Transform player;
@@ -28,7 +27,6 @@ public class BigElevatorFall : MonoBehaviour
         elevator = GameObject.Find("BigElevator").transform;
         colliderBigElev = transform.parent.transform.Find("ColliderBigElevator");
 
-        initialPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint").transform.position;
         midPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint2").transform.position;
         endPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint3").transform.position;
 
