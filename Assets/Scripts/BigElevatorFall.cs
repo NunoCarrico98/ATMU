@@ -52,8 +52,8 @@ public class BigElevatorFall : MonoBehaviour
     {
         if (smallFall)
         {
-            player.GetComponent<CharacterMovement>().characterAnim.SetFloat("Speed", 0);
-            player.GetComponent<CharacterMovement>().enabled = false;
+            player.GetComponent<PlayerMovement>().characterAnim.SetFloat("Speed", 0);
+            player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             player.transform.SetParent(elevator);
 
@@ -112,7 +112,7 @@ public class BigElevatorFall : MonoBehaviour
 
         if (elevator.position == endPos)
         {
-            player.GetComponent<CharacterMovement>().enabled = true;
+            player.GetComponent<PlayerMovement>().enabled = true;
             player.transform.SetParent(null);
             bigFall = false;
         }

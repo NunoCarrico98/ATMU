@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour
+public class Lever : MonoBehaviour
 {
-    public bool pressured;
+    public bool active;
 
     private Animator plateAnim;
     private Collider2D colUp;
@@ -16,7 +16,7 @@ public class PressurePlate : MonoBehaviour
         colUp = transform.Find("ColliderUp").GetComponent<BoxCollider2D>();
         colDown = transform.Find("ColliderDown").GetComponent<BoxCollider2D>();
 
-        pressured = false;
+        active = false;
         colUp.enabled = true;
         colDown.enabled = false;
     }
@@ -32,29 +32,20 @@ public class PressurePlate : MonoBehaviour
             col.gameObject.tag == "HeavyBox" ||
             col.gameObject.tag == "LightBox")
         {
-            pressured = true;
+            active = !active;
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        pressured = false;
     }
 
     private void IsPressured()
     {
-        if (pressured)
+        if (active)
         {
             plateAnim.SetBool("PlateMove", true);
-            colUp.enabled = false;
-            colDown.enabled = true;
         }
 
-        if (!pressured)
+        if (!active)
         {
             plateAnim.SetBool("PlateMove", false);
-            colUp.enabled = true;
-            colDown.enabled = false;
         }
 
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public LayerMask whatIsGround;
     public bool facingRight;
@@ -42,6 +42,7 @@ public class CharacterMovement : MonoBehaviour
     private void Update()
     {
         SetJumpRequest();
+        IsGrounded();
     }
 
     // Update is called once per frame
@@ -97,12 +98,13 @@ public class CharacterMovement : MonoBehaviour
             // Set jumping animation
             characterAnim.SetBool("Ground", false);
         }
-        else
-        {
-            // Verify if player is touching the ground
-            Vector2 boxCenter = (Vector2)transform.position + Vector2.down * (playerSize.y + boxSize.y) * 0.7f;
-            grounded = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, whatIsGround) != null);
-        }
+    }
+
+    private void IsGrounded()
+    {
+        // Verify if player is touching the ground
+        Vector2 boxCenter = (Vector2)transform.position + Vector2.down * (playerSize.y + boxSize.y) * 0f;
+        grounded = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, whatIsGround) != null);
     }
 
     private void FlipPlayer()

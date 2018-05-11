@@ -23,7 +23,7 @@ public class DropBoxIfOnAir : MonoBehaviour
     void Update()
     {
         box = GetComponent<GrabBox>().box;
-        grounded = GetComponent<CharacterMovement>().grounded;
+        grounded = GetComponent<PlayerMovement>().grounded;
 
         hitDown[0] = Physics2D.Raycast(box.transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
         hitDown[1] = Physics2D.Raycast(box.transform.position, Vector2.down, distance);

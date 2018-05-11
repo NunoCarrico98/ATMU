@@ -13,6 +13,7 @@ public class GrabBox : MonoBehaviour
     private Vector2 direction;
     private Transform rotateBoxPoint;
     private bool facingRight;
+    private Rigidbody2D playerRb;
 
     public bool grabbed;
     public RaycastHit2D hit;
@@ -33,13 +34,13 @@ public class GrabBox : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        boxCollider = GameObject.Find("BoxCollider").transform;
+        boxCollider = GameObject.Find("Player").transform.Find("BoxCollider").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        facingRight = GetComponent<CharacterMovement>().facingRight;
+        facingRight = GetComponent<PlayerMovement>().facingRight;
 
         FollowMouse();
 
@@ -87,6 +88,7 @@ public class GrabBox : MonoBehaviour
             box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
             boxCollider.position = holdpoint.position;
             boxCollider.GetComponent<Collider2D>().enabled = true;
+            box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Collider2D>().enabled = false;         //disable collider 
 
@@ -111,6 +113,7 @@ public class GrabBox : MonoBehaviour
                 if (Input.GetButtonUp("Fire2") && keyCount == 2)
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
+                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;
@@ -121,6 +124,7 @@ public class GrabBox : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
+                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;

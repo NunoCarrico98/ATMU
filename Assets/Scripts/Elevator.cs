@@ -19,13 +19,10 @@ public class Elevator : MonoBehaviour
 
     private Vector3 initialPos;
     private Vector3 endPos;
-    private Animator eleAnim;
 
     // Use this for initialization
     private void Start()
     {
-        eleAnim = GetComponent<Animator>();
-
         lastAction = 1;
         currentSpeed = elevatorSpeedUp / 8;
 
