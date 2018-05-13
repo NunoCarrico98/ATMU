@@ -5,10 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask whatIsGround;
+    public Transform groundCheckPoint;
     public bool facingRight;
     public bool jumpRequest;
     public bool grounded;
-    public float groundedSkin = 0.05f;
+    public float groundCheckRadius;
 
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float jumpForce = 600f;
@@ -16,8 +17,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Transform playerGraphics;
     private Transform playerHead;
-    private Vector2 playerSize;
-    private Vector2 boxSize;
     public Animator characterAnim;
 
     private float angle = 0f;
@@ -28,10 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         facingRight = true;
-        grounded = true;
-
-        playerSize = GetComponent<BoxCollider2D>().size;
-        boxSize = new Vector2(playerSize.x, groundedSkin);
+        grounded = false;
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
         characterAnim = GetComponent<Animator>();
@@ -92,8 +88,10 @@ public class PlayerMovement : MonoBehaviour
             Vector2 jump = new Vector2(0f, jumpForce);
             myRigidbody2D.AddForce(jump);
 
-            jumpRequest = false;
-            grounded = false;
+            if (grounded)
+            {
+                jumpRequest = false;
+            }
 
             // Set jumping animation
             characterAnim.SetBool("Ground", false);
@@ -103,8 +101,13 @@ public class PlayerMovement : MonoBehaviour
     private void IsGrounded()
     {
         // Verify if player is touching the ground
-        Vector2 boxCenter = (Vector2)transform.position + Vector2.down * (playerSize.y + boxSize.y) * 0f;
-        grounded = (Physics2D.OverlapBox(boxCenter, boxSize, 0f, whatIsGround) != null);
+        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawSphere(groundCheckPoint.position, groundCheckRadius);
     }
 
     private void FlipPlayer()
