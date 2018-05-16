@@ -6,6 +6,7 @@ public class BoxHook : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform[] boxWaypoints;
+    public Transform boxParent;
     public int start;
     public int currentWaypoint;
     public float speed;
@@ -13,10 +14,10 @@ public class BoxHook : MonoBehaviour
     public float animationTime = 2;
 
     private Transform box;
-    private Transform boxParent;
     private RaycastHit2D hit;
     private Animator hookAnim;
     private bool boxDetected = false;
+    private bool hasBox = false;
     private bool stopMovement;
 
     // Use this for initialization
@@ -30,6 +31,13 @@ public class BoxHook : MonoBehaviour
     void Update()
     {
         if (!stopMovement) Movement();
+
+
+        DetectBox();
+        StartCoroutine(OpenHook());
+        StartCoroutine(CloseHook());
+        StartCoroutine(GrabBox());
+        StartCoroutine(DropBox());
     }
 
     public void Movement()
@@ -42,27 +50,44 @@ public class BoxHook : MonoBehaviour
             if (currentWaypoint == waypoints.Length) currentWaypoint = 0;
         }
 
-        DetectBox();
+       /* DetectBox();
         StartCoroutine(OpenHook());
-        StartCoroutine(GrabBox());
-        StartCoroutine(DropBox());
         StartCoroutine(CloseHook());
+        StartCoroutine(GrabBox());
+        StartCoroutine(DropBox());*/
     }
 
     private IEnumerator OpenHook()
     {
         if (transform.position == boxWaypoints[0].position)
         {
-            if (!boxDetected)
+            if (!hasBox)
             {
                 hookAnim.SetBool("Open", true);
                 stopMovement = true;
+
+                yield return new WaitForSeconds(animationTime);
+
+                hookAnim.SetBool("Open", false);
+                stopMovement = false;
             }
+        }
+    }
 
-            yield return new WaitForSeconds(animationTime);
+    private IEnumerator CloseHook()
+    {
+        if (transform.position == boxWaypoints[0].position)
+        {
+            if (!hasBox)
+            {
+                hookAnim.SetBool("Close", true);
+                stopMovement = true;
 
-            hookAnim.SetBool("Open", false);
-            stopMovement = false;
+                yield return new WaitForSeconds(animationTime);
+
+                hookAnim.SetBool("Close", false);
+                stopMovement = false;
+            }
         }
     }
 
@@ -81,6 +106,7 @@ public class BoxHook : MonoBehaviour
 
                 if (box.position == transform.position)
                 {
+                    hasBox = true;
                     box.SetParent(transform);
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
                 }
@@ -98,32 +124,22 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator DropBox()
     {
-        if (transform.position == boxWaypoints[2].position)
+        if (transform.position == boxWaypoints[1].position)
         {
-            hookAnim.SetBool("Open", true);
-            stopMovement = true;
+            if (hasBox)
+            {
+                hookAnim.SetBool("Open", true);
+                stopMovement = true;
 
-            yield return new WaitForSeconds(animationTime);
+                yield return new WaitForSeconds(animationTime);
 
-            //box.SetParent(boxParent);
-            // box.GetComponent<Rigidbody2D>().isKinematic = false;
+                hasBox = false;
+                box.SetParent(boxParent);
+                box.GetComponent<Rigidbody2D>().isKinematic = false;
 
-            hookAnim.SetBool("Open", false);
-            stopMovement = false;
-        }
-    }
-
-    private IEnumerator CloseHook()
-    {
-        if (transform.position == boxWaypoints[3].position)
-        {
-            hookAnim.SetBool("Close", true);
-            stopMovement = true;
-
-            yield return new WaitForSeconds(animationTime);
-
-            hookAnim.SetBool("Close", false);
-            stopMovement = false;
+                hookAnim.SetBool("Open", false);
+                stopMovement = false;
+            }
         }
     }
 
