@@ -30,6 +30,7 @@ public class GrabBox : MonoBehaviour
     public bool backBoxR = false;
     public bool backBoxL = false;
     public Transform boxCollider;
+    public Transform boxParent;
 
     // Use this for initialization
     void Start()
@@ -91,6 +92,7 @@ public class GrabBox : MonoBehaviour
             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Collider2D>().enabled = false;         //disable collider 
+            box.transform.SetParent(boxParent);
 
             FireBackRaycastGround();
             BackRayHits();

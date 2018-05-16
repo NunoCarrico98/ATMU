@@ -88,10 +88,7 @@ public class PlayerMovement : MonoBehaviour
             Vector2 jump = new Vector2(0f, jumpForce);
             myRigidbody2D.AddForce(jump);
 
-            if (grounded)
-            {
-                jumpRequest = false;
-            }
+            jumpRequest = false;
 
             // Set jumping animation
             characterAnim.SetBool("Ground", false);
@@ -107,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawSphere(groundCheckPoint.position, groundCheckRadius);
+        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
     }
 
     private void FlipPlayer()
@@ -144,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
         // Flip the player's head
         Vector3 theScale2 = playerHead.localScale;
-        theScale2.y *= -1;
+        theScale2.x *= -1;
         playerHead.localScale = theScale2;
     }
 }
