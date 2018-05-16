@@ -13,7 +13,9 @@ public class BoxHook : MonoBehaviour
     public float animationTime = 2;
 
     private Transform box;
+    private Transform boxParent;
     private RaycastHit2D hit;
+    private Animator hookAnim;
     private bool boxDetected = false;
     private bool stopMovement;
 
@@ -21,33 +23,46 @@ public class BoxHook : MonoBehaviour
     void Start()
     {
         transform.position = waypoints[start].position;
+        hookAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!stopMovement) Movement();
-        DetectBox();
-        StartCoroutine(GrabBox());
+        if (!stopMovement) Movement();
     }
 
     public void Movement()
     {
-        transform.position = Vector2.MoveTowards(transform.position,
-            waypoints[currentWaypoint].position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, speed * Time.deltaTime);
 
         if (transform.position == waypoints[currentWaypoint].position)
         {
             currentWaypoint++;
             if (currentWaypoint == waypoints.Length) currentWaypoint = 0;
         }
+
+        DetectBox();
+        StartCoroutine(OpenHook());
+        StartCoroutine(GrabBox());
+        StartCoroutine(DropBox());
+        StartCoroutine(CloseHook());
     }
 
-    public void OpenHook()
+    private IEnumerator OpenHook()
     {
         if (transform.position == boxWaypoints[0].position)
         {
-            // Abrir
+            if (!boxDetected)
+            {
+                hookAnim.SetBool("Open", true);
+                stopMovement = true;
+            }
+
+            yield return new WaitForSeconds(animationTime);
+
+            hookAnim.SetBool("Open", false);
+            stopMovement = false;
         }
     }
 
@@ -57,12 +72,12 @@ public class BoxHook : MonoBehaviour
         {
             if (transform.position == boxWaypoints[1].position)
             {
-                // Faz animaçao de fechar
+                hookAnim.SetBool("Close", true);
 
                 box.position = Vector2.MoveTowards(box.position, transform.position, grabSpeed * Time.deltaTime);
                 stopMovement = true;
+
                 yield return new WaitForSeconds(animationTime);
-                stopMovement = false;
 
                 if (box.position == transform.position)
                 {
@@ -74,23 +89,41 @@ public class BoxHook : MonoBehaviour
                     boxDetected = false;
                 }
 
+                hookAnim.SetBool("Close", false);
+                stopMovement = false;
+
             }
         }
     }
 
-    public void DropBox()
+    private IEnumerator DropBox()
     {
         if (transform.position == boxWaypoints[2].position)
         {
-            // Faz animaçao de abrir
+            hookAnim.SetBool("Open", true);
+            stopMovement = true;
+
+            yield return new WaitForSeconds(animationTime);
+
+            //box.SetParent(boxParent);
+            // box.GetComponent<Rigidbody2D>().isKinematic = false;
+
+            hookAnim.SetBool("Open", false);
+            stopMovement = false;
         }
     }
 
-    public void CloseHook()
+    private IEnumerator CloseHook()
     {
-        if (transform.position == boxWaypoints[4].position)
+        if (transform.position == boxWaypoints[3].position)
         {
-            // Fechar
+            hookAnim.SetBool("Close", true);
+            stopMovement = true;
+
+            yield return new WaitForSeconds(animationTime);
+
+            hookAnim.SetBool("Close", false);
+            stopMovement = false;
         }
     }
 
