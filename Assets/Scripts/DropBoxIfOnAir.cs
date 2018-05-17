@@ -6,7 +6,6 @@ public class DropBoxIfOnAir : MonoBehaviour
 {
     public bool boxFoundCollider = false;
     public float distance = 2f;
-    public float angle;
 
     private RaycastHit2D[] hitDown = new RaycastHit2D[3];
     private GameObject box;
@@ -22,15 +21,18 @@ public class DropBoxIfOnAir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        box = GetComponent<GrabBox>().box;
-        grounded = GetComponent<PlayerMovement>().grounded;
+        if (!GetComponent<PlayerMovement>().grounded)
+        {
+            box = GetComponent<GrabBox>().box;
+            grounded = GetComponent<PlayerMovement>().grounded;
 
-        hitDown[0] = Physics2D.Raycast(box.transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
-        hitDown[1] = Physics2D.Raycast(box.transform.position, Vector2.down, distance);
-        hitDown[2] = Physics2D.Raycast(box.transform.position + new Vector3(0.7f, 0, 0), Vector2.down, distance);
+            hitDown[0] = Physics2D.Raycast(box.transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
+            hitDown[1] = Physics2D.Raycast(box.transform.position, Vector2.down, distance);
+            hitDown[2] = Physics2D.Raycast(box.transform.position + new Vector3(0.7f, 0, 0), Vector2.down, distance);
 
-        CastRaycastDown();
-        IsGrounded();
+            CastRaycastDown();
+            IsGrounded();
+        }
     }
 
     private void CastRaycastDown()

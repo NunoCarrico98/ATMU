@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class KillPlayer : MonoBehaviour
 {
-
     public GameObject ragdoll;
+
     private GameObject player;
     private Transform playerGraphics;
     private Vector2 velocity;
