@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KillPlayer : MonoBehaviour {
+public class KillPlayer : MonoBehaviour
+{
 
     public GameObject ragdoll;
     private GameObject player;
     private Transform playerGraphics;
+    private Vector2 velocity;
     private bool killPlayer = false;
     private int counter = 0;
 
@@ -17,11 +19,12 @@ public class KillPlayer : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
         if (Input.GetKey(KeyCode.R)) killPlayer = true;
         Kill();
-	}
+        //ragdoll.GetComponent<Rigidbody2D>().velocity = velocity*10;
+    }
 
 
     /*private void OnTriggerEnter2D(Collider2D other)
@@ -35,7 +38,7 @@ public class KillPlayer : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "DeathZone")
+        if (other.tag == "DeathZone")
         {
             Debug.Log("Detected");
             killPlayer = true;
@@ -46,9 +49,11 @@ public class KillPlayer : MonoBehaviour {
     {
         if (killPlayer == true && counter == 0)
         {
+            velocity = player.GetComponent<Rigidbody2D>().velocity;
+            Instantiate(ragdoll, player.transform.position, player.transform.rotation);
 
-            Instantiate(ragdoll, player.transform.position, playerGraphics.rotation);
             Destroy(player);
+            ragdoll.GetComponent<Rigidbody2D>().velocity = velocity;
             counter = 1;
         }
     }
