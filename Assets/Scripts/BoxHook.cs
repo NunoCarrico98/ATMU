@@ -6,32 +6,37 @@ public class BoxHook : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform[] boxWaypoints;
+    public Transform[] speedWaypoints;
     public Transform boxParent;
     public int start;
     public int currentWaypoint;
     public float speed;
+    public float lowSpeed;
     public float grabSpeed = 1;
     public float animationTime = 2;
+    public bool boxDetected = false;
 
     private Transform box;
     private RaycastHit2D hit;
     private Animator hookAnim;
-    private bool boxDetected = false;
     private bool hasBox = false;
     private bool stopMovement;
+    private float currentSpeed;
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         transform.position = waypoints[start].position;
         hookAnim = GetComponent<Animator>();
+
+        currentSpeed = speed;
     }
 
     // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
         if (!stopMovement) Movement();
-
+        ChangeSpeed();
 
         DetectBox();
         StartCoroutine(OpenHook());
@@ -42,19 +47,40 @@ public class BoxHook : MonoBehaviour
 
     public void Movement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, currentSpeed * Time.deltaTime);
 
         if (transform.position == waypoints[currentWaypoint].position)
         {
             currentWaypoint++;
             if (currentWaypoint == waypoints.Length) currentWaypoint = 0;
         }
+    }
 
-       /* DetectBox();
-        StartCoroutine(OpenHook());
-        StartCoroutine(CloseHook());
-        StartCoroutine(GrabBox());
-        StartCoroutine(DropBox());*/
+    private void ChangeSpeed()
+    {
+        if(transform.position == speedWaypoints[0].position)
+        {
+            if (!hasBox)
+            {
+                currentSpeed = lowSpeed;
+            }
+            if (hasBox)
+            {
+                currentSpeed = speed;
+            }
+        }
+
+        if (transform.position == speedWaypoints[1].position)
+        {
+            if (!hasBox)
+            {
+                currentSpeed = speed;
+            }
+            if (hasBox)
+            {
+                currentSpeed = lowSpeed;
+            }
+        }
     }
 
     private IEnumerator OpenHook()
@@ -76,7 +102,7 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator CloseHook()
     {
-        if (transform.position == boxWaypoints[0].position)
+        if (transform.position == boxWaypoints[3].position)
         {
             if (!hasBox)
             {
@@ -85,6 +111,7 @@ public class BoxHook : MonoBehaviour
 
                 yield return new WaitForSeconds(animationTime);
 
+                boxDetected = false;
                 hookAnim.SetBool("Close", false);
                 stopMovement = false;
             }
@@ -124,7 +151,7 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator DropBox()
     {
-        if (transform.position == boxWaypoints[1].position)
+        if (transform.position == boxWaypoints[2].position)
         {
             if (hasBox)
             {
@@ -133,6 +160,7 @@ public class BoxHook : MonoBehaviour
 
                 yield return new WaitForSeconds(animationTime);
 
+                boxDetected = false;
                 hasBox = false;
                 box.SetParent(boxParent);
                 box.GetComponent<Rigidbody2D>().isKinematic = false;
