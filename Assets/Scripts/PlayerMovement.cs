@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public bool facingRight;
     public bool jumpRequest;
     public bool grounded;
+    public bool crouched = false;
     public float groundCheckRadius;
 
     [SerializeField] private float movementSpeed = 10f;
@@ -18,7 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private Transform playerGraphics;
     private Transform playerHead;
     public Animator characterAnim;
+    public Transform boxHoldPoint;
 
+    private float resetBoxPosition;
     private float resetSpeed;
     private float angle = 0f;
     private bool backBoxR;
@@ -106,11 +109,13 @@ public class PlayerMovement : MonoBehaviour
         {
             movementSpeed = 0;
             characterAnim.SetBool("Crouch", true);
+            crouched = true;
         }
         else
         {
             movementSpeed = resetSpeed;
             characterAnim.SetBool("Crouch", false);
+            crouched = false;
         }
     }
 

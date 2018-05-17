@@ -13,6 +13,7 @@ public class GrabBox : MonoBehaviour
     private Vector2 direction;
     private Transform rotateBoxPoint;
     private bool facingRight;
+    private bool crouched = false;
     private Rigidbody2D playerRb;
 
     public bool grabbed;
@@ -41,6 +42,9 @@ public class GrabBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        crouched = GetComponent<PlayerMovement>().crouched;
+
         facingRight = GetComponent<PlayerMovement>().facingRight;
 
         FollowMouse();
@@ -50,7 +54,7 @@ public class GrabBox : MonoBehaviour
 
         rotateBoxPoint = transform.Find("RotateBoxPoint");
 
-        if (Input.GetButtonDown("Fire2"))
+        if (Input.GetButtonDown("Fire2") && !crouched)
         {
             if (!grabbed)
             {
@@ -112,7 +116,7 @@ public class GrabBox : MonoBehaviour
                     }
                 }
 
-                if (Input.GetButtonUp("Fire2") && keyCount == 2)
+                if ((Input.GetButtonUp("Fire2") && keyCount == 2) || crouched)
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
                     box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
