@@ -539,10 +539,12 @@ MonoBehaviour:
   facingRight: 0
   jumpRequest: 0
   grounded: 0
+  crouched: 0
   groundCheckRadius: 0.5
   movementSpeed: 8
   jumpForce: 625
   characterAnim: {fileID: 0}
+  boxHoldPoint: {fileID: 0}
 --- !u!1001 &106258167
 Prefab:
   m_ObjectHideFlags: 0
