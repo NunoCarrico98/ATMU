@@ -19,8 +19,8 @@ public class BoxHook : MonoBehaviour
     private Transform box;
     private RaycastHit2D hit;
     private Animator hookAnim;
-    private bool hasBox = false;
     private bool stopMovement;
+    private bool hasBox;
     private float currentSpeed;
 
     // Use this for initialization
@@ -36,7 +36,7 @@ public class BoxHook : MonoBehaviour
     private void FixedUpdate()
     {
         if (!stopMovement) Movement();
-        ChangeSpeed();
+       // ChangeSpeed();
 
         DetectBox();
         StartCoroutine(OpenHook());
