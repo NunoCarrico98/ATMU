@@ -93,7 +93,7 @@ public class GrabBox : MonoBehaviour
             box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
             boxCollider.position = holdpoint.position;
             boxCollider.GetComponent<Collider2D>().enabled = true;
-            box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+            box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Collider2D>().enabled = false;         //disable collider 
             box.transform.SetParent(boxParent);
@@ -119,7 +119,7 @@ public class GrabBox : MonoBehaviour
                 if ((Input.GetButtonUp("Fire2") && keyCount == 2) || crouched)
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
-                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
+                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;
@@ -130,7 +130,7 @@ public class GrabBox : MonoBehaviour
                 if (Input.GetButtonDown("Fire1"))
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
-                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
+                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;

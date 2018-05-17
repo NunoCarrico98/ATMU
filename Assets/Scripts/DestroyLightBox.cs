@@ -6,9 +6,9 @@ public class DestroyLightBox : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "HeavyBox" && this.transform.Find("ColliderForBoxes").GetComponent<Collider2D>().tag == "BoxCollider")
+        if (col.gameObject.tag == "HeavyBox")
         {
-            Destroy(this.gameObject, 0.05f);
+            Destroy(transform.parent.gameObject, 0.05f);
         }
     }
 }
