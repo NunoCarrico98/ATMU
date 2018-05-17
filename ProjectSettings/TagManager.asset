@@ -15,6 +15,7 @@ TagManager:
   - Terrain
   - Ungrababble
   - PlayerRagdoll
+  - DeathZone
   layers:
   - Default
   - TransparentFX
@@ -31,8 +32,8 @@ TagManager:
   - Foreground
   - Raycast
   - NPCs
-  - 
-  - 
+  - KillSwitch
+  - DeathZone
   - 
   - 
   - 

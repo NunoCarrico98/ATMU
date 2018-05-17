@@ -6,12 +6,14 @@ public class KillPlayer : MonoBehaviour {
 
     public GameObject ragdoll;
     private GameObject player;
+    private Transform playerGraphics;
     private bool killPlayer = false;
     private int counter = 0;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        playerGraphics = player.transform.Find("Graphics");
     }
 
     // Update is called once per frame
@@ -22,31 +24,30 @@ public class KillPlayer : MonoBehaviour {
 	}
 
 
-   /* void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other)
+        if (other.tag != "Player")
         {
-            Debug.Log("It was a trigger");
+            Debug.Log("Detected");
             killPlayer = true;
         }
     }*/
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision != null)
+        if(other.tag == "DeathZone")
         {
-            Debug.Log("It was a Collider");
+            Debug.Log("Detected");
             killPlayer = true;
         }
-
-    }*/
+    }
 
     private void Kill()
     {
         if (killPlayer == true && counter == 0)
         {
 
-            Instantiate(ragdoll, transform.parent.position, transform.parent.rotation);
+            Instantiate(ragdoll, player.transform.position, playerGraphics.rotation);
             Destroy(player);
             counter = 1;
         }

@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform playerHead;
     public Animator characterAnim;
 
+    private float resetSpeed;
     private float angle = 0f;
     private bool backBoxR;
     private bool backBoxL;
@@ -33,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         characterAnim = GetComponent<Animator>();
         playerGraphics = transform.Find("Graphics");
         playerHead = transform.Find("RotatingHead");
+
+        resetSpeed = movementSpeed;
     }
 
     private void Update()
@@ -47,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         FlipPlayer();
         Jump();
+        Crouch();
     }
 
     private void Movement()
@@ -92,6 +96,21 @@ public class PlayerMovement : MonoBehaviour
 
             // Set jumping animation
             characterAnim.SetBool("Ground", false);
+        }
+    }
+
+    private void Crouch()
+    {
+
+        if (grounded && (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.LeftControl)))
+        {
+            movementSpeed = 0;
+            characterAnim.SetBool("Crouch", true);
+        }
+        else
+        {
+            movementSpeed = resetSpeed;
+            characterAnim.SetBool("Crouch", false);
         }
     }
 
