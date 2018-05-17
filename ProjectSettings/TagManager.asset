@@ -14,6 +14,7 @@ TagManager:
   - NPCs
   - Terrain
   - Ungrababble
+  - PlayerRagdoll
   layers:
   - Default
   - TransparentFX
