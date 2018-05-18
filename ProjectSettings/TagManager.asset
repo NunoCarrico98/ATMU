@@ -16,6 +16,7 @@ TagManager:
   - Ungrababble
   - PlayerRagdoll
   - DeathZone
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
