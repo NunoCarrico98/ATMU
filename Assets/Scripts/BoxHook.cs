@@ -6,7 +6,6 @@ public class BoxHook : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform[] boxWaypoints;
-    public Transform[] speedWaypoints;
     public Transform boxParent;
     public int start;
     public int currentWaypoint;
@@ -43,7 +42,6 @@ public class BoxHook : MonoBehaviour
     private void FixedUpdate()
     {
         if (!stopMovement) Movement();
-       // ChangeSpeed();
 
         if(!startsWithBox) DetectBox();
 
@@ -68,33 +66,6 @@ public class BoxHook : MonoBehaviour
             currentWaypoint++;
             if (currentWaypoint == waypoints.Length && !destroyAfterLastWaypoint) currentWaypoint = 0;
             if (currentWaypoint == waypoints.Length && destroyAfterLastWaypoint) Destroy(gameObject);
-        }
-    }
-
-    private void ChangeSpeed()
-    {
-        if(transform.position == speedWaypoints[0].position)
-        {
-            if (!hasBox)
-            {
-                currentSpeed = lowSpeed;
-            }
-            if (hasBox)
-            {
-                currentSpeed = speed;
-            }
-        }
-
-        if (transform.position == speedWaypoints[1].position)
-        {
-            if (!hasBox)
-            {
-                currentSpeed = speed;
-            }
-            if (hasBox)
-            {
-                currentSpeed = lowSpeed;
-            }
         }
     }
 

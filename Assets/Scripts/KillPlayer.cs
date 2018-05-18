@@ -76,7 +76,7 @@ public class KillPlayer : MonoBehaviour
 
               }*/
             //player.SetActive(false);
-            gameLevelManager.Respawn();
+            gameLevelManager.RespawnAfterDeath();
         }
     //}
 }
