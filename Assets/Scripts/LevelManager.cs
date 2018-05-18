@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (Input.GetKey(KeyCode.R)) RestartAfterCheckpoint();
+        if (Input.GetKey(KeyCode.Tab)) RestartAfterCheckpoint();
     }
 
     public void RespawnAfterDeath()
