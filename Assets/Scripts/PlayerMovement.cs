@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
             jumpRequest = false;
 
             // Set jumping animation
-            //characterAnim.SetBool("Ground", false);
+            characterAnim.SetBool("Ground", false);
         }
     }
 
