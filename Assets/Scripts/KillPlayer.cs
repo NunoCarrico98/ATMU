@@ -5,10 +5,12 @@ using UnityEngine;
 public class KillPlayer : MonoBehaviour
 {
     public GameObject ragdoll;
+    private GameObject[] bodyparts = new GameObject[8];
 
     private GameObject player;
     private Transform playerGraphics;
     private Vector2 velocity;
+    private float angularVelocity;
     private bool killPlayer = false;
     private int counter = 0;
 
@@ -47,14 +49,30 @@ public class KillPlayer : MonoBehaviour
 
     private void Kill()
     {
-        if (killPlayer == true && counter == 0)
+        if (killPlayer == true && counter < 2)
         {
-            velocity = player.GetComponent<Rigidbody2D>().velocity;
-            Instantiate(ragdoll, player.transform.position, player.transform.rotation);
+            if (counter < 1)
+            {
+                velocity = player.GetComponent<Rigidbody2D>().velocity;
+                Debug.Log("Velocity is: " + velocity);
+                angularVelocity = player.GetComponent<Rigidbody2D>().angularVelocity;
+                ragdoll = Instantiate(ragdoll, player.transform.position, player.transform.rotation);
+                counter = 1;
+            }
+            for (int i = 0; i < bodyparts.Length; i++)
+            {
+                bodyparts[i] = ragdoll.transform.GetChild(i).gameObject;
+                bodyparts[i].GetComponent<Rigidbody2D>().velocity = velocity;
+                bodyparts[i].GetComponent<Rigidbody2D>().angularVelocity = angularVelocity;
 
-            Destroy(player);
-            ragdoll.GetComponent<Rigidbody2D>().velocity = velocity;
-            counter = 1;
+                Debug.Log("Velocity of parts is: " + bodyparts[i].GetComponent<Rigidbody2D>().velocity);
+                Debug.Log("Angular velocity of parts is: " + bodyparts[i].GetComponent<Rigidbody2D>().angularVelocity);
+            }
+            if (bodyparts[7].GetComponent<Rigidbody2D>().velocity != new Vector2(0, 0)) counter = 2;
+            if (counter == 2)
+            {
+                Destroy(player);
+            }
         }
     }
 }

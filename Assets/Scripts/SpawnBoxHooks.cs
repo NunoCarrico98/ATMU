@@ -8,6 +8,10 @@ public class SpawnBoxHooks : MonoBehaviour
     public GameObject[] prefab = new GameObject[6];
     public float spawnTime = 2;
 
+    public int maxNumberOfBoxes;
+
+    private int numberOfBoxes = 0;
+
     private GameObject[] newPrefab = new GameObject[6];
     private int prefabNumber = 1;
 
@@ -33,7 +37,9 @@ public class SpawnBoxHooks : MonoBehaviour
 
     private void Spawn()
     {
-        GetRandomForSpawn();
+        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomForSpawn();
+
+        if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 0;
 
         switch (prefabNumber)
         {
