@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4130934584165254}
   - component: {fileID: 50652331390362886}
   - component: {fileID: 61846712586915998}
-  - component: {fileID: 114631084027187472}
   m_Layer: 11
   m_Name: HeavyBox3
   m_TagString: HeavyBox
@@ -55,6 +54,7 @@ GameObject:
   - component: {fileID: 4810869827635534}
   - component: {fileID: 61687086856267280}
   - component: {fileID: 114530178342314982}
+  - component: {fileID: 114023813757398130}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -173,6 +173,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.95, y: 1.975}
   m_EdgeRadius: 0
+--- !u!114 &114023813757398130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929058704398404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b618ff9a1ec1acd40a84886b1d24c7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114530178342314982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -182,17 +193,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f45fdf5819585a1478c06ef03c94bb38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114631084027187472
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1197911731805786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b618ff9a1ec1acd40a84886b1d24c7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212797984644298560

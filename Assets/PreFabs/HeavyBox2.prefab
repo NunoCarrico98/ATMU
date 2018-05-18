@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4130934584165254}
   - component: {fileID: 50652331390362886}
   - component: {fileID: 61846712586915998}
-  - component: {fileID: 114441355968679726}
   m_Layer: 11
   m_Name: HeavyBox2
   m_TagString: HeavyBox
@@ -55,6 +54,7 @@ GameObject:
   - component: {fileID: 4810869827635534}
   - component: {fileID: 61687086856267280}
   - component: {fileID: 114588536734139012}
+  - component: {fileID: 114295392266031468}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -173,12 +173,12 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.95, y: 1.975}
   m_EdgeRadius: 0
---- !u!114 &114441355968679726
+--- !u!114 &114295392266031468
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1197911731805786}
+  m_GameObject: {fileID: 1929058704398404}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b618ff9a1ec1acd40a84886b1d24c7fd, type: 3}
