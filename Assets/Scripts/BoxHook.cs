@@ -14,7 +14,12 @@ public class BoxHook : MonoBehaviour
     public float lowSpeed;
     public float grabSpeed = 1;
     public float animationTime = 2;
+    public float stopMovementTime = 0.5f;
     public bool boxDetected = false;
+    public bool pickBox = false;
+    public bool dropBox = false;
+    public bool startsWithBox = false;
+    public bool destroyAfterLastWaypoint = false;
 
     private Transform box;
     private RaycastHit2D hit;
@@ -30,6 +35,8 @@ public class BoxHook : MonoBehaviour
         hookAnim = GetComponent<Animator>();
 
         currentSpeed = speed;
+
+        if (startsWithBox) LockBox();
     }
 
     // Update is called once per frame
@@ -38,11 +45,18 @@ public class BoxHook : MonoBehaviour
         if (!stopMovement) Movement();
        // ChangeSpeed();
 
-        DetectBox();
-        StartCoroutine(OpenHook());
-        StartCoroutine(CloseHook());
-        StartCoroutine(GrabBox());
-        StartCoroutine(DropBox());
+        if(!startsWithBox) DetectBox();
+
+        if (pickBox)
+        {
+            StartCoroutine(OpenHook());
+            StartCoroutine(CloseHook());
+        }
+        if (dropBox)
+        {
+            StartCoroutine(GrabBox());
+            StartCoroutine(DropBox());
+        }
     }
 
     public void Movement()
@@ -52,7 +66,8 @@ public class BoxHook : MonoBehaviour
         if (transform.position == waypoints[currentWaypoint].position)
         {
             currentWaypoint++;
-            if (currentWaypoint == waypoints.Length) currentWaypoint = 0;
+            if (currentWaypoint == waypoints.Length && !destroyAfterLastWaypoint) currentWaypoint = 0;
+            if (currentWaypoint == waypoints.Length && destroyAfterLastWaypoint) Destroy(gameObject);
         }
     }
 
@@ -153,7 +168,7 @@ public class BoxHook : MonoBehaviour
     {
         if (transform.position == boxWaypoints[2].position)
         {
-            if (hasBox)
+            if (hasBox || !hasBox)
             {
                 hookAnim.SetBool("Open", true);
                 stopMovement = true;
@@ -166,9 +181,18 @@ public class BoxHook : MonoBehaviour
                 box.GetComponent<Rigidbody2D>().isKinematic = false;
 
                 hookAnim.SetBool("Open", false);
+                yield return new WaitForSeconds(stopMovementTime);
                 stopMovement = false;
             }
         }
+    }
+
+    private void LockBox()
+    {
+        box = transform.GetChild(0);
+        hasBox = true;
+        box.GetComponent<Rigidbody2D>().isKinematic = true;
+
     }
 
     public void DetectBox()
