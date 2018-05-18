@@ -15,8 +15,8 @@ public class KillPlayer : MonoBehaviour
     private Transform playerHead;
     private Vector2 velocity;
     private float angularVelocity;
-    private bool killPlayer = false;
-    private int counter = 0;
+    /*private bool killPlayer = false;
+    private int counter = 0;*/
 
     private void Start()
     {
@@ -29,6 +29,7 @@ public class KillPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetVelocity();
         if (Input.GetKey(KeyCode.R)) Kill();
     }
 
@@ -46,6 +47,13 @@ public class KillPlayer : MonoBehaviour
         }
     }
 
+    private void GetVelocity()
+    {
+        velocity = player.GetComponent<Rigidbody2D>().velocity;
+        Debug.Log("Velocity is: " + velocity);
+        angularVelocity = player.GetComponent<Rigidbody2D>().angularVelocity;
+    }
+
     private void Kill()
     {
         //  if (/*killPlayer == true &&*/ counter < 2)
@@ -54,11 +62,9 @@ public class KillPlayer : MonoBehaviour
         player.SetActive(false);
         // if (counter < 1)
         //  {
-        velocity = player.GetComponent<Rigidbody2D>().velocity;
-                Debug.Log("Velocity is: " + velocity);
-                angularVelocity = player.GetComponent<Rigidbody2D>().angularVelocity;
+
                 ragdoll = Instantiate(ragdollPreFab, player.transform.position, player.transform.rotation);
-                counter = 1;
+               // counter = 1;
          //   }
             for (int i = 0; i < bodyparts.Length; i++)
             {

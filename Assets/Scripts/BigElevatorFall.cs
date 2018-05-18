@@ -25,7 +25,6 @@ public class BigElevatorFall : MonoBehaviour
     {
         player = GameObject.Find("Player").transform;
         elevator = GameObject.Find("BigElevator").transform;
-        colliderBigElev = transform.parent.transform.Find("ColliderBigElevator");
 
         midPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint2").transform.position;
         endPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint3").transform.position;
@@ -57,7 +56,6 @@ public class BigElevatorFall : MonoBehaviour
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             player.transform.SetParent(elevator);
 
-            colliderBigElev.GetComponent<BoxCollider2D>().enabled = false;
             elevator.GetComponent<SpringJoint2D>().enabled = false;
             elevator.GetComponent<Rigidbody2D>().isKinematic = true;
 
