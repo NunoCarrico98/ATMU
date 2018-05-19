@@ -17,6 +17,7 @@ TagManager:
   - PlayerRagdoll
   - DeathZone
   - Checkpoint
+  - ConveyorBelt
   layers:
   - Default
   - TransparentFX

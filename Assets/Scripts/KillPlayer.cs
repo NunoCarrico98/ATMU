@@ -50,7 +50,6 @@ public class KillPlayer : MonoBehaviour
     private void GetVelocity()
     {
         velocity = player.GetComponent<Rigidbody2D>().velocity;
-        Debug.Log("Velocity is: " + velocity);
         angularVelocity = player.GetComponent<Rigidbody2D>().angularVelocity;
     }
 
