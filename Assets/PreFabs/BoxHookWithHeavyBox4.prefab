@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 61167732399370086}
   - component: {fileID: 114261775808263452}
   - component: {fileID: 114471122419497500}
+  - component: {fileID: 114205611536068762}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -483,6 +484,17 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114205611536068762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682665274216472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bcde5216875434d9054b801e0b3f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114261775808263452
 MonoBehaviour:
   m_ObjectHideFlags: 1

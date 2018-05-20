@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 61027863729677754}
   - component: {fileID: 114322120439918706}
   - component: {fileID: 114237783364002816}
+  - component: {fileID: 114819197894790638}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -514,6 +515,17 @@ MonoBehaviour:
   dropBox: 1
   startsWithBox: 1
   destroyAfterLastWaypoint: 1
+--- !u!114 &114819197894790638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1086801311513804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21bcde5216875434d9054b801e0b3f7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212127600286768892
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -15,5 +15,10 @@ public class DestroyLightBox : MonoBehaviour
             }
             Destroy(transform.parent.gameObject, 0.05f);
         }
+
+        if (col.tag == "DeathZone")
+        {
+            Destroy(transform.parent.gameObject, 0.05f);
+        }
     }
 }
