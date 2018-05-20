@@ -8,6 +8,11 @@ public class DestroyLightBox : MonoBehaviour
     {
         if (col.gameObject.tag == "HeavyBox")
         {
+            if(transform.parent.transform.childCount > 1
+                && transform.parent.transform.GetChild(1).tag == "Player")
+            {
+                transform.parent.transform.GetChild(1).SetParent(null);
+            }
             Destroy(transform.parent.gameObject, 0.05f);
         }
     }

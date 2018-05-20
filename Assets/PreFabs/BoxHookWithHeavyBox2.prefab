@@ -515,8 +515,8 @@ MonoBehaviour:
   - {fileID: 4550471322427744}
   - {fileID: 4066212191677544}
   boxWaypoints:
-  - {fileID: 4009489149983190}
-  - {fileID: 4505517040623694}
+  - {fileID: 4984491128545894}
+  - {fileID: 4393264660777226}
   - {fileID: 4393264660777226}
   - {fileID: 4984491128545894}
   boxParent: {fileID: 0}

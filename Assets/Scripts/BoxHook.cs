@@ -45,14 +45,17 @@ public class BoxHook : MonoBehaviour
 
         if(!startsWithBox) DetectBox();
 
-        if (pickBox)
-        {
             StartCoroutine(OpenHook());
             StartCoroutine(CloseHook());
-        }
-        if (dropBox)
+
+        if (pickBox)
         {
             StartCoroutine(GrabBox());
+        }
+
+
+        if (dropBox)
+        {
             StartCoroutine(DropBox());
         }
     }
@@ -71,7 +74,7 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator OpenHook()
     {
-        if (transform.position == boxWaypoints[0].position)
+        if (transform.position == boxWaypoints[2].position || transform.position == boxWaypoints[1].position)
         {
             if (!hasBox)
             {
@@ -88,7 +91,7 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator CloseHook()
     {
-        if (transform.position == boxWaypoints[3].position)
+        if (transform.position == boxWaypoints[0].position || transform.position == boxWaypoints[3].position)
         {
             if (!hasBox)
             {
@@ -108,7 +111,7 @@ public class BoxHook : MonoBehaviour
     {
         if (boxDetected)
         {
-            if (transform.position == boxWaypoints[1].position)
+            if (transform.position == boxWaypoints[0].position)
             {
                 hookAnim.SetBool("Close", true);
 
@@ -137,9 +140,9 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator DropBox()
     {
-        if (transform.position == boxWaypoints[2].position)
+        if (transform.position == boxWaypoints[1].position)
         {
-            if (hasBox || !hasBox)
+            if (hasBox)
             {
                 hookAnim.SetBool("Open", true);
                 stopMovement = true;
@@ -148,8 +151,11 @@ public class BoxHook : MonoBehaviour
 
                 boxDetected = false;
                 hasBox = false;
-                box.SetParent(boxParent);
-                box.GetComponent<Rigidbody2D>().isKinematic = false;
+                if (box != null)
+                {
+                    box.SetParent(boxParent);
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
+                }
 
                 hookAnim.SetBool("Open", false);
                 yield return new WaitForSeconds(stopMovementTime);

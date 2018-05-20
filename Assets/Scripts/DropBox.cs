@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class DropBox : MonoBehaviour
 {
-    public GameObject box;
+    public GameObject[] box;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Player")
         {
-            box.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            for (int i = 0; i < box.Length; i++)
+            {
+                box[i].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            }
         }
     }
 }
