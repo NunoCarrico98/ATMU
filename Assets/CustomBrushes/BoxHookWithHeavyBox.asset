@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Name: BoxHookWithHeavyBox
   m_EditorClassIdentifier: 
   m_Prefabs:
-  - {fileID: 1444928737987746, guid: 50691bc6504858f40bbb4d58916de443, type: 2}
+  - {fileID: 1389888423388826, guid: c204486a71223674a95342b6b6faddd1, type: 2}
+  - {fileID: 1294722709441598, guid: 1a1a84524063e1140ace761f94670ef6, type: 2}
+  - {fileID: 1132378645825768, guid: 19d30615dcfcfab42978ae7c5976fe5e, type: 2}
+  - {fileID: 1686832871942994, guid: 2ede198ccf3948649833597272865e6f, type: 2}
   m_PerlinScale: 0.5
   m_Z: 0

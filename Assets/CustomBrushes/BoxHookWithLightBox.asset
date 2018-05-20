@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: BoxHookWithLightBox
   m_EditorClassIdentifier: 
   m_Prefabs:
-  - {fileID: 1803737062358648, guid: 5531bf2366eb95844b167290ff6a67fa, type: 2}
+  - {fileID: 1663524316474762, guid: 5531bf2366eb95844b167290ff6a67fa, type: 2}
   m_PerlinScale: 0.5
   m_Z: 0

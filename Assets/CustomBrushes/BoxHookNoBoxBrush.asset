@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Name: BoxHookNoBoxBrush
   m_EditorClassIdentifier: 
   m_Prefabs:
-  - {fileID: 1749737104735392, guid: b27abbb77e959f34893d3b1c9a17c662, type: 2}
+  - {fileID: 1376558902383838, guid: b27abbb77e959f34893d3b1c9a17c662, type: 2}
   m_PerlinScale: 0.5
   m_Z: 0
