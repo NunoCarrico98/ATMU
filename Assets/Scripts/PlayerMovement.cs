@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         facingRight = true;
-        grounded = true;
+        grounded = true ;
 
         myRigidbody2D = GetComponent<Rigidbody2D>();
         characterAnim = GetComponent<Animator>();
