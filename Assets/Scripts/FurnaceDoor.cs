@@ -8,7 +8,6 @@ public class FurnaceDoor : MonoBehaviour
     public float openSpeed = 50f;
 
     private OpenTrap openTrap;
-    private PuzzleSolution puzzleSolution;
     private Quaternion lookRotation;
     private bool opened = false;
 
@@ -17,7 +16,6 @@ public class FurnaceDoor : MonoBehaviour
     void Start()
     {
         openTrap = FindObjectOfType<OpenTrap>();
-        puzzleSolution = FindObjectOfType<PuzzleSolution>();
     }
 
     // Update is called once per frame

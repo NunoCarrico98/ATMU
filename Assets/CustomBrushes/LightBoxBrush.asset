@@ -13,5 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Prefabs:
   - {fileID: 1217046857232818, guid: 53de9744f2934714d835885f1e0853b3, type: 2}
+  - {fileID: 1217046857232818, guid: ec5a1c04e470b3740bb91b3cf2ec3378, type: 2}
+  - {fileID: 1217046857232818, guid: 01fef13f4763a4a4487d6902c1153a23, type: 2}
+  - {fileID: 1217046857232818, guid: a2b79dac896e1d247841d17024407e45, type: 2}
+  - {fileID: 1217046857232818, guid: 92dd50ef40604f446b6e92e382af668c, type: 2}
+  - {fileID: 1217046857232818, guid: bac0853e3b0cc034f9d8c1f194440696, type: 2}
   m_PerlinScale: 0.5
   m_Z: 0
