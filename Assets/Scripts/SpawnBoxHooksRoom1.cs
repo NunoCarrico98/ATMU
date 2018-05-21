@@ -6,7 +6,8 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
 {
 
     public GameObject[] prefab = new GameObject[6];
-    public float spawnTime = 2;
+    public float startTime = 0f;
+    public float spawnTime = 2f;
 
     public int maxNumberOfBoxes;
 
@@ -27,7 +28,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
             prefab[i].transform.GetChild(0).transform.GetChild(0).GetComponent<Rigidbody2D>().isKinematic = true;
         }
 
-        InvokeRepeating("Spawn", 0f, spawnTime);
+        InvokeRepeating("Spawn", startTime, spawnTime);
     }
 
     private void GetRandomForSpawn()

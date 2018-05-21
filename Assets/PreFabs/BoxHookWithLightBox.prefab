@@ -526,8 +526,9 @@ MonoBehaviour:
   speed: 7
   lowSpeed: 5
   grabSpeed: 1
-  animationTime: 0.55
+  animationTime: 0.3
   stopMovementTime: 0.5
+  startWaypoint: 0
   boxDetected: 0
   openHook: 0
   closeHook: 0
