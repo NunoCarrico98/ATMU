@@ -505,12 +505,14 @@ MonoBehaviour:
   boxParent: {fileID: 0}
   start: 0
   currentWaypoint: 0
-  speed: 8
+  speed: 7
   lowSpeed: 5
   grabSpeed: 1
-  animationTime: 0.52
+  animationTime: 0.55
   stopMovementTime: 0.5
   boxDetected: 0
+  openHook: 0
+  closeHook: 0
   pickBox: 0
   dropBox: 1
   startsWithBox: 1

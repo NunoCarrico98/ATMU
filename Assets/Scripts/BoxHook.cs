@@ -101,7 +101,6 @@ public class BoxHook : MonoBehaviour
                 hookAnim.SetBool("Open", false);
 
                 stopMovement = false;
-                stopOpenMethod = true;
 
             }
         }
