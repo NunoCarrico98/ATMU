@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnBoxHooks : MonoBehaviour
+public class SpawnBoxHooksRoom1 : MonoBehaviour
 {
 
     public GameObject[] prefab = new GameObject[6];

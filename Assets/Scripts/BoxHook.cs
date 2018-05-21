@@ -14,6 +14,7 @@ public class BoxHook : MonoBehaviour
     public float grabSpeed = 1;
     public float animationTime = 2;
     public float stopMovementTime = 0.5f;
+    public int startWaypoint;
     public bool boxDetected = false;
     public bool openHook = false;
     public bool closeHook = false;
@@ -27,7 +28,7 @@ public class BoxHook : MonoBehaviour
     private Animator hookAnim;
     private bool stopMovement;
     private bool hasBox;
-    private bool grabbing = false;
+    private bool beginDetection = false;
     private bool stopOpenMethod = true;
     private float currentSpeed;
     private int counter = 0;
@@ -36,8 +37,10 @@ public class BoxHook : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        transform.position = waypoints[start].position;
+        //transform.position = waypoints[start].position;
         hookAnim = GetComponent<Animator>();
+
+        currentWaypoint = startWaypoint;
 
         currentSpeed = speed;
 
@@ -70,7 +73,7 @@ public class BoxHook : MonoBehaviour
     {
         if (!stopMovement) Movement();
 
-        if (!startsWithBox) DetectBox();
+        if (!startsWithBox && beginDetection) DetectBox();
 
     }
 
@@ -91,10 +94,13 @@ public class BoxHook : MonoBehaviour
 
         if (transform.position == boxWaypoints[2].position || transform.position == boxWaypoints[1].position)
         {
-            if (!hasBox)
+            beginDetection = true;
+
+            if (!hasBox && counter == 0)
             {
                 hookAnim.SetBool("Open", true);
                 stopMovement = true;
+                counter = 1;
 
                 yield return new WaitForSeconds(animationTime);
 
@@ -102,9 +108,11 @@ public class BoxHook : MonoBehaviour
 
                 stopMovement = false;
 
+                yield return new WaitForSeconds(4);
+
+                counter = 0;
             }
         }
-
     }
 
     private IEnumerator CloseHook()
@@ -129,9 +137,10 @@ public class BoxHook : MonoBehaviour
     {
         stopOpenMethod = true;
 
-        if (boxDetected)
+        if (transform.position == boxWaypoints[0].position)
         {
-            if (transform.position == boxWaypoints[0].position)
+
+            if (boxDetected)
             {
                 hookAnim.SetBool("Close", true);
                 box.position = Vector2.MoveTowards(box.position, transform.position, grabSpeed * Time.deltaTime);
@@ -151,13 +160,12 @@ public class BoxHook : MonoBehaviour
                 else
                 {
                     boxDetected = false;
-                    grabbing = false;
                 }
 
                 hookAnim.SetBool("Close", false);
                 stopMovement = false;
-
             }
+            beginDetection = false;
         }
     }
 
@@ -174,7 +182,6 @@ public class BoxHook : MonoBehaviour
 
                 boxDetected = false;
                 hasBox = false;
-                grabbing = false;
                 if (box != null)
                 {
                     box.SetParent(boxParent);
