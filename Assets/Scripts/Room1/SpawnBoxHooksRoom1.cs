@@ -26,7 +26,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     {
         prefab[0].transform.GetChild(0).GetComponent<BoxHook>().enabled = false;
 
-        for (int i = 1; i < prefab.Length; i ++)
+        for (int i = 1; i < prefab.Length; i++)
         {
             prefab[i].transform.GetChild(0).GetComponent<BoxHook>().enabled = false;
             prefab[i].transform.GetChild(0).transform.GetChild(0).GetComponent<Rigidbody2D>().isKinematic = true;
@@ -47,7 +47,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
             counter = 1;
             timer = 0;
         }
-        if(counter == 1 && timer > spawnTime)
+        if (counter == 1 && timer > spawnTime)
         {
             Spawn();
             timer = 0;
@@ -81,38 +81,46 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
 
     private void Spawn()
     {
-    
-        if (stopRandomSpawn == false)
+
+        /* if (stopRandomSpawn == false)
+         {
+             GetRandomBoxHook();
+         }
+         else
+         {*/
+        if (counter2 % 2 == 0)
         {
-            GetRandomBoxHook();
+            //Instanciate empty hook
+            newPrefab[0] = Instantiate(prefab[0], transform.position, transform.rotation);
+            newPrefab[0].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+            newPrefab[0].transform.SetParent(boxHooks);
         }
-        else
+        if (counter2 % 2 != 0)
         {
-            if (counter2 % 2 == 0)
+            if (!stopRandomSpawn)
             {
-                //Instanciate empty hook
-                newPrefab[0] = Instantiate(prefab[0], transform.position, transform.rotation);
-                newPrefab[0].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                GetRandomBox();
             }
-            if(counter2 % 2 != 0)
+            else
             {
-                if (heavyBoxCounter < 3)
+                if (heavyBoxCounter < 2)
                 {
                     GetRandomHeavyBox();
                 }
                 heavyBoxCounter++;
-                if (heavyBoxCounter >= 4)
+                if (heavyBoxCounter >= 3)
                 {
                     GetRandomLightBox();
                     heavyBoxCounter = 0;
                 }
-
             }
 
-            counter2++;
-
-
         }
+
+        counter2++;
+
+
+        // }
     }
 
     private void GetRandomBoxHook()
