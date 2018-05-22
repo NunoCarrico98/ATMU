@@ -53,6 +53,15 @@ public class BoxHook : MonoBehaviour
     }
     private void Update()
     {
+
+    }
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
+        if (!stopMovement) Movement();
+
+        if (!startsWithBox && beginDetection) DetectBox();
+
         StartCoroutine(OpenHook());
 
         StartCoroutine(CloseHook());
@@ -66,14 +75,6 @@ public class BoxHook : MonoBehaviour
         {
             StartCoroutine(DropBox());
         }
-
-    }
-    // Update is called once per frame
-    private void FixedUpdate()
-    {
-        if (!stopMovement) Movement();
-
-        if (!startsWithBox && beginDetection) DetectBox();
 
     }
 
