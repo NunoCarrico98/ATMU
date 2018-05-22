@@ -61,9 +61,9 @@ TagManager:
   - name: Floors
     uniqueID: 1723799613
     locked: 0
-  - name: Foreground
-    uniqueID: 2811607843
-    locked: 0
   - name: Player
     uniqueID: 2330857585
+    locked: 0
+  - name: Foreground
+    uniqueID: 2811607843
     locked: 0

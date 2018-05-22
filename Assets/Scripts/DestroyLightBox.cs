@@ -6,12 +6,13 @@ public class DestroyLightBox : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
+        int childCount = transform.parent.transform.childCount - 1;
+
         if (col.gameObject.tag == "HeavyBox")
         {
-            if(transform.parent.transform.childCount > 1
-                && transform.parent.transform.GetChild(1).tag == "Player")
+            if(transform.parent.transform.GetChild(childCount).tag == "Player")
             {
-                transform.parent.transform.GetChild(1).SetParent(null);
+                transform.parent.transform.GetChild(childCount).SetParent(null);
             }
             Destroy(transform.parent.gameObject, 0.05f);
         }

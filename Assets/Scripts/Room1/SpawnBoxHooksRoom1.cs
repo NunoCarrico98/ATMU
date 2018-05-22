@@ -17,6 +17,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     private int prefabNumber = 1;
     private int counter = 0;
     private int counter2 = 0;
+    private int heavyBoxCounter = 0;
     private double timer = 0;
     private double timer2;
 
@@ -58,14 +59,24 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     }
 
 
-    private void GetRandomForSpawn()
+    private void GetRandomNumberForSpawn()
     {
         prefabNumber = Random.Range(0, 8);
     }
 
-    private void GetRandom()
+    private void GetRandomNumberForBoxes()
     {
         prefabNumber = Random.Range(1, 8);
+    }
+
+    private void GetRandomNumberForLightBoxes()
+    {
+        prefabNumber = Random.Range(1, 4);
+    }
+
+    private void GetRandomNumberForHeavyBoxes()
+    {
+        prefabNumber = Random.Range(5, 8);
     }
 
     private void Spawn()
@@ -85,7 +96,17 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
             }
             if(counter2 % 2 != 0)
             {
-                GetRandomBox();
+                if (heavyBoxCounter < 3)
+                {
+                    GetRandomHeavyBox();
+                }
+                heavyBoxCounter++;
+                if (heavyBoxCounter >= 4)
+                {
+                    GetRandomLightBox();
+                    heavyBoxCounter = 0;
+                }
+
             }
 
             counter2++;
@@ -94,69 +115,10 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
         }
     }
 
-    private void GetRandomBox()
-    {
-
-        if (numberOfBoxes <= maxNumberOfBoxes) GetRandom();
-
-        if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 1;
-
-        switch (prefabNumber)
-        {
-
-            case 1:
-                newPrefab[1] = Instantiate(prefab[1], transform.position, transform.rotation);
-                newPrefab[1].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[1].transform.SetParent(boxHooks);
-                break;
-
-            case 2:
-                newPrefab[2] = Instantiate(prefab[2], transform.position, transform.rotation);
-                newPrefab[2].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[2].transform.SetParent(boxHooks);
-                break;
-
-            case 3:
-                newPrefab[3] = Instantiate(prefab[3], transform.position, transform.rotation);
-                newPrefab[3].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[3].transform.SetParent(boxHooks);
-                break;
-
-            case 4:
-                newPrefab[4] = Instantiate(prefab[4], transform.position, transform.rotation);
-                newPrefab[4].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[4].transform.SetParent(boxHooks);
-                break;
-
-            case 5:
-                newPrefab[5] = Instantiate(prefab[5], transform.position, transform.rotation);
-                newPrefab[5].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[5].transform.SetParent(boxHooks);
-                break;
-            case 6:
-                newPrefab[6] = Instantiate(prefab[6], transform.position, transform.rotation);
-                newPrefab[6].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[6].transform.SetParent(boxHooks);
-                break;
-
-            case 7:
-                newPrefab[7] = Instantiate(prefab[7], transform.position, transform.rotation);
-                newPrefab[7].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[7].transform.SetParent(boxHooks);
-                break;
-
-            case 8:
-                newPrefab[8] = Instantiate(prefab[8], transform.position, transform.rotation);
-                newPrefab[8].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
-                newPrefab[8].transform.SetParent(boxHooks);
-                break;
-        }
-    }
-
     private void GetRandomBoxHook()
     {
 
-        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomForSpawn();
+        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomNumberForSpawn();
 
         if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 0;
 
@@ -216,4 +178,135 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
                 break;
         }
     }
+
+    private void GetRandomBox()
+    {
+
+        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomNumberForBoxes();
+
+        if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 1;
+
+        switch (prefabNumber)
+        {
+
+            case 1:
+                newPrefab[1] = Instantiate(prefab[1], transform.position, transform.rotation);
+                newPrefab[1].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[1].transform.SetParent(boxHooks);
+                break;
+
+            case 2:
+                newPrefab[2] = Instantiate(prefab[2], transform.position, transform.rotation);
+                newPrefab[2].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[2].transform.SetParent(boxHooks);
+                break;
+
+            case 3:
+                newPrefab[3] = Instantiate(prefab[3], transform.position, transform.rotation);
+                newPrefab[3].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[3].transform.SetParent(boxHooks);
+                break;
+
+            case 4:
+                newPrefab[4] = Instantiate(prefab[4], transform.position, transform.rotation);
+                newPrefab[4].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[4].transform.SetParent(boxHooks);
+                break;
+
+            case 5:
+                newPrefab[5] = Instantiate(prefab[5], transform.position, transform.rotation);
+                newPrefab[5].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[5].transform.SetParent(boxHooks);
+                break;
+            case 6:
+                newPrefab[6] = Instantiate(prefab[6], transform.position, transform.rotation);
+                newPrefab[6].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[6].transform.SetParent(boxHooks);
+                break;
+
+            case 7:
+                newPrefab[7] = Instantiate(prefab[7], transform.position, transform.rotation);
+                newPrefab[7].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[7].transform.SetParent(boxHooks);
+                break;
+
+            case 8:
+                newPrefab[8] = Instantiate(prefab[8], transform.position, transform.rotation);
+                newPrefab[8].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[8].transform.SetParent(boxHooks);
+                break;
+        }
+    }
+
+    private void GetRandomHeavyBox()
+    {
+
+        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomNumberForHeavyBoxes();
+
+        if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 1;
+
+        switch (prefabNumber)
+        {
+
+            case 5:
+                newPrefab[5] = Instantiate(prefab[5], transform.position, transform.rotation);
+                newPrefab[5].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[5].transform.SetParent(boxHooks);
+                break;
+            case 6:
+                newPrefab[6] = Instantiate(prefab[6], transform.position, transform.rotation);
+                newPrefab[6].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[6].transform.SetParent(boxHooks);
+                break;
+
+            case 7:
+                newPrefab[7] = Instantiate(prefab[7], transform.position, transform.rotation);
+                newPrefab[7].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[7].transform.SetParent(boxHooks);
+                break;
+
+            case 8:
+                newPrefab[8] = Instantiate(prefab[8], transform.position, transform.rotation);
+                newPrefab[8].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[8].transform.SetParent(boxHooks);
+                break;
+        }
+    }
+
+    private void GetRandomLightBox()
+    {
+
+        if (numberOfBoxes <= maxNumberOfBoxes) GetRandomNumberForLightBoxes();
+
+        if (numberOfBoxes > maxNumberOfBoxes) prefabNumber = 1;
+
+        switch (prefabNumber)
+        {
+
+            case 1:
+                newPrefab[1] = Instantiate(prefab[1], transform.position, transform.rotation);
+                newPrefab[1].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[1].transform.SetParent(boxHooks);
+                break;
+
+            case 2:
+                newPrefab[2] = Instantiate(prefab[2], transform.position, transform.rotation);
+                newPrefab[2].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[2].transform.SetParent(boxHooks);
+                break;
+
+            case 3:
+                newPrefab[3] = Instantiate(prefab[3], transform.position, transform.rotation);
+                newPrefab[3].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[3].transform.SetParent(boxHooks);
+                break;
+
+            case 4:
+                newPrefab[4] = Instantiate(prefab[4], transform.position, transform.rotation);
+                newPrefab[4].transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
+                newPrefab[4].transform.SetParent(boxHooks);
+                break;
+        }
+    }
+
 }

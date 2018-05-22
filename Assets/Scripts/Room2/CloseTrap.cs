@@ -19,6 +19,8 @@ public class CloseTrap : MonoBehaviour {
         {
             floorCollider.playerEnter = false;
             floorCollider.open = false;
+            floorCollider.redLight = false;
+            floorCollider.greenLight = false;
             openTrap.open = false;
         }
     }

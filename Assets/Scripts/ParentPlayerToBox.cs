@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ParentPlayerToBox : MonoBehaviour {
+public class ParentPlayerToBox : MonoBehaviour
+{
 
     private void OnTriggerEnter2D(Collider2D col)
     {
