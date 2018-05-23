@@ -7,6 +7,7 @@ public class PuzzleSolution : MonoBehaviour
 
     public bool close = false;
     public Transform limitPoint;
+
     private Transform player;
     private FloorCollider floorCollider;
     private OpenTrap openTrap;
@@ -24,26 +25,27 @@ public class PuzzleSolution : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "HeavyBox" || col.tag == "BoxCollider")
+        if (col.tag == "PuzzleCollider")
         {
-            close = true;
-            floorCollider.playerEnter = false;
-            floorCollider.open = false;
-            openTrap.open = false;
+                close = true;
+                floorCollider.playerEnter = false;
+                floorCollider.open = false;
+                openTrap.open = false;
 
-            confirmLight.spriteR.enabled = true;
-            floorCollider.greenLight = true;
-            floorCollider.redLight = false;
+                confirmLight.spriteR.enabled = true;
+                floorCollider.redLight = false;
+                floorCollider.greenLight = true;
         }
     }
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == "HeavyBox" || col.tag == "BoxCollider")
+        if (col.tag == "PuzzleCollider")
         {
             // if (player.position.x < limitPoint.position.x)
             //{
             close = false;
-           // floorCollider.greenLight = false;
+            floorCollider.playerEnter = false;
+            // floorCollider.greenLight = false;
             floorCollider.redLight = false;
             confirmLight.spriteR.enabled = false;
             // }

@@ -18,6 +18,7 @@ TagManager:
   - DeathZone
   - Checkpoint
   - ConveyorBelt
+  - PuzzleCollider
   layers:
   - Default
   - TransparentFX
@@ -37,7 +38,7 @@ TagManager:
   - KillSwitch
   - DeathZone
   - BoxHooks
-  - 
+  - BoxesOnly
   - 
   - 
   - 

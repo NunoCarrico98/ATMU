@@ -8,7 +8,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     public GameObject[] prefab = new GameObject[9];
     public Transform boxHooks;
     public float startTime = 0f;
-    public double spawnTime = 2f;
+    public float spawnTime = 2f;
     public bool stopRandomSpawn = false;
     public int maxNumberOfBoxes;
 
@@ -34,10 +34,10 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
 
         newPrefab = new GameObject[prefab.Length];
 
-        //InvokeRepeating("Spawn", startTime, spawnTime);
+        InvokeRepeating("Spawn", startTime, spawnTime);
     }
 
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         timer2 += Time.deltaTime;
         timer += Time.deltaTime;
@@ -56,7 +56,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
         Debug.Log(timer2);
         //1.18 SEGUNDOS A FAZER MERDA QUANDO ESTÁ NO UPDATE
         //1.30 SEGUNDOS A FAZER MERDA QUANDO ESTÁ NO FIXEDUPDATE
-    }
+    }*/
 
 
     private void GetRandomNumberForSpawn()

@@ -33,6 +33,7 @@ public class BoxHook : MonoBehaviour
     private bool stopOpenMethod = true;
     private float currentSpeed;
     private int counter = 0;
+    private int counter2 = 0;
 
 
     // Use this for initialization
@@ -226,6 +227,15 @@ public class BoxHook : MonoBehaviour
         {
             box = hit.transform;
             boxDetected = true;
+            box.GetComponent<Rigidbody2D>().isKinematic = true;
+            counter2 = 1;
+        }
+        if(hit.collider == null && counter2 == 1)
+        {
+            Debug.Log("PAROU PAROU PAROU");
+            //box.GetComponent<Rigidbody2D>().isKinematic = false;
+            //boxDetected = false;
+            counter2 = 0;
         }
     }
 

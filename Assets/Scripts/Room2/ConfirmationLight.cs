@@ -39,6 +39,10 @@ public class ConfirmationLight : MonoBehaviour {
                 spriteR.enabled = true;
                 spriteR.sprite = greenSprite;
             }
+        } else
+        {
+            spriteR.enabled = true;
+            spriteR.sprite = greenSprite;
         }
     }
 }
