@@ -8,12 +8,15 @@ public class LevelManager : MonoBehaviour
     public float respawnDelay;
     public KillPlayer gamePlayer;
 
-    private GameObject deadPlayer;
+    private Transform player;
+    private Camera camera;
 
     // Use this for initialization
     void Start()
     {
         gamePlayer = FindObjectOfType<KillPlayer>();
+        camera = Camera.main;
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
@@ -33,6 +36,8 @@ public class LevelManager : MonoBehaviour
         Destroy(gamePlayer.ragdoll);
         gamePlayer.transform.parent.transform.position = gamePlayer.respawnPosition;
         gamePlayer.transform.parent.gameObject.SetActive(true);
+        camera.transform.position = new Vector3(player.position.x, player.position.y + 3, camera.transform.position.z);
+        camera.transform.SetParent(player);
     }
 
     public void RestartAfterCheckpoint()

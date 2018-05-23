@@ -6,16 +6,17 @@ public class GrabBox : MonoBehaviour
 {
 
     private int keyCount = 0;
-    private Vector2 positionOnScreen;
-    private Vector2 mouseOnScreen;
     private float xMouse;
     private float yMouse;
-    private Vector2 direction;
     private Transform rotateBoxPoint;
     private bool facingRight;
     private bool crouched = false;
     private Rigidbody2D playerRb;
 
+
+    public Vector2 positionOnScreen;
+    public Vector2 mouseOnScreen;
+    public Vector2 direction;
     public bool grabbed;
     public RaycastHit2D hit;
     public RaycastHit2D hitBack;

@@ -232,7 +232,6 @@ public class BoxHook : MonoBehaviour
         }
         if(hit.collider == null && counter2 == 1)
         {
-            Debug.Log("PAROU PAROU PAROU");
             //box.GetComponent<Rigidbody2D>().isKinematic = false;
             //boxDetected = false;
             counter2 = 0;
