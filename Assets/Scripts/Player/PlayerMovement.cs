@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public Animator characterAnim;
     public Transform boxHoldPoint;
 
-    private ConveyorBelt conveyor;
+    private PlayerConveyorBelt conveyor;
 
     private float resetBoxPosition;
     private float resetSpeed;
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
         playerGraphics = transform.Find("Graphics");
         playerHead = transform.Find("RotatingHead");
 
-        conveyor = FindObjectOfType<ConveyorBelt>();
+        conveyor = FindObjectOfType<PlayerConveyorBelt>();
 
         resetSpeed = movementSpeed;
     }
@@ -67,9 +67,19 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 movement = new Vector2(moveHorizontal * movementSpeed, myRigidbody2D.velocity.y);
 
-        if (conveyor.isOnConveyor)
+        if (!conveyor.isOnBox)
         {
-            movement = new Vector2(moveHorizontal * movementSpeed + conveyor.conveyorSpeed - 9.9f, myRigidbody2D.velocity.y);
+            if (conveyor.isOnConveyor && grounded)
+            {
+                movement = new Vector2(moveHorizontal * movementSpeed + conveyor.conveyorSpeed - 9.9f, myRigidbody2D.velocity.y);
+            }
+        }
+        else
+        {
+            if (conveyor.isOnConveyor && grounded)
+            {
+                movement = new Vector2(moveHorizontal * movementSpeed + conveyor.conveyorSpeed - 10.75f, myRigidbody2D.velocity.y);
+            }
         }
 
         myRigidbody2D.velocity = movement;

@@ -26,6 +26,7 @@ public class BoxHook : MonoBehaviour
     private Transform box;
     private RaycastHit2D hit;
     private Animator hookAnim;
+    private GrabBox grabBox;
     private bool stopMovement;
     private bool hasBox;
     private bool beginDetection = false;
@@ -39,6 +40,7 @@ public class BoxHook : MonoBehaviour
     {
         //transform.position = waypoints[start].position;
         hookAnim = GetComponent<Animator>();
+        grabBox = FindObjectOfType<GrabBox>();
 
         currentWaypoint = startWaypoint;
 
@@ -53,7 +55,7 @@ public class BoxHook : MonoBehaviour
     }
     private void Update()
     {
-
+       // BoxFollowHook();
     }
     // Update is called once per frame
     private void FixedUpdate()
@@ -146,14 +148,12 @@ public class BoxHook : MonoBehaviour
                 hookAnim.SetBool("Close", true);
                 box.position = Vector2.MoveTowards(box.position, transform.position, grabSpeed * Time.deltaTime);
                 stopMovement = true;
-                Debug.Log("NICEWEEEEEEEE");
 
                 yield return new WaitForSeconds(animationTime);
 
 
                 if (box.position == transform.position || box.position != transform.position)
                 {
-                    Debug.Log("NICEWEEEEEEEE   v2");
                     hasBox = true;
                     box.SetParent(transform);
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
@@ -204,6 +204,19 @@ public class BoxHook : MonoBehaviour
         box.GetComponent<Rigidbody2D>().isKinematic = true;
 
     }
+
+    private void BoxFollowHook()
+    {
+        if(hasBox )
+        {
+            box.position = transform.position;
+        }
+        if(box.position != transform.position)
+        {
+            hasBox = false;
+            box.SetParent(boxParent);
+        }
+    } 
 
     public void DetectBox()
     {
