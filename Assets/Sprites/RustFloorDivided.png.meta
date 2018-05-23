@@ -1,0 +1,655 @@
+fileFormatVersion: 2
+guid: 2c425c98d3f0b1547bb72c7ebbcf933f
+timeCreated: 1527048451
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: RustFloorDivided_0
+    21300002: RustFloorDivided_1
+    21300004: RustFloorDivided_2
+    21300006: RustFloorDivided_3
+    21300008: RustFloorDivided_4
+    21300010: RustFloorDivided_5
+    21300012: RustFloorDivided_6
+    21300014: RustFloorDivided_7
+    21300016: RustFloorDivided_8
+    21300018: RustFloorDivided_9
+    21300020: RustFloorDivided_10
+    21300022: RustFloorDivided_11
+    21300024: RustFloorDivided_12
+    21300026: RustFloorDivided_13
+    21300028: RustFloorDivided_14
+    21300030: RustFloorDivided_15
+    21300032: RustFloorDivided_16
+    21300034: RustFloorDivided_17
+    21300036: RustFloorDivided_18
+    21300038: RustFloorDivided_19
+    21300040: RustFloorDivided_20
+    21300042: RustFloorDivided_21
+    21300044: RustFloorDivided_22
+    21300046: RustFloorDivided_23
+  externalObjects: {}
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 8
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RustFloorDivided_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3.9696636, y: 2.945938}
+        - {x: -6.918997, y: 3.0731354}
+        - {x: -6.918997, y: -2.9555664}
+        - {x: -4.1521845, y: -3.0692139}
+        - {x: -4.060586, y: -4.038574}
+        - {x: -2.0568943, y: -4.0252686}
+        - {x: -1.9544239, y: -5.0736847}
+        - {x: 2.9135056, y: -5.057312}
+        - {x: 3.0692158, y: -4.0711823}
+        - {x: 6.0711823, y: -4.0751038}
+        - {x: 6.0975246, y: -2.151245}
+        - {x: 7.0705547, y: -1.9395142}
+        - {x: 7.111681, y: 1.0000153}
+        - {x: 5.0380116, y: 0.9807892}
+        - {x: 4.9656677, y: 1.9608612}
+        - {x: 3.9941063, y: 1.9941101}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -14.043045, y: 1.6395111}
+        - {x: -9.875488, y: -3.8485718}
+        - {x: 2.885456, y: -4.022293}
+        - {x: 10.295155, y: -0.13067627}
+        - {x: 12.722519, y: 0.23135376}
+        - {x: 14.532669, y: 1.3397369}
+        - {x: 14.851654, y: 2.08609}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 3.872406, y: 6.703308}
+        - {x: -3.213684, y: 3.830902}
+        - {x: -7.384323, y: 0.97924805}
+        - {x: -8.958496, y: -5.679474}
+        - {x: -5.0668793, y: -9.722519}
+        - {x: -0.32206726, y: -9.129135}
+        - {x: 1.63797, y: -2.0476685}
+        - {x: 5.789398, y: -0.8946991}
+        - {x: 7.511917, y: 4.149887}
+        - {x: 6.660263, y: 6.767105}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 160
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -4.958496, y: 5.08609}
+        - {x: -2.6618042, y: -0.27748108}
+        - {x: -2.2567291, y: -6.234436}
+        - {x: 1.0830078, y: -5.894699}
+        - {x: 2.553421, y: 1.6971436}
+        - {x: 4.682556, y: 3.574173}
+        - {x: 6.149887, y: 5.022293}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.736248, y: 6.809494}
+        - {x: -2.2417498, y: 7.651993}
+        - {x: -3.3992472, y: 6.9047546}
+        - {x: -3.1464968, y: -6.9889984}
+        - {x: 0.37000656, y: -4.87175}
+        - {x: 2.0220013, y: -2.1757507}
+        - {x: 3.3992481, y: -1.0622406}
+        - {x: 3.8094978, y: 0.4212494}
+        - {x: 3.5567474, y: 3.48349}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3.3882446, y: 4.977997}
+        - {x: -6.4284935, y: 3.1464996}
+        - {x: -11.725246, y: 2.157486}
+        - {x: -11.472496, y: -1.6629944}
+        - {x: -7.4614944, y: -1.5567474}
+        - {x: -1.3480034, y: -0.28199768}
+        - {x: 7.377247, y: -3.48349}
+        - {x: 9.556747, y: -2.1575012}
+        - {x: 10.314999, y: 1.5567474}
+        - {x: 9.904751, y: 4.135498}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -0.8424988, y: 5.6080017}
+        - {x: -4.5567474, y: 2.9157562}
+        - {x: -3.9670029, y: -2.3259888}
+        - {x: -1.3992462, y: -8.809494}
+        - {x: 2.4944992, y: -8.641006}
+        - {x: 5.3150024, y: 0.5494995}
+        - {x: 4.2197495, y: 7.736252}
+        - {x: 2.4102478, y: 8.809494}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3.9669952, y: 5.3882446}
+        - {x: -6.7252426, y: 4.640991}
+        - {x: -7.314995, y: -1.326004}
+        - {x: -0.96699524, y: -5.2307434}
+        - {x: 4.4614944, y: 1.2565155}
+        - {x: 7.062248, y: -1.7472382}
+        - {x: 7.062248, y: 5.893738}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.522192, y: 5.1684036}
+        - {x: -2.4073048, y: 2.0535126}
+        - {x: -5.566575, y: -1.1853943}
+        - {x: -3.6553402, y: -5.911232}
+        - {x: -1.6553402, y: -6.0091324}
+        - {x: 2.9464855, y: 0.9987259}
+        - {x: 3.3720531, y: 2.9556198}
+        - {x: 4.1684, y: 5.1684036}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.4073067, y: -4.282013}
+        - {x: -1.2924194, y: -5.327675}
+        - {x: 2.283287, y: -5.327675}
+        - {x: 3.372055, y: -2.973877}
+        - {x: 4.327671, y: -0.84072876}
+        - {x: 1.7963524, y: 3.7702255}
+        - {x: -1.716713, y: 3.7702255}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.35379028, y: 6.460823}
+        - {x: -2.3368073, y: 4.8407288}
+        - {x: -4.2480316, y: 3.043106}
+        - {x: -3.9464874, y: -2.6292267}
+        - {x: 0.5313263, y: -6.372055}
+        - {x: 5.4516907, y: -0.45169067}
+        - {x: 4.8942413, y: 2.6814575}
+        - {x: 2.1684036, y: 9.725845}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -9.973831, y: -4.3228836}
+        - {x: -6.4913635, y: -7.910515}
+        - {x: -2.4476852, y: -4.3389587}
+        - {x: 2.2434464, y: -4.415161}
+        - {x: 1.8106842, y: -8.177261}
+        - {x: 5.2883224, y: -7.783882}
+        - {x: 10.403976, y: -0.89533234}
+        - {x: 10.277336, y: 1.7074814}
+        - {x: -8.362129, y: 9.3537445}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 0.686121, y: 8.124603}
+        - {x: -5.0788603, y: -1.7444916}
+        - {x: -5.1246023, y: -5.399048}
+        - {x: -1.1829653, y: -5.3075714}
+        - {x: -0.48265934, y: -4.268135}
+        - {x: 2.6214466, y: -3.8170319}
+        - {x: 3.0788593, y: 8.033119}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_13
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -3.382843, y: 7.4188004}
+        - {x: -2.0247917, y: 1.5802841}
+        - {x: -4.2007027, y: -6.291191}
+        - {x: -1.4733238, y: -7.9280853}
+        - {x: 0.40023422, y: -7.600937}
+        - {x: 5.0371284, y: 0.34453583}
+        - {x: 4.982605, y: 3.8364258}
+        - {x: 0.43619537, y: 8.037132}
+        - {x: -1, y: 8.146172}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_14
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -2.3271484, y: 2.2018738}
+        - {x: -2.49189, y: -1.8166885}
+        - {x: -2.873558, y: -4.4188004}
+        - {x: -0.9269104, y: -4.0371323}
+        - {x: 2.1647415, y: 0.8723831}
+        - {x: 3.091652, y: 4.964035}
+        - {x: -0.14383698, y: 5.0371323}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_15
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -0.30470276, y: 6.257614}
+        - {x: -5.1108017, y: 1}
+        - {x: -4.988922, y: -2.8171768}
+        - {x: -2.8171692, y: -4.476448}
+        - {x: -0.46260834, y: -3.867035}
+        - {x: 2.501381, y: -1.0858765}
+        - {x: 2.8060913, y: 3.2437668}
+        - {x: 0.84210205, y: 6.867035}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -6.8504696, y: 5.1792564}
+        - {x: -13, y: 3}
+        - {x: -10.934734, y: -2.521679}
+        - {x: -4.029728, y: -4.037998}
+        - {x: 6.948368, y: -1.3531532}
+        - {x: 10.883102, y: 0.980999}
+        - {x: 10.67523, y: 2.9650574}
+        - {x: 7.3721504, y: 3.7282066}
+        - {x: 4.0759945, y: 7.244526}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -10.160263, y: 0.3940544}
+        - {x: -11.277161, y: -2.192894}
+        - {x: 4.0706253, y: -2.2961578}
+        - {x: 4.695572, y: 0.36141968}
+        - {x: 6.0896225, y: 5.141262}
+        - {x: 5.4973145, y: 5.6059456}
+        - {x: -0.09209442, y: 1.6439438}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_18
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7.038002, y: -1.7934723}
+        - {x: -5.437416, y: -5.037998}
+        - {x: -1.3531494, y: -7.08963}
+        - {x: 2.154892, y: -7.244526}
+        - {x: 5.0896225, y: -3.9863663}
+        - {x: 5.296158, y: 7.206524}
+        - {x: 4.3994217, y: 7.192894}
+        - {x: 0.76911163, y: 3.5786781}
+        - {x: -4.0379944, y: 4.2825203}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_19
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 2.072235, y: 7.0397797}
+        - {x: -3.2077942, y: 1.1038971}
+        - {x: -3.319809, y: -2.9837723}
+        - {x: 3.095787, y: -3.3758163}
+        - {x: 3.095787, y: 6.983776}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -7.9698524, y: 0.049467087}
+        - {x: -8.089273, y: -4.1242504}
+        - {x: 8.121754, y: -4.12908}
+        - {x: 7.1640587, y: -1.14357}
+        - {x: 4.665888, y: 0.25449753}
+        - {x: 1.0434704, y: -0.6067629}
+        - {x: -1.5982685, y: -0.54763603}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_21
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -0.32947922, y: 4.208681}
+        - {x: -7.6470184, y: 3.4383373}
+        - {x: -8.611572, y: -2.1312876}
+        - {x: -4.7275887, y: -3.5843315}
+        - {x: -2.9721756, y: -2.2471924}
+        - {x: 1.0316505, y: -2.4057884}
+        - {x: 2.998005, y: -5.047921}
+        - {x: 11.024956, y: -5.484269}
+        - {x: 8.682461, y: -0.070892334}
+        - {x: 4.081375, y: 1.2231503}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_22
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -0.2220459, y: 2.3468513}
+        - {x: -1.5267792, y: 1.6320877}
+        - {x: -4.1037445, y: -0.68720627}
+        - {x: -4.076187, y: -1.9854364}
+        - {x: -2.7098312, y: -3.249608}
+        - {x: 2.429535, y: -2.6045265}
+        - {x: 5.298233, y: 0.034057617}
+        - {x: 5, y: 2.1037426}
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: RustFloorDivided_23
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 1.1473007, y: 9.087494}
+        - {x: -0.41488647, y: 9.036152}
+        - {x: -1.4754105, y: 4.2622967}
+        - {x: -2.9180374, y: 3.295084}
+        - {x: -8.737709, y: 2.9180336}
+        - {x: -9.52459, y: -0.6065588}
+        - {x: -6.3606567, y: -3.6721315}
+        - {x: 13.573769, y: -3.1311483}
+        - {x: 10.5177, y: -1.4902191}
+        - {x: 9.555977, y: 0.0920105}
+        - {x: 7.50058, y: 0.4662285}
+        - {x: 7.08197, y: 3.5901623}
+        - {x: 5.931938, y: 3.7764435}
+        - {x: 5.6005936, y: 1.4807644}
+        - {x: 3.8943405, y: 1.5893745}
+        - {x: 1.4098358, y: 4.1639366}
+      tessellationDetail: 0
+    outline: []
+    physicsShape: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
