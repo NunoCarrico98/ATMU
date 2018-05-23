@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour {
+public class CameraFollow : MonoBehaviour
+{
 
     public float heightOffset = 5f;
     public float minRadius = 0.3f;
@@ -13,21 +14,22 @@ public class CameraFollow : MonoBehaviour {
     private GrabBox grabBox;
     private Vector3 direction;
     private float mouseRadius;
-    
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start()
+    {
 
         player = GameObject.Find("Player").transform;
 
         grabBox = FindObjectOfType<GrabBox>();
-	}
-	
-	// Update is called once per frame
-	private void FixedUpdate ()
+    }
+
+    // Update is called once per frame
+    private void FixedUpdate()
     {
         FollowPlayer();
-        Test();
-	}
+        // Test();
+    }
 
     private void FollowPlayer()
     {
@@ -38,9 +40,9 @@ public class CameraFollow : MonoBehaviour {
     {
         direction = grabBox.directionVector(grabBox.positionOnScreen, grabBox.mouseOnScreen);
 
-        mouseRadius = Mathf.Sqrt(Mathf.Pow(direction.x,2) + Mathf.Pow(direction.y,2));
+        mouseRadius = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
 
-        if(mouseRadius > minRadius)
+        if (mouseRadius > minRadius)
         {
             MoveCamera();
         }

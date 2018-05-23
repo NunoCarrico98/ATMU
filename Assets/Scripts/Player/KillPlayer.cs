@@ -8,13 +8,13 @@ public class KillPlayer : MonoBehaviour
     public GameObject ragdoll;
     public Vector2 respawnPosition;
     public LevelManager gameLevelManager;
-    public Camera camera;
 
     private GameObject[] bodyparts = new GameObject[8];
     private GameObject player;
     private Transform playerGraphics;
     private Transform playerHead;
     private Vector2 velocity;
+    private GrabBox grabBox;
     private float angularVelocity;
     /*private bool killPlayer = false;
     private int counter = 0;*/
@@ -23,6 +23,7 @@ public class KillPlayer : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         gameLevelManager = FindObjectOfType<LevelManager>();
+        grabBox = FindObjectOfType<GrabBox>();
 
         respawnPosition = transform.position;
     }
@@ -43,7 +44,6 @@ public class KillPlayer : MonoBehaviour
 
         if (other.tag == "DeathZone")
         {
-            camera.transform.SetParent(null);
             gameLevelManager.RespawnAfterDeath();
         }
 
@@ -61,6 +61,12 @@ public class KillPlayer : MonoBehaviour
 
     private void KillRagdoll()
     {
+        grabBox.boxCollider.GetComponent<Collider2D>().enabled = false;
+        grabBox.box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+        grabBox.box.GetComponent<Rigidbody2D>().isKinematic = false;
+        grabBox.box.GetComponent<Rigidbody2D>().velocity = new Vector3(grabBox.box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
+        grabBox.box.GetComponent<Collider2D>().enabled = true;
+        grabBox.grabbed = false;
         //  if (/*killPlayer == true &&*/ counter < 2)
         // {
         // Destroy(player);

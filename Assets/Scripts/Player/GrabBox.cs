@@ -55,31 +55,33 @@ public class GrabBox : MonoBehaviour
 
         rotateBoxPoint = transform.Find("RotateBoxPoint");
 
+        Physics2D.queriesStartInColliders = false;
+
+        if (!grabbed)
+        {
+            //If player is facing left create a raycast pointing left
+            if (angle > -90 && angle < 90)
+            {
+                hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
+            }
+
+            //If player is facing right create a raycast pointing right
+            if (angle < -90 || angle > 90)
+            {
+                hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
+            }
+
+            //Raycast that follows mouse position on top side
+            if (angle < -40 && angle > -123)
+            {
+                hit = Physics2D.Raycast(transform.position, direction, 2);
+            }
+        }
+
         if (Input.GetButtonDown("Fire2") && !crouched)
         {
             if (!grabbed)
             {
-
-                Physics2D.queriesStartInColliders = false;
-
-                //If player is facing left create a raycast pointing left
-                if (angle > -90 && angle < 90)
-                {
-                    hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
-                }
-
-                //If player is facing right create a raycast pointing right
-                if (angle < -90 || angle > 90)
-                {
-                    hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
-                }
-
-                //Raycast that follows mouse position on top side
-                if (angle < -40 && angle > -123)
-                {
-                    hit = Physics2D.Raycast(transform.position, direction, 2);
-                }
-
                 //If raycast detects a grabbable object
                 if (hit.collider != null && (hit.collider.tag == "HeavyBox" || hit.collider.tag == "LightBox"))
                 {
