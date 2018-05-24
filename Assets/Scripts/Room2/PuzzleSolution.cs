@@ -25,6 +25,7 @@ public class PuzzleSolution : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if(col)
         if (col.tag == "PuzzleCollider")
         {
                 close = true;

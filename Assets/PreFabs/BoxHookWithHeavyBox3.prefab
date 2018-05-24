@@ -35,7 +35,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031789199551950}
   - component: {fileID: 61773882488319598}
-  m_Layer: 18
+  m_Layer: 20
   m_Name: ColliderForRoom2Puzzle
   m_TagString: PuzzleCollider
   m_Icon: {fileID: 0}
