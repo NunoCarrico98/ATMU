@@ -17,7 +17,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     private int prefabNumber = 1;
     private int counter = 0;
     private int counter2 = 0;
-    private int heavyBoxCounter = 0;
+    private int lightBoxCounter = 0;
     private double timer = 0;
     private double timer2;
 
@@ -103,15 +103,15 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
             }
             else
             {
-                if (heavyBoxCounter < 2)
-                {
-                    GetRandomHeavyBox();
-                }
-                heavyBoxCounter++;
-                if (heavyBoxCounter >= 3)
+                if (lightBoxCounter < 2)
                 {
                     GetRandomLightBox();
-                    heavyBoxCounter = 0;
+                }
+                lightBoxCounter++;
+                if (lightBoxCounter >= 3)
+                {
+                    GetRandomHeavyBox();
+                    lightBoxCounter = 0;
                 }
             }
 

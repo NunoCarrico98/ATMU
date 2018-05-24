@@ -8,12 +8,16 @@ public class CameraFollow : MonoBehaviour
     public float heightOffset = 5f;
     public float minRadius = 0.3f;
     public float fraction;
+    [Range(0,1)]
     public float moveSpeed = 10f;
+    public Vector3 offset;
 
     private Transform player;
     private GrabBox grabBox;
     private Vector3 direction;
     private float mouseRadius;
+    private bool activateMove;
+        
 
     // Use this for initialization
     void Start()
@@ -28,15 +32,34 @@ public class CameraFollow : MonoBehaviour
     private void FixedUpdate()
     {
         FollowPlayer();
-        // Test();
+        MoveCamera();
+        //if (activateMove) MoveCamera();
     }
 
     private void FollowPlayer()
     {
-        transform.position = new Vector3(player.position.x, player.position.y + heightOffset, transform.position.z);
+        Vector3 desiredPosition = player.position + offset;
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, moveSpeed);
+        transform.position = smoothedPosition;
     }
 
-    private void Test()
+
+    private void OnMouseExit()
+    {
+        if(gameObject.name == "CameraMoveLimits")
+        {
+            activateMove = true;
+        }
+    }
+    private void OnMouseEnter()
+    {
+        if (gameObject.name == "CameraMoveLimits")
+        {
+            activateMove = false;
+        }
+    }
+
+    private void MoveCamera()
     {
         direction = grabBox.directionVector(grabBox.positionOnScreen, grabBox.mouseOnScreen);
 
@@ -44,23 +67,19 @@ public class CameraFollow : MonoBehaviour
 
         if (mouseRadius > minRadius)
         {
-            MoveCamera();
-        }
-    }
+            Vector3 moveVector = new Vector3(direction.x / fraction, direction.y / fraction, 0);
 
-    private void MoveCamera()
-    {
-        /*Vector3 moveVector = new Vector3(direction.x / fraction, 
-            direction.y / fraction, transform.position.z);
-
-        //transform.position = Vector3.MoveTowards(transform.position, moveVector, moveSpeed * Time.deltaTime);
-        transform.position = Vector3.Lerp(transform.position, moveVector, moveSpeed);*/
-
-        Vector3 moveVector = new Vector3(direction.x / fraction, direction.y / fraction, transform.position.z);
-
-        if (transform.position != moveVector)
-        {
-            transform.position += new Vector3(moveSpeed, moveSpeed, 0);
+            if (transform.position != moveVector)
+            {
+                if ((direction.x > 0 && direction.y > 0) || (direction.x < 0 && direction.y < 0))
+                {
+                    transform.position += moveVector;
+                }
+                if ((direction.x > 0 && direction.y < 0) || (direction.x < 0 && direction.y > 0))
+                {
+                    transform.position += moveVector;
+                }
+            }
         }
     }
 }
