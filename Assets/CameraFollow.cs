@@ -61,7 +61,7 @@ public class CameraFollow : MonoBehaviour
 
     private void MoveCamera()
     {
-        direction = grabBox.directionVector(grabBox.positionOnScreen, grabBox.mouseOnScreen);
+        direction = grabBox.DirectionVector(grabBox.positionOnScreen, grabBox.mouseOnScreen);
 
         mouseRadius = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
 

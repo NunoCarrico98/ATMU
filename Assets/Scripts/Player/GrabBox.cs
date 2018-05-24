@@ -50,31 +50,37 @@ public class GrabBox : MonoBehaviour
 
         FollowMouse();
 
-        direction = directionVector(positionOnScreen, mouseOnScreen);
-        direction = createVersor(direction);
+        direction = DirectionVector(positionOnScreen, mouseOnScreen);
+        direction = CreateVersor(direction);
 
         rotateBoxPoint = transform.Find("RotateBoxPoint");
 
         Physics2D.queriesStartInColliders = false;
 
+
+
         if (!grabbed)
         {
+
+            BackRayHitsNothing();
+
             //If player is facing left create a raycast pointing left
-            if (angle > -90 && angle < 90)
+            if (angle > -30 && angle < 90 /*90*/)
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
             }
 
             //If player is facing right create a raycast pointing right
-            if (angle < -90 || angle > 90)
+
+            if ((angle < 180 && angle > 90) || (angle < -150/*-90*/ && angle > -180))
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
             }
 
             //Raycast that follows mouse position on top side
-            if (angle < -40 && angle > -123)
+            if (angle <= -30 && angle >= -150)
             {
-                hit = Physics2D.Raycast(transform.position, direction, 2);
+                hit = Physics2D.Raycast(transform.position, direction, distance * 1.5f);
             }
         }
 
@@ -103,12 +109,11 @@ public class GrabBox : MonoBehaviour
 
             FireBackRaycastGround();
             BackRayHits();
-            BackRayHitsNothing();
 
             if (box.GetComponent<Rigidbody2D>() != null)
             {
-                direction = directionVector(positionOnScreen, mouseOnScreen);
-                direction = createVersor(direction);
+                direction = DirectionVector(positionOnScreen, mouseOnScreen);
+                direction = CreateVersor(direction);
 
                 if (Input.GetButtonUp("Fire2"))
                 {
@@ -162,7 +167,7 @@ public class GrabBox : MonoBehaviour
 
     private void BackRayHits()
     {
-        if (hitBack.collider != null)
+        if (hitBack.collider != null && grabbed)
         {
             if (facingRight)
             {
@@ -190,11 +195,8 @@ public class GrabBox : MonoBehaviour
 
     private void BackRayHitsNothing()
     {
-        if (hitBack.collider == null)
-        {
-            backBoxR = false;
-            backBoxL = false;
-        }
+        backBoxR = false;
+        backBoxL = false;
     }
 
     void OnDrawGizmos()
@@ -226,7 +228,7 @@ public class GrabBox : MonoBehaviour
         return Mathf.Atan2(yA - yB, xA - xB) * Mathf.Rad2Deg;
     }
 
-    public Vector2 directionVector(Vector2 a, Vector2 b)
+    public Vector2 DirectionVector(Vector2 a, Vector2 b)
     {
         float xA = a.x;
         float xB = b.x;
@@ -236,7 +238,7 @@ public class GrabBox : MonoBehaviour
         return (new Vector2((xB - xA), (yB - yA)));
     }
 
-    public Vector2 createVersor(Vector2 a)
+    public Vector2 CreateVersor(Vector2 a)
     {
         float norm = Mathf.Sqrt(Vector3.Dot(a, a));
 
