@@ -57,12 +57,11 @@ public class GrabBox : MonoBehaviour
 
         Physics2D.queriesStartInColliders = false;
 
+        BackRayHitsNothing();
 
 
         if (!grabbed)
         {
-
-            BackRayHitsNothing();
 
             //If player is facing left create a raycast pointing left
             if (angle > -30 && angle < 90 /*90*/)
@@ -174,7 +173,7 @@ public class GrabBox : MonoBehaviour
                 backBoxR = false;
                 backBoxL = true;
 
-                if (angle <= -110 || (angle < 180 && angle > 0))
+                if (angle <= -95 || (angle < 180 && angle > 0))
                 {
                     rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 180f + 170f));
                 }

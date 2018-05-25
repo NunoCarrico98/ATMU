@@ -36,7 +36,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4044072016879804}
   - component: {fileID: 61260455273880110}
-  - component: {fileID: 114179208526273234}
   - component: {fileID: 114898743771062852}
   - component: {fileID: 114865146336131314}
   m_Layer: 11
@@ -179,6 +178,7 @@ GameObject:
   - component: {fileID: 4827002771658634}
   - component: {fileID: 50165195652233712}
   - component: {fileID: 61189516148342716}
+  - component: {fileID: 114646791866917694}
   m_Layer: 11
   m_Name: LightBox
   m_TagString: LightBox
@@ -484,17 +484,19 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114179208526273234
+--- !u!114 &114646791866917694
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1097192310680466}
+  m_GameObject: {fileID: 1665271411390860}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocityToDestroyX: 8
+  velocityToDestroyY: 0.4
 --- !u!114 &114715646109666966
 MonoBehaviour:
   m_ObjectHideFlags: 1

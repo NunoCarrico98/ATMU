@@ -4,26 +4,44 @@ using UnityEngine;
 
 public class DestroyLightBox : MonoBehaviour
 {
+    public float velocityToDestroyX;
+    public float velocityToDestroyY;
+    private Transform boxesParent;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        int childCount = transform.parent.transform.childCount - 1;
+        if (col.tag == "DeathZone")
+        {
+            Destroy(transform.gameObject, 0.05f);
+        }
+    }
+
+    private void Start()
+    {
+        boxesParent = GameObject.FindGameObjectWithTag("BoxesParent").transform;
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+
+        int childCount = transform.childCount - 1;
 
         if (col.gameObject.tag == "HeavyBox")
         {
-            if (col.GetComponent<Rigidbody2D>().velocity.y != 0)
+            Debug.Log("X speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.x + "Y speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.y);
+            if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
+                col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||
+                col.transform.GetComponent<Rigidbody2D>().velocity.y >= velocityToDestroyY ||
+                col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY)
             {
-                if (transform.parent.transform.GetChild(childCount).tag == "Player")
-                {
-                    transform.parent.transform.GetChild(childCount).SetParent(null);
-                }
-                Destroy(transform.parent.gameObject, 0.05f);
-            }
-        }
 
-        if (col.tag == "DeathZone")
-        {
-            Destroy(transform.parent.gameObject, 0.05f);
+                if (transform.GetChild(childCount).tag == "Player")
+                {
+                    transform.GetChild(childCount).SetParent(null);
+                }
+                col.transform.SetParent(boxesParent);
+                Destroy(transform.gameObject, 0.05f);
+            }
         }
     }
 }

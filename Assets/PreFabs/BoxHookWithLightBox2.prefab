@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 4583143260844146}
   - component: {fileID: 50064400501868866}
   - component: {fileID: 61416316582088850}
+  - component: {fileID: 114472831642762380}
   m_Layer: 11
   m_Name: LightBox3
   m_TagString: LightBox
@@ -191,7 +192,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4665428567695540}
   - component: {fileID: 61336148140846920}
-  - component: {fileID: 114918399941163040}
   - component: {fileID: 114276278508995044}
   - component: {fileID: 114955593358522700}
   m_Layer: 11
@@ -495,6 +495,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45fdf5819585a1478c06ef03c94bb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114472831642762380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1654569389707576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityToDestroyX: 8
+  velocityToDestroyY: 0.4
 --- !u!114 &114809941359400166
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -536,17 +549,6 @@ MonoBehaviour:
   dropBox: 1
   startsWithBox: 1
   destroyAfterLastWaypoint: 1
---- !u!114 &114918399941163040
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915818198397038}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114955593358522700
 MonoBehaviour:
   m_ObjectHideFlags: 1

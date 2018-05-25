@@ -7,53 +7,55 @@ public class DropBoxIfOnAir : MonoBehaviour
     public bool boxFoundCollider = false;
     public float distance = 2f;
 
-    private RaycastHit2D[] hitDown = new RaycastHit2D[3];
+    private Transform player;
     private GameObject box;
-
+    private Collider2D boxCollider;
     private bool grounded = false;
 
     // Use this for initialization
     void Start()
     {
+        boxCollider = transform.parent.GetComponent<BoxCollider2D>();
+        player = GameObject.Find("Player").transform;
+    }
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox" || col.transform.tag == "Terrain")
+        {
+            if (player.GetComponent<GrabBox>().grabbed)
+            {
+                //if box is heigher than the player
+                //if (transform.parent.position.y > player.position.y)
+                //{
+                    boxFoundCollider = true;
+                //}
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox" || col.transform.tag == "Terrain")
+        {
+            boxFoundCollider = false;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponent<PlayerMovement>().grounded)
+        grounded = player.GetComponent<PlayerMovement>().grounded;
+        box = player.GetComponent<GrabBox>().box;
+        IsGrounded();
+
+        if (player.GetComponent<GrabBox>().grabbed == false)
         {
-            box = GetComponent<GrabBox>().box;
-            grounded = GetComponent<PlayerMovement>().grounded;
-
-            hitDown[0] = Physics2D.Raycast(box.transform.position - new Vector3(0.7f, 0, 0), Vector2.down, distance);
-            hitDown[1] = Physics2D.Raycast(box.transform.position, Vector2.down, distance);
-            hitDown[2] = Physics2D.Raycast(box.transform.position + new Vector3(0.7f, 0, 0), Vector2.down, distance);
-
-            CastRaycastDown();
-            IsGrounded();
-        }
-    }
-
-    private void CastRaycastDown()
-    {
-        /* Detect collision to up raycast */
-        if (hitDown[0].collider != null || hitDown[1].collider != null || hitDown[2].collider != null)
-        {
-            if ((hitDown[0].collider.tag == "HeavyBox" || hitDown[0].collider.tag == "LightBox" || hitDown[0].collider.tag == "Terrain") ||
-                (hitDown[1].collider.tag == "HeavyBox" || hitDown[1].collider.tag == "LightBox" || hitDown[1].collider.tag == "Terrain") ||
-                (hitDown[2].collider.tag == "HeavyBox" || hitDown[2].collider.tag == "LightBox" || hitDown[2].collider.tag == "Terrain"))
-            {
-                if (box.transform.position.y > transform.position.y)
-                {
-                    boxFoundCollider = true;
-                }
-            }
-        }
-
-        if (hitDown[0].collider == null && hitDown[1].collider == null && hitDown[2].collider == null)
-        {
+            transform.GetComponent<Collider2D>().enabled = false;
             boxFoundCollider = false;
+        } else
+        {
+            transform.GetComponent<Collider2D>().enabled = true;
         }
     }
 
@@ -63,11 +65,12 @@ public class DropBoxIfOnAir : MonoBehaviour
         {
             if (boxFoundCollider)
             {
-                GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
+                player.GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
                 box.GetComponent<Rigidbody2D>().isKinematic = false;
                 box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 box.GetComponent<Collider2D>().enabled = true;
-                GetComponent<GrabBox>().grabbed = false;
+                boxCollider.enabled = false;
+                player.GetComponent<GrabBox>().grabbed = false;
             }
         }
     }

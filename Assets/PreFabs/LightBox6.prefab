@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4796630867031620}
   - component: {fileID: 50784712222349490}
   - component: {fileID: 61577146615983804}
+  - component: {fileID: 114157134172665490}
   m_Layer: 11
   m_Name: LightBox6
   m_TagString: LightBox
@@ -53,7 +54,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4588277366394138}
   - component: {fileID: 61116139540727724}
-  - component: {fileID: 114373749420974388}
   - component: {fileID: 114799795868706716}
   - component: {fileID: 114207284925087396}
   m_Layer: 11
@@ -174,6 +174,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.95, y: 1.975}
   m_EdgeRadius: 0
+--- !u!114 &114157134172665490
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217046857232818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityToDestroyX: 8
+  velocityToDestroyY: 0.4
 --- !u!114 &114207284925087396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,17 +196,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b618ff9a1ec1acd40a84886b1d24c7fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114373749420974388
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1980595826358606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114799795868706716

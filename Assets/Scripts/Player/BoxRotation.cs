@@ -46,6 +46,7 @@ public class BoxRotation : MonoBehaviour
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }
 
+        //If mouse is underground, box stays on top the floor
         if((angle > 15 && angle < 90) && (backBoxR == false && backBoxL == false))
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 15f + rotationOffSet));
@@ -63,7 +64,7 @@ public class BoxRotation : MonoBehaviour
         }
 
         //If there's a box on player's back
-        if ((angle < 15 && angle > -110) && backBoxR == true)
+        if ((angle < 15 && angle > -95) && backBoxR == true)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }

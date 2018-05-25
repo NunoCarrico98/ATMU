@@ -143,13 +143,14 @@ public class PlayerMovement : MonoBehaviour
     private void IsGrounded()
     {
         // Verify if player is touching the ground
-        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        //grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        grounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(1.6f, 0.4f), 0, whatIsGround);
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(groundCheckPoint.position, groundCheckRadius);
+        Gizmos.DrawWireCube(groundCheckPoint.position, new Vector2(1.6f, 0.4f));
     }
 
     private void FlipPlayer()
@@ -162,15 +163,20 @@ public class PlayerMovement : MonoBehaviour
         backBoxL = GetComponent<GrabBox>().backBoxL;
 
         // If the input is moving the player right and the player is facing left...
-        if (facingRight && (angle > -90 && angle < 90) && !backBoxL)
+        if (facingRight && (angle > -90 && angle < 90))
         {
-            // ... flip the player.
-            Flip();
+            if (!backBoxL || (backBoxL && (angle > -90 && angle < -55)))
+            {
+                Flip();
+            }
         }
-        if (!facingRight && (angle < -90 || angle > 90) && !backBoxR)
+
+        if (!facingRight && (angle < -90 || angle > 90))
         {
-            // ... flip the player.
-            Flip();
+            if (!backBoxR || (backBoxR && (angle < -90 && angle > -95)))
+            {
+                Flip();
+            }
         }
     }
 
