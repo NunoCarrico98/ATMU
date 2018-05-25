@@ -24,24 +24,44 @@ public class DestroyLightBox : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
 
-        int childCount = transform.childCount - 1;
+
 
         if (col.gameObject.tag == "HeavyBox")
         {
-            Debug.Log("X speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.x + "Y speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.y);
-            if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
+            //if (transform.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            //{
+                Debug.Log("X speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.x + "Y speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.y);
+                if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
+                    col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||
+                    col.transform.GetComponent<Rigidbody2D>().velocity.y >= velocityToDestroyY ||
+                    col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY)
+                {
+                    DestroyBox(col);
+                }
+            //}
+            /*else
+            {
+                if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
                 col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||
                 col.transform.GetComponent<Rigidbody2D>().velocity.y >= velocityToDestroyY ||
                 col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY)
-            {
-
-                if (transform.GetChild(childCount).tag == "Player")
                 {
-                    transform.GetChild(childCount).SetParent(null);
+                    DestroyBox(col);
                 }
-                col.transform.SetParent(boxesParent);
-                Destroy(transform.gameObject, 0.05f);
-            }
+            }*/
+
         }
+    }
+
+    private void DestroyBox(Collision2D col)
+    {
+        int childCount = transform.childCount - 1;
+
+        if (transform.GetChild(childCount).tag == "Player")
+        {
+            transform.GetChild(childCount).SetParent(null);
+        }
+        col.transform.SetParent(boxesParent);
+        Destroy(transform.gameObject, 0.05f);
     }
 }

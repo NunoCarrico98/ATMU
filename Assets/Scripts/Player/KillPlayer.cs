@@ -61,12 +61,15 @@ public class KillPlayer : MonoBehaviour
 
     private void KillRagdoll()
     {
-        grabBox.boxCollider.GetComponent<Collider2D>().enabled = false;
-        grabBox.box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
-        grabBox.box.GetComponent<Rigidbody2D>().isKinematic = false;
-        grabBox.box.GetComponent<Rigidbody2D>().velocity = new Vector3(grabBox.box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
-        grabBox.box.GetComponent<Collider2D>().enabled = true;
-        grabBox.grabbed = false;
+        if (grabBox.box != null)
+        {
+            grabBox.boxCollider.GetComponent<Collider2D>().enabled = false;
+            grabBox.box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+            grabBox.box.GetComponent<Rigidbody2D>().isKinematic = false;
+            grabBox.box.GetComponent<Rigidbody2D>().velocity = new Vector3(grabBox.box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
+            grabBox.box.GetComponent<Collider2D>().enabled = true;
+            grabBox.grabbed = false;
+        }
         //  if (/*killPlayer == true &&*/ counter < 2)
         // {
         // Destroy(player);

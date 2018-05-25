@@ -64,14 +64,14 @@ public class GrabBox : MonoBehaviour
         {
 
             //If player is facing left create a raycast pointing left
-            if (angle > -30 && angle < 90 /*90*/)
+            if (angle > -30 && angle < 90)
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
             }
 
             //If player is facing right create a raycast pointing right
 
-            if ((angle < 180 && angle > 90) || (angle < -150/*-90*/ && angle > -180))
+            if ((angle < 180 && angle > 90) || (angle < -150 && angle > -180))
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
             }
