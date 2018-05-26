@@ -13,7 +13,6 @@ public class GrabBox : MonoBehaviour
     private bool crouched = false;
     private Rigidbody2D playerRb;
 
-
     public Vector2 positionOnScreen;
     public Vector2 mouseOnScreen;
     public Vector2 direction;
@@ -66,20 +65,20 @@ public class GrabBox : MonoBehaviour
             //If player is facing left create a raycast pointing left
             if (angle > -30 && angle < 90)
             {
-                hit = Physics2D.Raycast(transform.position, Vector2.left, distance);
+                hit = Physics2D.Raycast(transform.position, Vector2.left, distance, notToHit);
             }
 
             //If player is facing right create a raycast pointing right
 
             if ((angle < 180 && angle > 90) || (angle < -150 && angle > -180))
             {
-                hit = Physics2D.Raycast(transform.position, Vector2.right, distance);
+                hit = Physics2D.Raycast(transform.position, Vector2.right, distance, notToHit);
             }
 
             //Raycast that follows mouse position on top side
             if (angle <= -30 && angle >= -150)
             {
-                hit = Physics2D.Raycast(transform.position, direction, distance * 1.5f);
+                hit = Physics2D.Raycast(transform.position, direction, distance * 1.5f, notToHit);
             }
         }
 
