@@ -23,6 +23,7 @@ public class CheckBoxesUp : MonoBehaviour
             }
 
             transform.parent.tag = "Ungrababble";
+            transform.parent.gameObject.layer = 9;
         }
     }
 
@@ -40,5 +41,7 @@ public class CheckBoxesUp : MonoBehaviour
             heavyBox = false;
             transform.parent.tag = "HeavyBox";
         }
+
+        transform.parent.gameObject.layer = 11;
     }
 }

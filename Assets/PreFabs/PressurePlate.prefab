@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61246928190724398}
   - component: {fileID: 114345174576215404}
   - component: {fileID: 95672332049432886}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PressurePlate
   m_TagString: PressurePlate
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4935603382446312}
   - component: {fileID: 61618138917140012}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ColliderDown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4812078781250804}
   - component: {fileID: 61686492449397682}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ColliderUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1034678018930724}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 187, y: -31, z: 0}
+  m_LocalPosition: {x: 131, y: -33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4812078781250804}
@@ -207,8 +207,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pressured: 0
-  speed: 5
-  distanceToMove: 0.25
 --- !u!212 &212701776349298734
 SpriteRenderer:
   m_ObjectHideFlags: 1
