@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 50784712222349490}
   - component: {fileID: 61577146615983804}
   - component: {fileID: 114272405769090560}
+  - component: {fileID: 114184235668084810}
   m_Layer: 11
   m_Name: LightBox5
   m_TagString: LightBox
@@ -96,7 +97,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1217046857232818}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 155, y: -33, z: 0}
+  m_LocalPosition: {x: 11, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4689061968957968}
@@ -174,6 +175,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.95, y: 1.975}
   m_EdgeRadius: 0
+--- !u!114 &114184235668084810
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1217046857232818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eab7dbfbf1a6b740994d0871f9a187e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocityToDestroyX: 0
+  velocityToDestroyY: 0
 --- !u!114 &114207284925087396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -223,7 +237,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5f26cb6a72d822941b6281d20d1188a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
