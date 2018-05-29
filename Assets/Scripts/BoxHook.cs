@@ -30,7 +30,6 @@ public class BoxHook : MonoBehaviour
     private bool stopMovement;
     private bool hasBox;
     private bool beginDetection = false;
-    private bool stopOpenMethod = true;
     private float currentSpeed;
     private int counter = 0;
     private int counter2 = 0;
@@ -46,8 +45,6 @@ public class BoxHook : MonoBehaviour
         currentWaypoint = startWaypoint;
 
         currentSpeed = speed;
-
-        stopOpenMethod = false;
 
         if (startsWithBox) LockBox();
 
@@ -139,11 +136,8 @@ public class BoxHook : MonoBehaviour
 
     private IEnumerator GrabBox()
     {
-        stopOpenMethod = true;
-
         if (transform.position == boxWaypoints[0].position)
         {
-
             if (boxDetected)
             {
                 hookAnim.SetBool("Close", true);
@@ -193,7 +187,6 @@ public class BoxHook : MonoBehaviour
                 hookAnim.SetBool("Open", false);
                 yield return new WaitForSeconds(stopMovementTime);
                 stopMovement = false;
-                stopOpenMethod = false;
             }
         }
     }

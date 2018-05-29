@@ -15,10 +15,8 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     private GameObject[] newPrefab = new GameObject[9];
     private int numberOfBoxes = 0;
     private int prefabNumber = 1;
-    private int counter = 0;
     private int counter2 = 0;
     private int lightBoxCounter = 0;
-    private double timer = 0;
     private double timer2;
 
     // Use this for initialization

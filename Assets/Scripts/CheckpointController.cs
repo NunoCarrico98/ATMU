@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckpointController : MonoBehaviour
 {
-    private bool activateCheckpoint = false;
+   /* private bool activateCheckpoint = false;
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -12,5 +12,5 @@ public class CheckpointController : MonoBehaviour
         {
             activateCheckpoint = true;
         }
-    }
+    }*/
 }

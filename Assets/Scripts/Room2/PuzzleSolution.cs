@@ -8,7 +8,6 @@ public class PuzzleSolution : MonoBehaviour
     public bool close = false;
     public Transform limitPoint;
 
-    private Transform player;
     private FloorCollider floorCollider;
     private OpenTrap openTrap;
     private ConfirmationLight confirmLight;
@@ -19,8 +18,6 @@ public class PuzzleSolution : MonoBehaviour
         floorCollider = FindObjectOfType<FloorCollider>();
         openTrap = FindObjectOfType<OpenTrap>();
         confirmLight = FindObjectOfType<ConfirmationLight>();
-
-        player = GameObject.Find("Player").transform;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -42,14 +39,10 @@ public class PuzzleSolution : MonoBehaviour
     {
         if (col.tag == "PuzzleCollider")
         {
-            // if (player.position.x < limitPoint.position.x)
-            //{
             close = false;
             floorCollider.playerEnter = false;
-            // floorCollider.greenLight = false;
             floorCollider.redLight = false;
             confirmLight.spriteR.enabled = false;
-            // }
         }
     }
 }

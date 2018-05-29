@@ -44,7 +44,7 @@ public class KillPlayer : MonoBehaviour
 
         if (other.tag == "DeathZone")
         {
-            gameLevelManager.RespawnAfterDeath();
+            NormalKill();
         }
 
         if (other.tag == "Checkpoint")
@@ -70,30 +70,23 @@ public class KillPlayer : MonoBehaviour
             grabBox.box.GetComponent<Collider2D>().enabled = true;
             grabBox.grabbed = false;
         }
-        //  if (/*killPlayer == true &&*/ counter < 2)
-        // {
-        // Destroy(player);
+
         player.SetActive(false);
-        // if (counter < 1)
-        //  {
 
         ragdoll = Instantiate(ragdollPreFab, player.transform.position, player.transform.rotation);
-        // counter = 1;
-        //   }
+
         for (int i = 0; i < bodyparts.Length; i++)
         {
             bodyparts[i] = ragdoll.transform.GetChild(i).gameObject;
             bodyparts[i].GetComponent<Rigidbody2D>().velocity = velocity;
             bodyparts[i].GetComponent<Rigidbody2D>().angularVelocity = angularVelocity;
         }
-        /*  if (bodyparts[7].GetComponent<Rigidbody2D>().velocity != new Vector2(0, 0)) counter = 2;
-          if (counter == 2)
-          {
-              Destroy(player);
+        gameLevelManager.RespawnAfterRagdoll();
+    }
 
-          }*/
-        //player.SetActive(false);
+    private void NormalKill()
+    {
+        player.SetActive(false);
         gameLevelManager.RespawnAfterDeath();
     }
-    //}
 }

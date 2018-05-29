@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
 {
 
     public float respawnDelay;
+    public float respawnDelayRagdoll;
     public KillPlayer gamePlayer;
 
     private Transform player;
@@ -20,25 +21,32 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Tab)) RestartAfterCheckpoint();
+        
+    }
+
+    public void RespawnAfterRagdoll()
+    {
+        StartCoroutine(RespawnPlayerRagdoll());
     }
 
     public void RespawnAfterDeath()
     {
-        StartCoroutine(RespawnPlayerDelay());
+        StartCoroutine(RespawnPlayer());
     }
 
-    public IEnumerator RespawnPlayerDelay()
+    private IEnumerator RespawnPlayerRagdoll()
+    {
+        yield return new WaitForSeconds(respawnDelayRagdoll);
+        Destroy(gamePlayer.ragdoll);
+        player.transform.position = gamePlayer.respawnPosition;
+        player.gameObject.SetActive(true);
+    }
+
+    private IEnumerator RespawnPlayer()
     {
         yield return new WaitForSeconds(respawnDelay);
-        Destroy(gamePlayer.ragdoll);
-        gamePlayer.transform.parent.transform.position = gamePlayer.respawnPosition;
-        gamePlayer.transform.parent.gameObject.SetActive(true);
-    }
-
-    public void RestartAfterCheckpoint()
-    {
-        gamePlayer.transform.parent.transform.position = gamePlayer.respawnPosition;
+        player.transform.position = gamePlayer.respawnPosition;
+        player.gameObject.SetActive(true);
     }
 
     public void StoreGameObjectPositions()

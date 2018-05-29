@@ -29,5 +29,9 @@ public class DestroyRustRagdool : MonoBehaviour
 
             Destroy(transform.GetChild(0).gameObject, destroyTime);
         }
+        else if(transform.childCount == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

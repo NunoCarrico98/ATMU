@@ -24,7 +24,10 @@ public class ParentPlayerToBox : MonoBehaviour
     {
         if (col.transform.tag == "Player")
         {
-            col.transform.SetParent(null);
+            if (col.gameObject.activeInHierarchy == true)
+            {
+                col.transform.SetParent(null);
+            }
         }
 
         /*if(col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox")
