@@ -58,7 +58,6 @@ public class GrabBox : MonoBehaviour
 
         BackRayHitsNothing();
 
-
         if (!grabbed)
         {
 
@@ -182,7 +181,7 @@ public class GrabBox : MonoBehaviour
                 backBoxR = true;
                 backBoxL = false;
 
-                if (angle >= -55 && angle < 180)
+                if (angle >= -63 && angle < 180)
                 {
                     rotateBoxPoint.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 15f + 170f));
                 }

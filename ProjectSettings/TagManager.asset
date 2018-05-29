@@ -20,6 +20,7 @@ TagManager:
   - ConveyorBelt
   - PuzzleCollider
   - BoxesParent
+  - BigElevator
   layers:
   - Default
   - TransparentFX

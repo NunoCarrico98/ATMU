@@ -58,7 +58,7 @@ public class BoxRotation : MonoBehaviour
         }
 
         //If there's a box on player's back
-        if (((angle < -55 && angle > -180) || (angle == 180)) && backBoxL == true)
+        if (((angle < -63 && angle > -180) || (angle == 180)) && backBoxL == true)
         {
             transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle + rotationOffSet));
         }

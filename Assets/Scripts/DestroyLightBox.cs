@@ -23,9 +23,6 @@ public class DestroyLightBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-
-
-
         if (col.gameObject.tag == "HeavyBox")
         {
             //if (transform.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
