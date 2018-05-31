@@ -10,7 +10,7 @@ public class DestroyLightBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "DeathZone")
+        if (col.tag == "DeathZone" && name != "Container")
         {
             Destroy(transform.gameObject, 0.05f);
         }

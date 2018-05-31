@@ -53,7 +53,7 @@ public class BoxHook : MonoBehaviour
     }
     private void Update()
     {
-       // BoxFollowHook();
+        // BoxFollowHook();
     }
     // Update is called once per frame
     private void FixedUpdate()
@@ -62,9 +62,13 @@ public class BoxHook : MonoBehaviour
 
         if (!startsWithBox && beginDetection) DetectBox();
 
-        StartCoroutine(OpenHook());
+        if (pickBox || dropBox)
+        {
+            StartCoroutine(OpenHook());
+            StartCoroutine(CloseHook());
+        }
 
-        StartCoroutine(CloseHook());
+
 
         if (pickBox)
         {
@@ -201,16 +205,16 @@ public class BoxHook : MonoBehaviour
 
     private void BoxFollowHook()
     {
-        if(hasBox )
+        if (hasBox)
         {
             box.position = transform.position;
         }
-        if(box.position != transform.position)
+        if (box.position != transform.position)
         {
             hasBox = false;
             box.SetParent(boxParent);
         }
-    } 
+    }
 
     public void DetectBox()
     {
@@ -223,7 +227,7 @@ public class BoxHook : MonoBehaviour
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             counter2 = 1;
         }
-        if(hit.collider == null && counter2 == 1)
+        if (hit.collider == null && counter2 == 1)
         {
             //box.GetComponent<Rigidbody2D>().isKinematic = false;
             //boxDetected = false;

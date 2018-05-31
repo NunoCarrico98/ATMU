@@ -26,7 +26,7 @@ public class SpawnBoxHooksRoom2 : MonoBehaviour
 
     private void Spawn()
     {
-        if (numberOfHooks <= maxNumberOfHooks)
+        if (numberOfHooks < maxNumberOfHooks)
         {
             newPrefab = Instantiate(prefab, transform.position, transform.rotation);
             newPrefab.transform.GetChild(0).GetComponent<BoxHook>().enabled = true;
