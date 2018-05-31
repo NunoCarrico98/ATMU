@@ -66,6 +66,7 @@ public class DropBoxIfOnAir : MonoBehaviour
             if (boxFoundCollider)
             {
                 player.GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
+                box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                 box.GetComponent<Rigidbody2D>().isKinematic = false;
                 box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                 box.GetComponent<Collider2D>().enabled = true;

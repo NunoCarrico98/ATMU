@@ -107,6 +107,7 @@ public class GrabBox : MonoBehaviour
             boxCollider.position = holdpoint.position;
             boxCollider.GetComponent<Collider2D>().enabled = true;
             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
+            box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
             box.GetComponent<Rigidbody2D>().isKinematic = true;
             box.GetComponent<Collider2D>().enabled = false;         //disable collider 
             box.transform.SetParent(boxParent);
@@ -132,6 +133,7 @@ public class GrabBox : MonoBehaviour
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
                     box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;
@@ -143,6 +145,7 @@ public class GrabBox : MonoBehaviour
                 {
                     boxCollider.GetComponent<Collider2D>().enabled = false;
                     box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
                     box.GetComponent<Rigidbody2D>().isKinematic = false;
                     box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                     box.GetComponent<Collider2D>().enabled = true;

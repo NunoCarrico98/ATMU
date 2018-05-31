@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4492312511169468}
   - component: {fileID: 61759932857313310}
+  - component: {fileID: 114162404331298702}
   m_Layer: 20
   m_Name: ColliderForRoom2Puzzle
   m_TagString: PuzzleCollider
@@ -72,6 +73,7 @@ GameObject:
   - component: {fileID: 114588536734139012}
   - component: {fileID: 114295392266031468}
   - component: {fileID: 114206740761383314}
+  - component: {fileID: 114713877391557850}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -86,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197911731805786}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 53.05, y: 67, z: 0}
+  m_LocalPosition: {x: 45, y: 33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4874064132239048}
@@ -153,7 +155,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &61687086856267280
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -229,6 +231,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.95, y: 1.975}
   m_EdgeRadius: 0
+--- !u!114 &114162404331298702
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035222781152668}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114206740761383314
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -260,6 +273,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f45fdf5819585a1478c06ef03c94bb38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114713877391557850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1929058704398404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212546424054932006

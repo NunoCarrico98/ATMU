@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 61159311483776318}
   - component: {fileID: 114917077933260384}
   - component: {fileID: 114703035660553410}
+  - component: {fileID: 114641243935148296}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -446,7 +447,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &61159311483776318
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -604,6 +605,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+--- !u!114 &114641243935148296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1927988030105414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114703035660553410
 MonoBehaviour:
   m_ObjectHideFlags: 1

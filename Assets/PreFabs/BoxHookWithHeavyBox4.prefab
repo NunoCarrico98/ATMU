@@ -110,6 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4521081869157018}
   - component: {fileID: 61103494690007882}
+  - component: {fileID: 114834304343914650}
   m_Layer: 20
   m_Name: ColliderForRoom2Puzzle
   m_TagString: PuzzleCollider
@@ -144,6 +145,7 @@ GameObject:
   - component: {fileID: 114261775808263452}
   - component: {fileID: 114471122419497500}
   - component: {fileID: 114205611536068762}
+  - component: {fileID: 114377925799556396}
   m_Layer: 11
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
@@ -476,7 +478,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &61103494690007882
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -627,6 +629,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f45fdf5819585a1478c06ef03c94bb38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114377925799556396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1682665274216472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114471122419497500
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -636,6 +649,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b618ff9a1ec1acd40a84886b1d24c7fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114834304343914650
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1402876602969786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114862477274271918
