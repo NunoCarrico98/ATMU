@@ -18,6 +18,8 @@ public class GrabBox : MonoBehaviour
     public Vector2 direction;
     public bool grabbed;
     public RaycastHit2D hit;
+    public RaycastHit2D hitAngle;
+    public RaycastHit2D hit360;
     public RaycastHit2D hitBack;
     public float distance = 2f;
     public float distanceBack = 2f;
@@ -62,22 +64,22 @@ public class GrabBox : MonoBehaviour
         {
 
             //If player is facing left create a raycast pointing left
-            if (angle > -30 && angle < 90)
+            if (!facingRight)
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.left, distance, notToHit);
             }
 
             //If player is facing right create a raycast pointing right
 
-            if ((angle < 180 && angle > 90) || (angle < -150 && angle > -180))
+            if (facingRight)
             {
                 hit = Physics2D.Raycast(transform.position, Vector2.right, distance, notToHit);
             }
 
             //Raycast that follows mouse position on top side
-            if (angle <= -30 && angle >= -150)
+            if (angle <= 0 && angle >= -180)
             {
-                hit = Physics2D.Raycast(transform.position, direction, distance * 1.5f, notToHit);
+                hitAngle = Physics2D.Raycast(transform.position, direction, distance * 1.5f, notToHit);
             }
         }
 
@@ -86,7 +88,8 @@ public class GrabBox : MonoBehaviour
             if (!grabbed)
             {
                 //If raycast detects a grabbable object
-                if (hit.collider != null && (hit.collider.tag == "HeavyBox" || hit.collider.tag == "LightBox"))
+                if ((hit.collider != null && (hit.collider.tag == "HeavyBox" || hit.collider.tag == "LightBox")) ||
+                    (hitAngle.collider != null && (hitAngle.collider.tag == "HeavyBox" || hitAngle.collider.tag == "LightBox")))
                 {
                     grabbed = true;
                 }
@@ -95,7 +98,11 @@ public class GrabBox : MonoBehaviour
 
         if (grabbed)
         {
-            box = hit.collider.gameObject;
+            //If the detecting raycast is the fixed one
+            if (hit == true && hitAngle == false) box = hit.collider.gameObject;
+            //If the detecting raycast is the angle one
+            if (hitAngle == true) box = hitAngle.collider.gameObject;
+
             box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
             boxCollider.position = holdpoint.position;
             boxCollider.GetComponent<Collider2D>().enabled = true;
