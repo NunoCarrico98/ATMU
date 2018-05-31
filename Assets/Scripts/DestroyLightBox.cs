@@ -27,6 +27,7 @@ public class DestroyLightBox : MonoBehaviour
         {
             //if (transform.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
             //{
+            
                 Debug.Log("X speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.x + "Y speed is: " + col.transform.GetComponent<Rigidbody2D>().velocity.y);
                 if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
                     col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||

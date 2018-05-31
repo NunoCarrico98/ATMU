@@ -20,8 +20,16 @@ public class BoxOutline : MonoBehaviour
             if ((grabBox.hit.collider != null && (grabBox.hit.collider.tag == "HeavyBox" || grabBox.hit.collider.tag == "LightBox")) ||
                 (grabBox.hitAngle.collider != null && (grabBox.hitAngle.collider.tag == "HeavyBox" || grabBox.hitAngle.collider.tag == "LightBox")))
             {
-                if(grabBox.hit == true && grabBox.hitAngle == false) transform.position = grabBox.hit.transform.position;
-                if (grabBox.hitAngle == true) transform.position = grabBox.hitAngle.transform.position;
+                if (grabBox.hit == true && grabBox.hitAngle == false)
+                {
+                    transform.position = grabBox.hit.transform.position;
+                    transform.rotation = grabBox.hit.transform.rotation;
+                }
+                if (grabBox.hitAngle == true)
+                {
+                    transform.position = grabBox.hitAngle.transform.position;
+                    transform.rotation = grabBox.hitAngle.transform.rotation;
+                }
 
                 transform.GetComponent<SpriteRenderer>().enabled = true;
                 getPosition = true;

@@ -21,6 +21,7 @@ TagManager:
   - PuzzleCollider
   - BoxesParent
   - BigElevator
+  - DontKillPlayer
   layers:
   - Default
   - TransparentFX

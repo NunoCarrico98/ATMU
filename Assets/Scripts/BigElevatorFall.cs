@@ -19,12 +19,17 @@ public class BigElevatorFall : MonoBehaviour
     private Transform player;
     private Transform elevator;
     private Transform colliderBigElev;
+    private Light playerLight;
+    private Light boxesLight;
 
     // Use this for initialization
     void Start()
     {
         player = GameObject.Find("Player").transform;
         elevator = GameObject.Find("BigElevator").transform;
+
+        playerLight = GameObject.Find("PlayerLight").GetComponent<Light>();
+        boxesLight = GameObject.Find("BoxesLight").GetComponent<Light>();
 
         midPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint2").transform.position;
         endPos = transform.parent.transform.parent.Find("BigElevatorsWaypoints").transform.Find("Waypoint3").transform.position;
@@ -101,6 +106,10 @@ public class BigElevatorFall : MonoBehaviour
         {
             elevator.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
 
+            //change intensity of player's light
+            playerLight.intensity = 1.3f;
+            //change intensity of boxes light
+            boxesLight.intensity = 1.5f;
         }
     }
 
