@@ -15,7 +15,7 @@ public class DropBoxIfOnAir : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        boxCollider = transform.parent.GetComponent<BoxCollider2D>();
+        boxCollider = transform.parent.GetComponent<Collider2D>();
         player = GameObject.Find("Player").transform;
     }
 
@@ -47,7 +47,6 @@ public class DropBoxIfOnAir : MonoBehaviour
     {
         grounded = player.GetComponent<PlayerMovement>().grounded;
         box = player.GetComponent<GrabBox>().box;
-        IsGrounded();
 
         if (player.GetComponent<GrabBox>().grabbed == false)
         {
@@ -57,20 +56,32 @@ public class DropBoxIfOnAir : MonoBehaviour
         {
             transform.GetComponent<Collider2D>().enabled = true;
         }
+
+        IsGrounded();
     }
 
     private void IsGrounded()
     {
         if (!grounded)
         {
-            if (boxFoundCollider)
+            if (boxFoundCollider && player.GetComponent<GrabBox>().grabbed)
             {
-                player.GetComponent<GrabBox>().boxCollider.GetComponent<Collider2D>().enabled = false;
-                box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                box.GetComponent<Rigidbody2D>().isKinematic = false;
-                box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-                box.GetComponent<Collider2D>().enabled = true;
                 boxCollider.enabled = false;
+                if (box != null)
+                {
+                    box.GetComponent<Rigidbody2D>().isKinematic = false;
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                    if (box.name != "Container")
+                    {
+                        box.GetComponent<Collider2D>().enabled = true;         //disable collider 
+                    }
+                    else
+                    {
+                        box.GetComponent<PolygonCollider2D>().enabled = true;
+                    }
+                    boxCollider.enabled = false;
+                }
                 player.GetComponent<GrabBox>().grabbed = false;
             }
         }

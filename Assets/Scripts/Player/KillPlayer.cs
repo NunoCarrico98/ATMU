@@ -37,7 +37,9 @@ public class KillPlayer : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag != "Player"  && other.tag != "DeathZone" && other.tag != "DontKillPlayer" && other.tag != "Checkpoint")
+        if (other.tag != "Player"  && other.tag != "DeathZone" 
+            && other.tag != "DontKillPlayer" && other.tag != "Checkpoint" 
+            && other.tag != "BoxCollider")
         {
             KillRagdoll();
         }

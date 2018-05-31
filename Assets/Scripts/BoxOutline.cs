@@ -15,7 +15,8 @@ public class BoxOutline : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!grabBox.grabbed)
+
+        if (!grabBox.grabbed && !ContainerPuzzle.isInside)
         {
             if ((grabBox.hit.collider != null && (grabBox.hit.collider.tag == "HeavyBox" || grabBox.hit.collider.tag == "LightBox")) ||
                 (grabBox.hitAngle.collider != null && (grabBox.hitAngle.collider.tag == "HeavyBox" || grabBox.hitAngle.collider.tag == "LightBox")))
