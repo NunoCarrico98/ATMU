@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParentPlayerToBox : MonoBehaviour
 {
-
+    private Quaternion playerRotation;
     //private Transform boxesParent;
 
     private void Start()
@@ -16,6 +16,7 @@ public class ParentPlayerToBox : MonoBehaviour
     {
         if (col.transform.tag == "Player" /*|| col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox"*/)
         {
+            playerRotation = col.transform.rotation;
             col.transform.SetParent(transform.parent);
         }
     }
@@ -26,6 +27,7 @@ public class ParentPlayerToBox : MonoBehaviour
         {
             if (col.gameObject.activeInHierarchy == true)
             {
+                col.transform.rotation = playerRotation;
                 col.transform.SetParent(null);
             }
         }

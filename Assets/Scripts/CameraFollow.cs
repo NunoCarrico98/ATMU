@@ -17,6 +17,7 @@ public class CameraFollow : MonoBehaviour
     private Vector3 direction;
     private float mouseRadius;
     private bool activateMove;
+    private float newFraction = 5;
         
 
     // Use this for initialization
@@ -67,7 +68,11 @@ public class CameraFollow : MonoBehaviour
 
         if (mouseRadius > minRadius)
         {
-            Vector3 moveVector = new Vector3(direction.x / fraction, direction.y / fraction, 0);
+            if (newFraction > 0.5)
+            {
+                newFraction = fraction / (mouseRadius * 10);
+            }
+            Vector3 moveVector = new Vector3(direction.x / newFraction, direction.y / newFraction, 0);
 
             if (transform.position != moveVector)
             {

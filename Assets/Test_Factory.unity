@@ -152683,7 +152683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heightOffset: 5
   minRadius: 0.4
-  fraction: 0.9
+  fraction: 5
   moveSpeed: 0.25
   offset: {x: 0, y: 3, z: -30}
 --- !u!114 &2120587352
