@@ -5,16 +5,18 @@ using UnityEngine;
 public class ParentPlayerToBox : MonoBehaviour
 {
     private Quaternion playerRotation;
+    private PlayerConveyorBelt conveyor;
     //private Transform boxesParent;
 
     private void Start()
     {
+        conveyor = FindObjectOfType<PlayerConveyorBelt>();
         //boxesParent = GameObject.FindGameObjectWithTag("BoxesParent").transform;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.tag == "Player" /*|| col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox"*/)
+        if (col.transform.tag == "Player" && conveyor.isOnConveyor == false)
         {
             playerRotation = col.transform.rotation;
             col.transform.SetParent(transform.parent);

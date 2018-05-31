@@ -86,7 +86,7 @@ public class KillPlayer : MonoBehaviour
 
     private void NormalKill()
     {
-        player.SetActive(false);
+        //player.SetActive(false);
         gameLevelManager.RespawnAfterDeath();
     }
 }

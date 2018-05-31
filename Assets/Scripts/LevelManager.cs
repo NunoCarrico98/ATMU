@@ -45,6 +45,7 @@ public class LevelManager : MonoBehaviour
     private IEnumerator RespawnPlayer()
     {
         yield return new WaitForSeconds(respawnDelay);
+        player.gameObject.SetActive(false);
         player.transform.position = gamePlayer.respawnPosition;
         player.gameObject.SetActive(true);
     }
