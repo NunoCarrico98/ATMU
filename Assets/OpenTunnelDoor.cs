@@ -43,7 +43,6 @@ public class OpenTunnelDoor : MonoBehaviour {
     {
         if (col.tag == "LightBox")
         {
-            Debug.Log("WORKED!!");
             if (col.transform.name == "Container")
             {
                 
@@ -58,7 +57,6 @@ public class OpenTunnelDoor : MonoBehaviour {
         {
             if (col.transform.name == "Container")
             {
-                Debug.Log("WORKED!!");
                 open = false;
             }
         }

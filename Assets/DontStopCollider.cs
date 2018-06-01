@@ -33,7 +33,13 @@ public class DontStopCollider : MonoBehaviour {
             {
                 col.transform.position = Vector3.MoveTowards(col.transform.position,
                     new Vector3(col.transform.position.x - 1, col.transform.position.y, col.transform.position.z),
-                    10 * Time.deltaTime);
+                    25 * Time.deltaTime);
+            }
+            if (name == "StopAcceleration3")
+            {
+                col.transform.position = Vector3.MoveTowards(col.transform.position,
+                    new Vector3(col.transform.position.x - 1, col.transform.position.y, col.transform.position.z),
+                    30 * Time.deltaTime);
             }
             if (name == "LimitsCollider")
             {

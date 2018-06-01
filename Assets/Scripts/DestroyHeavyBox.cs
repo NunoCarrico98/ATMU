@@ -8,7 +8,13 @@ public class DestroyHeavyBox : MonoBehaviour
     {
         if (col.tag == "DeathZone")
         {
-            Destroy(transform.parent.gameObject, 0.05f);
+            if (name != "HeavyBoxPiece3")
+            {
+                Destroy(transform.parent.gameObject, 0.05f);
+            } else
+            {
+                Destroy(transform.gameObject);
+            }
         }
     }
 }

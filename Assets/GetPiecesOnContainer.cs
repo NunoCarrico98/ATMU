@@ -8,7 +8,8 @@ public class GetPiecesOnContainer : MonoBehaviour {
     {
         if (col.tag == "HeavyBoxPiece3")
         {
-            col.GetComponent<Rigidbody2D>().isKinematic = true;
+            Debug.Log("FUCK");
+            //col.GetComponent<Rigidbody2D>().isKinematic = true;
             col.transform.SetParent(transform.parent);
         }
     }
@@ -17,8 +18,9 @@ public class GetPiecesOnContainer : MonoBehaviour {
     {
         if (col.tag == "HeavyBoxPiece3")
         {
+            Debug.Log("OOPS");
             col.transform.SetParent(null);
-            col.GetComponent<Rigidbody2D>().isKinematic = false;
+            //col.GetComponent<Rigidbody2D>().isKinematic = false;
         }
     }
 }

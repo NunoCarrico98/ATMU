@@ -8,6 +8,7 @@ public class SmashHeavyBox : MonoBehaviour {
     public GameObject prefabRagdoll;
     public GameObject smallerRag;
     public GameObject tinyRag;
+    public Transform ragParent;
 
     private GameObject[] pieces = new GameObject[9];
     private GameObject box;
@@ -57,7 +58,7 @@ public class SmashHeavyBox : MonoBehaviour {
         {
             box = col.gameObject;
             GetVelocity();
-            Instantiate(tinyRag, col.transform.position, transform.rotation);
+            Instantiate(tinyRag, col.transform.position, transform.rotation, ragParent);
             Destroy(col.gameObject);
         }
     }
