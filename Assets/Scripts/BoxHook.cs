@@ -26,7 +26,6 @@ public class BoxHook : MonoBehaviour
     private Transform box;
     private RaycastHit2D hit;
     private Animator hookAnim;
-    private GrabBox grabBox;
     private bool stopMovement;
     private bool hasBox;
     private bool beginDetection = false;
@@ -40,7 +39,6 @@ public class BoxHook : MonoBehaviour
     {
         //transform.position = waypoints[start].position;
         hookAnim = GetComponent<Animator>();
-        grabBox = FindObjectOfType<GrabBox>();
 
         currentWaypoint = startWaypoint;
 

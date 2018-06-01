@@ -22,6 +22,10 @@ TagManager:
   - BoxesParent
   - BigElevator
   - DontKillPlayer
+  - DestroyersPuzzle7
+  - HeavyBoxPiece
+  - HeavyBoxPiece2
+  - HeavyBoxPiece3
   layers:
   - Default
   - TransparentFX
@@ -44,7 +48,7 @@ TagManager:
   - BoxesOnly
   - NoPlayerNoBoxes
   - Puzzle2
-  - 
+  - Destroyers
   - 
   - 
   - 
