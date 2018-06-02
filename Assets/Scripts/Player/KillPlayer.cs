@@ -7,8 +7,8 @@ public class KillPlayer : MonoBehaviour
     public GameObject ragdollPreFab;
     public GameObject ragdoll;
     public Vector2 respawnPosition;
-    public LevelManager gameLevelManager;
 
+    private LevelManager gameLevelManager;
     private GameObject[] bodyparts = new GameObject[8];
     private GameObject player;
     private Transform playerGraphics;
@@ -73,6 +73,7 @@ public class KillPlayer : MonoBehaviour
             grabBox.grabbed = false;
         }
 
+        player.transform.SetParent(null);
         player.SetActive(false);
 
         ragdoll = Instantiate(ragdollPreFab, player.transform.position, player.transform.rotation);
@@ -88,6 +89,7 @@ public class KillPlayer : MonoBehaviour
 
     private void NormalKill()
     {
+        player.transform.SetParent(null);
         //player.SetActive(false);
         gameLevelManager.RespawnAfterDeath();
     }

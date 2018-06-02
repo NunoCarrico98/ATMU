@@ -12,8 +12,8 @@ public class PlayerMovement : MonoBehaviour
     public bool crouched = false;
     public float groundCheckRadius;
 
-    [SerializeField] private float movementSpeed = 10f;
-    [SerializeField] private float jumpForce = 600f;
+    [SerializeField] public float movementSpeed = 10f;
+    [SerializeField] public float jumpForce = 600f;
 
     private Rigidbody2D myRigidbody2D;
     private Transform playerGraphics;

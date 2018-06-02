@@ -23,7 +23,6 @@ public class StopPlayerMoveTunnel : MonoBehaviour {
         }
         if (col.tag == "Player" && name == "ResetPlayerMove")
         {
-            col.GetComponent<PlayerMovement>().characterAnim.SetFloat("Speed", 0);
             col.GetComponent<PlayerMovement>().enabled = true;
         }
     }

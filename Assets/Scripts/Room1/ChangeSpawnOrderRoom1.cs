@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StopRandomSpawnRoom1 : MonoBehaviour {
+public class ChangeSpawnOrderRoom1 : MonoBehaviour {
 
     private SpawnBoxHooksRoom1 spawnBoxHooks;
 
@@ -15,7 +15,14 @@ public class StopRandomSpawnRoom1 : MonoBehaviour {
     {
         if(collision.tag == "Player")
         {
-            spawnBoxHooks.stopRandomSpawn = true;
+            if (name == "StopRandomCollider")
+            {
+                spawnBoxHooks.stopRandomSpawn = true;
+            }
+            if(name == "StopPlayerMove")
+            {
+                spawnBoxHooks.moreHeavys = true;
+            }
         }
     }
 }

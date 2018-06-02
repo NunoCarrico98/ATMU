@@ -10,6 +10,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     public float startTime = 0f;
     public float spawnTime = 2f;
     public bool stopRandomSpawn = false;
+    public bool moreHeavys = false;
     public int maxNumberOfBoxes;
 
     private GameObject[] newPrefab = new GameObject[9];
@@ -17,6 +18,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     private int prefabNumber = 1;
     private int counter2 = 0;
     private int lightBoxCounter = 0;
+    private int heavyBoxCounter = 0;
     private double timer2;
 
     // Use this for initialization
@@ -79,13 +81,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
 
     private void Spawn()
     {
-
-        /* if (stopRandomSpawn == false)
-         {
-             GetRandomBoxHook();
-         }
-         else
-         {*/
+        //This function instanciates an empty hook follow by either a random, a light or an heavy box
         if (counter2 % 2 == 0)
         {
             //Instanciate empty hook
@@ -95,30 +91,42 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
         }
         if (counter2 % 2 != 0)
         {
+            //Instanciate random boxes
             if (!stopRandomSpawn)
             {
                 GetRandomBox();
             }
-            else
+            //Instanciate 2 lights and 1 heavy
+            if(stopRandomSpawn && !moreHeavys)
             {
-                if (lightBoxCounter < 2)
+                if (lightBoxCounter < 4)
                 {
                     GetRandomLightBox();
                 }
                 lightBoxCounter++;
-                if (lightBoxCounter >= 3)
+                if (lightBoxCounter >= 5)
                 {
                     GetRandomHeavyBox();
                     lightBoxCounter = 0;
                 }
             }
+            //Instanciate 5 heavys and 1 light
+            if(stopRandomSpawn && moreHeavys)
+            {
+                if (heavyBoxCounter < 5)
+                {
+                    GetRandomHeavyBox();
+                }
+                heavyBoxCounter++;
+                if (heavyBoxCounter >= 6)
+                {
+                    GetRandomLightBox();
+                    heavyBoxCounter = 0;
+                }
+            }
 
         }
-
         counter2++;
-
-
-        // }
     }
 
     private void GetRandomBoxHook()

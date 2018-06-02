@@ -6,10 +6,12 @@ public class BoxHook : MonoBehaviour
 {
     public Transform[] waypoints;
     public Transform[] boxWaypoints;
+    public Transform[] speedWaypoints;
     public Transform boxParent;
     public int start;
     public int currentWaypoint;
     public float speed;
+    public float fasterSpeed;
     public float lowSpeed;
     public float grabSpeed = 1;
     public float animationTime = 2;
@@ -20,6 +22,7 @@ public class BoxHook : MonoBehaviour
     public bool closeHook = false;
     public bool pickBox = false;
     public bool dropBox = false;
+    public bool hasSpeedPoints = false;
     public bool startsWithBox = false;
     public bool destroyAfterLastWaypoint = false;
 
@@ -82,13 +85,34 @@ public class BoxHook : MonoBehaviour
 
     public void Movement()
     {
+
+
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, currentSpeed * Time.deltaTime);
+
 
         if (transform.position == waypoints[currentWaypoint].position)
         {
+            if (hasSpeedPoints)
+            {
+                IncreaseSpeed();
+            }
             currentWaypoint++;
             if (currentWaypoint == waypoints.Length && !destroyAfterLastWaypoint) currentWaypoint = 0;
             if (currentWaypoint == waypoints.Length && destroyAfterLastWaypoint) Destroy(gameObject);
+        }
+    }
+
+    private void IncreaseSpeed()
+    {
+        if (transform.position == speedWaypoints[0].position || transform.position == speedWaypoints[2].position)
+        {
+            Debug.Log("NICEEEEE");
+            currentSpeed = fasterSpeed;
+        }
+        if (transform.position == speedWaypoints[1].position || transform.position == speedWaypoints[3].position)
+        {
+            Debug.Log("NICEEEEE2");
+            currentSpeed = speed;
         }
     }
 

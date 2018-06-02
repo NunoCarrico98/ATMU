@@ -28,17 +28,33 @@ public class PressurePlate : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" ||
-            col.gameObject.tag == "HeavyBox" ||
-            col.gameObject.tag == "LightBox")
+        if (name != "PressurePlatePuzzle5")
         {
-            pressured = true;
+            if (col.tag == "Player" ||
+            col.tag == "HeavyBox" ||
+            col.tag == "LightBox")
+            {
+                pressured = true;
+            }
+        }
+        else
+        {
+            if (col.tag == "LightBox" /*&& isFilled*/)
+            {
+                pressured = true;
+            }
         }
     }
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        pressured = false;
+        if (col.tag == "Player" ||
+        col.tag == "HeavyBox" ||
+        col.tag == "LightBox")
+        {
+            pressured = false;
+        }
+
     }
 
     private void IsPressured()
