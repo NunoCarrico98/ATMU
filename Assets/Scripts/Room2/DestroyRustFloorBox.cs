@@ -16,7 +16,7 @@ public class DestroyRustFloorBox : MonoBehaviour
     {
         if (col.tag == "HeavyBox")
         {
-            if (col.transform.GetComponent<Rigidbody2D>().velocity.y <= -15)
+            if (col.transform.GetComponent<Rigidbody2D>().velocity.y <= -2)
             {
                 activate = true;
             }

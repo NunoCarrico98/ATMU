@@ -35,11 +35,11 @@ public class DontStopCollider : MonoBehaviour {
                     new Vector3(col.transform.position.x - 1, col.transform.position.y, col.transform.position.z),
                     25 * Time.deltaTime);
             }
-            if (name == "StopAcceleration3")
+            if (name == "StopAcceleration3" && col.GetComponent<CheckIfOnContainer>().isOnContainer == false)
             {
                 col.transform.position = Vector3.MoveTowards(col.transform.position,
                     new Vector3(col.transform.position.x - 1, col.transform.position.y, col.transform.position.z),
-                    30 * Time.deltaTime);
+                    20 * Time.deltaTime);
             }
             if (name == "LimitsCollider")
             {

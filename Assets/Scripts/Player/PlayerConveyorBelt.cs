@@ -19,7 +19,8 @@ public class PlayerConveyorBelt : MonoBehaviour
 
         if(col.transform.tag == "LightBox" || col.transform.tag == "HeavyBox")
         {
-            //isOnBox = true;
+            transform.parent.SetParent(null);
+            isOnBox = true;
         }
     }
 
@@ -32,7 +33,7 @@ public class PlayerConveyorBelt : MonoBehaviour
 
         if (col.transform.tag == "LightBox" || col.transform.tag == "HeavyBox")
         {
-            //isOnBox = false;
+            isOnBox = false;
         }
     }
 }

@@ -106,12 +106,10 @@ public class BoxHook : MonoBehaviour
     {
         if (transform.position == speedWaypoints[0].position || transform.position == speedWaypoints[2].position)
         {
-            Debug.Log("NICEEEEE");
             currentSpeed = fasterSpeed;
         }
         if (transform.position == speedWaypoints[1].position || transform.position == speedWaypoints[3].position)
         {
-            Debug.Log("NICEEEEE2");
             currentSpeed = speed;
         }
     }

@@ -35,13 +35,9 @@ public class StorageDoor : MonoBehaviour
         {
             SendRaycast();
         }
-        
-
-        Debug.Log(allow);
 
         if (open && !close)
         {
-            Debug.Log("Should Open");
             Open();
         }
 
@@ -82,6 +78,7 @@ public class StorageDoor : MonoBehaviour
         {
             open = true;
         }
+
         if(col.tag == "Player" && name == "DetectPlayer")
         {
             allow2 = false;

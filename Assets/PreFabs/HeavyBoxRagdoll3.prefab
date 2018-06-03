@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 50581938159307782}
   - component: {fileID: 58521306460684178}
   - component: {fileID: 114136204587896510}
-  m_Layer: 11
+  - component: {fileID: 114929829365207828}
+  m_Layer: 22
   m_Name: piece (1)
   m_TagString: HeavyBoxPiece3
   m_Icon: {fileID: 0}
@@ -38,7 +39,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4749026902382994}
-  m_Layer: 0
+  m_Layer: 22
   m_Name: HeavyBoxRagdoll3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -57,7 +58,8 @@ GameObject:
   - component: {fileID: 50810329296617042}
   - component: {fileID: 58500250102421222}
   - component: {fileID: 114313565866869442}
-  m_Layer: 11
+  - component: {fileID: 114385155202487074}
+  m_Layer: 22
   m_Name: piece (0)
   m_TagString: HeavyBoxPiece3
   m_Icon: {fileID: 0}
@@ -70,8 +72,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1320274343486606}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 374.58154, y: 79.06771, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3099866, y: -3.5100012, z: -10.000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4978344393306594}
@@ -197,6 +199,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21bcde5216875434d9054b801e0b3f7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114385155202487074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1819248865365570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0cea8dc7927914e96571a8833a6a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnContainer: 0
+--- !u!114 &114929829365207828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1128303565204330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd0cea8dc7927914e96571a8833a6a82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOnContainer: 0
 --- !u!212 &212696275794305142
 SpriteRenderer:
   m_ObjectHideFlags: 1

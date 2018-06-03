@@ -11,8 +11,8 @@ public class CameraFollow : MonoBehaviour
     [Range(0,1)]
     public float moveSpeed = 10f;
     public Vector3 offset;
+    public Transform player;
 
-    private Transform player;
     private GrabBox grabBox;
     private Vector3 direction;
     private float mouseRadius;
@@ -23,15 +23,15 @@ public class CameraFollow : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
         player = GameObject.Find("Player").transform;
-
         grabBox = FindObjectOfType<GrabBox>();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
+        if(name == "MainCamera") player = GameObject.Find("Player").transform;
+        if (name == "RagdollCamera") player = transform.parent.GetChild(0);
         FollowPlayer();
         MoveCamera();
         //if (activateMove) MoveCamera();

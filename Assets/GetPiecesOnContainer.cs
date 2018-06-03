@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class GetPiecesOnContainer : MonoBehaviour {
 
+    public bool isOnContainer;
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "HeavyBoxPiece3")
         {
-            Debug.Log("FUCK");
+            isOnContainer = true;
             //col.GetComponent<Rigidbody2D>().isKinematic = true;
             col.transform.SetParent(transform.parent);
         }
@@ -18,7 +20,7 @@ public class GetPiecesOnContainer : MonoBehaviour {
     {
         if (col.tag == "HeavyBoxPiece3")
         {
-            Debug.Log("OOPS");
+            isOnContainer = false;
             col.transform.SetParent(null);
             //col.GetComponent<Rigidbody2D>().isKinematic = false;
         }

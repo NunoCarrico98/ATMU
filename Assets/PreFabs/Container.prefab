@@ -37,7 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4271343243895542}
-  - component: {fileID: 114201941278712572}
+  - component: {fileID: 114814916403283136}
   m_Layer: 11
   m_Name: DetectIfFilled
   m_TagString: DontKillPlayer
@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1348442899075862
 GameObject:
   m_ObjectHideFlags: 0
@@ -139,7 +139,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1176442033104198}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.498, y: 0, z: 0}
+  m_LocalPosition: {x: -0.498, y: -0.375, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4071199304300050}
@@ -241,14 +241,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.0074768, y: 1.0031586}
+    - - {x: 1.0047913, y: 0.9631653}
       - {x: 1.0021362, y: -0.75115967}
       - {x: -1.0028076, y: -0.7493744}
-      - {x: -1.0065308, y: 1.006424}
-      - {x: -1.2717896, y: 1.0012207}
+      - {x: -0.99850464, y: 0.9584427}
+      - {x: -1.2744446, y: 0.95856476}
       - {x: -1.2773743, y: -0.9953308}
       - {x: 1.2494812, y: -1.0060272}
-      - {x: 1.2452393, y: 1.0048065}
+      - {x: 1.2425232, y: 0.9630203}
 --- !u!61 &61627739375150294
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -335,17 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114201941278712572
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1176442033104198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a19e4b2e19053704fb35f3fa4562ca61, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114388349756729044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -357,6 +346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a19e4b2e19053704fb35f3fa4562ca61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOnContainer: 0
 --- !u!114 &114562736852031268
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -393,7 +383,7 @@ MonoBehaviour:
   isFilled: 0
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4194304
 --- !u!114 &114764017886556568
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,6 +397,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+--- !u!114 &114814916403283136
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1176442033104198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b77dd3ed2a7e1ff4c99b256defc54122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isFilled: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4194304
 --- !u!212 &212204807304126090
 SpriteRenderer:
   m_ObjectHideFlags: 1

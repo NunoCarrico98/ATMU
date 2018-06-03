@@ -29,7 +29,7 @@ public class RustFloorCollider : MonoBehaviour {
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if(col.tag == "Player")
+        if(col.tag == "Player" && name == "FloorCollider")
         {
             if ((counter == 0 && pMove.grounded) || box.activate)
             {
@@ -44,7 +44,22 @@ public class RustFloorCollider : MonoBehaviour {
                     counter++; 
                 }
             }
-
+        }
+        if (col.tag == "Player" && name == "FloorCollider2")
+        {
+            if ((counter == 0 && pMove.grounded) || box.activate)
+            {
+                if (timer < 0.1f) timer += Time.deltaTime;
+                if (timer > 0.05f)
+                {
+                    //col.transform.position = new Vector2(parent.position.x, parent.position.y + 5);
+                    Instantiate(ragdollPrefab, new Vector2(parent.position.x, parent.position.y), parent.rotation);
+                    Destroy(rustFloor);
+                    Destroy(collider1);
+                    Destroy(collider2);
+                    counter++;
+                }
+            }
         }
     }
 }

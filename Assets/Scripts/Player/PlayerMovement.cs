@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         Movement();
         FlipPlayer();
         Jump();
-        Crouch();
+        //Crouch();
     }
 
     private void Movement()

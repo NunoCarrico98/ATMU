@@ -39,7 +39,7 @@ public class PressurePlate : MonoBehaviour
         }
         else
         {
-            if (col.tag == "LightBox" /*&& isFilled*/)
+            if (col.tag == "LightBox" && col.transform.Find("DetectIfFilled").GetComponent<ContainerPuzzle>().isFilled)
             {
                 pressured = true;
             }

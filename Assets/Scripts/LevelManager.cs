@@ -7,7 +7,8 @@ public class LevelManager : MonoBehaviour
 
     public float respawnDelay;
     public float respawnDelayRagdoll;
-    public KillPlayer gamePlayer;
+
+    private KillPlayer gamePlayer;
 
     private Transform player;
 
@@ -15,18 +16,31 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         gamePlayer = FindObjectOfType<KillPlayer>();
+
         player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (gamePlayer.isDead) RespawnAfterRagdoll2();
     }
 
     public void RespawnAfterRagdoll()
     {
         StartCoroutine(RespawnPlayerRagdoll());
+    }
+
+    public void RespawnAfterRagdoll2()
+    {
+        if(Input.anyKeyDown)
+        {
+            Destroy(gamePlayer.ragdoll);
+            player.GetComponent<PlayerMovement>().enabled = true;
+            player.transform.position = gamePlayer.respawnPosition;
+            player.gameObject.SetActive(true);
+            gamePlayer.isDead = false;
+        }
     }
 
     public void RespawnAfterDeath()

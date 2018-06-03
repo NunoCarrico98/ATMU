@@ -16,10 +16,12 @@ public class StopPlayerMoveTunnel : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "Player" && name == "StopPlayerMove")
+        if(col.tag == "Player" && (name == "StopPlayerMove" || name == "StopPlayerMove2"))
         {
-            col.GetComponent<PlayerMovement>().characterAnim.SetFloat("Speed", 0);
             col.GetComponent<PlayerMovement>().enabled = false;
+            col.GetComponent<PlayerMovement>().characterAnim.SetFloat("Speed", 0);
+            col.GetComponent<PlayerMovement>().characterAnim.SetBool("Ground", true);
+            //col.GetComponent<PlayerMovement>().characterAnim.Play("IdleAnim");
         }
         if (col.tag == "Player" && name == "ResetPlayerMove")
         {

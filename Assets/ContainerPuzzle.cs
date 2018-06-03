@@ -37,7 +37,9 @@ public class ContainerPuzzle : MonoBehaviour {
 
     private void SendRaycast()
     {
-        hit = Physics2D.Raycast(transform.position, Vector3.right, 0.8f, layerMask);
+        hit = Physics2D.Raycast(transform.position, 
+            new Vector3(transform.position.x + 1, transform.position.y,transform.position.z),
+            0.8f, layerMask);
         if (hit == true && hit.transform.tag == "HeavyBoxPiece3")
         {
             isFilled = true;
