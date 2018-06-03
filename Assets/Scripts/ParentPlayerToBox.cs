@@ -13,10 +13,14 @@ public class ParentPlayerToBox : MonoBehaviour
         conveyor = FindObjectOfType<PlayerConveyorBelt>();
         //boxesParent = GameObject.FindGameObjectWithTag("BoxesParent").transform;
     }
+    private void Update()
+    {
+    }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.transform.tag == "Player" && conveyor.isOnConveyor == false)
+        if (col.transform.tag == "Player" 
+            && col.transform.Find("ConveyorCollider").GetComponent<PlayerConveyorBelt>().isOnConveyor == false)
         {
             playerRotation = col.transform.rotation;
             col.transform.SetParent(transform.parent);

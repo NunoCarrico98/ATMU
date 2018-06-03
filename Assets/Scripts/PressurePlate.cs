@@ -9,6 +9,7 @@ public class PressurePlate : MonoBehaviour
     private Animator plateAnim;
     private Collider2D colUp;
     private Collider2D colDown;
+    private float timer = 0.17f;
 
     private void Start()
     {
@@ -24,6 +25,19 @@ public class PressurePlate : MonoBehaviour
     private void Update()
     {
         IsPressured();
+        if(pressured)
+        {
+            timer -= Time.deltaTime;
+            if (timer <= 0)
+            {
+                transform.Find("Point light").gameObject.SetActive(true);
+            }
+        }
+        else
+        {
+            timer = 0.17f;
+            transform.Find("Point light").gameObject.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)

@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4564903522391036}
-  - component: {fileID: 114514950410917452}
   - component: {fileID: 61344634743147974}
   - component: {fileID: 212828502797782898}
+  - component: {fileID: 114514950410917452}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -35,13 +35,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1294001766538854}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 18.5, y: -28, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 51.5, y: -34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!61 &61344634743147974
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -54,7 +54,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
+  m_Offset: {x: -2.8726625, y: 0.4359122}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 1, y: 0.5}
@@ -65,7 +65,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5, y: 4}
+  m_Size: {x: 6.245326, y: 1.1168822}
   m_EdgeRadius: 0
 --- !u!114 &114514950410917452
 MonoBehaviour:
@@ -81,8 +81,8 @@ MonoBehaviour:
   pressurePlate: {fileID: 0}
   distance: 4
   speed: 8
-  openUp: 1
-  openDown: 0
+  openUp: 0
+  openDown: 1
 --- !u!212 &212828502797782898
 SpriteRenderer:
   m_ObjectHideFlags: 1
