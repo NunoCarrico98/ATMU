@@ -150,7 +150,7 @@ public class GrabBox : MonoBehaviour
                     box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
                     box.GetComponent<PolygonCollider2D>().enabled = false;
-                    box.transform.SetParent(null);
+                    box.transform.SetParent(transform); 
                 }
             }
             FireBackRaycastGround();
@@ -191,6 +191,7 @@ public class GrabBox : MonoBehaviour
                             box.GetComponent<Rigidbody2D>().isKinematic = false;
                             box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                             box.GetComponent<PolygonCollider2D>().enabled = true;
+                            box.transform.SetParent(null);
                         }
                     }
                     grabbed = false;
@@ -218,6 +219,7 @@ public class GrabBox : MonoBehaviour
                             box.GetComponent<Rigidbody2D>().isKinematic = false;
                             box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                             box.GetComponent<PolygonCollider2D>().enabled = true;
+                            box.transform.SetParent(null);
                         }
                         box.GetComponent<Rigidbody2D>().AddForce(direction * throwforce, ForceMode2D.Impulse);
                     }

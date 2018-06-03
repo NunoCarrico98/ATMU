@@ -36,7 +36,12 @@ public class KillPlayer : MonoBehaviour
     void Update()
     {
         GetVelocity();
+
+        //Allow suicide (dev mode)
         if (Input.GetKeyDown(KeyCode.R)) KillRagdoll();
+
+        //Kill on tunnel puzzle
+        if (FindObjectOfType<FallingLavaPuzzle>().kill) NormalKill();
     }
 
     private void OnTriggerEnter2D(Collider2D other)

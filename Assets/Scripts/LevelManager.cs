@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
             player.GetComponent<PlayerMovement>().enabled = true;
             player.transform.position = gamePlayer.respawnPosition;
             player.gameObject.SetActive(true);
+            player.SetParent(null);
             gamePlayer.isDead = false;
         }
     }
@@ -53,6 +54,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(respawnDelayRagdoll);
         Destroy(gamePlayer.ragdoll);
         player.transform.position = gamePlayer.respawnPosition;
+        player.SetParent(null);
         player.gameObject.SetActive(true);
     }
 
@@ -61,6 +63,7 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(respawnDelay);
         player.gameObject.SetActive(false);
         player.transform.position = gamePlayer.respawnPosition;
+        player.SetParent(null);
         player.gameObject.SetActive(true);
     }
 

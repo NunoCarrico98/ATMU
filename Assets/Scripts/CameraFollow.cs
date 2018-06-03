@@ -21,9 +21,16 @@ public class CameraFollow : MonoBehaviour
         
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
-        player = GameObject.Find("Player").transform;
+        if (transform.parent.name == "Player")
+        {
+            player = GameObject.Find("Player").transform;
+        }
+        if(transform.parent.name == "PlayerRagdoll")
+        {
+            player = GameObject.FindGameObjectWithTag("PlayerRagdoll").transform;
+        }
         grabBox = FindObjectOfType<GrabBox>();
     }
 
@@ -33,7 +40,10 @@ public class CameraFollow : MonoBehaviour
         if(name == "MainCamera") player = GameObject.Find("Player").transform;
         if (name == "RagdollCamera") player = transform.parent.GetChild(0);
         FollowPlayer();
-        MoveCamera();
+        if (name == "MainCamera")
+        {
+            MoveCamera();
+        }
         //if (activateMove) MoveCamera();
     }
 
