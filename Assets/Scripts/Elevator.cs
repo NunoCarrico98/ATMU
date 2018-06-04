@@ -44,7 +44,7 @@ public class Elevator : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.transform.tag == "Player")
+        if (col.transform.tag == "Player" && col.transform.parent == null)
         {
             col.transform.SetParent(transform);
         }

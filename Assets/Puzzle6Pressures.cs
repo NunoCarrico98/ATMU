@@ -15,6 +15,9 @@ public class Puzzle6Pressures : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (orangeBoxesCount > 3) orangeBoxesCount = 3;
+        if (greenBoxesCount > 3) greenBoxesCount = 3;
+
         if (orangeBoxesCount == 3)
         {
             placedOranges = true;
@@ -36,7 +39,6 @@ public class Puzzle6Pressures : MonoBehaviour
         if (placedOranges && placedGreens)
         {
             puzzleSolved = true;
-            Debug.Log("OMFG IT WORKED FIRST TRY I CAN'T BELIEVE THIS SHIT");
         }
         else
         {
@@ -54,7 +56,7 @@ public class Puzzle6Pressures : MonoBehaviour
 
                 orangeBoxesCount++;
                 transform.parent.Find("Light (" + (orangeBoxesCount) + ")").gameObject.SetActive(true);
-                Debug.Log("Entered a crate2 on orange button! Count: " + orangeBoxesCount);
+                //Debug.Log("Entered a crate2 on orange button! Count: " + orangeBoxesCount);
             }
         }
 
@@ -65,7 +67,7 @@ public class Puzzle6Pressures : MonoBehaviour
 
                 greenBoxesCount++;
                 transform.parent.Find("Light (" + (greenBoxesCount) + ")").gameObject.SetActive(true);
-                Debug.Log("Entered a crate1 on green button! Count: " + greenBoxesCount);
+               // Debug.Log("Entered a crate1 on green button! Count: " + greenBoxesCount);
             }
         }
     }
@@ -79,7 +81,7 @@ public class Puzzle6Pressures : MonoBehaviour
                 transform.parent.Find("Light (" + (orangeBoxesCount) + ")").gameObject.SetActive(false);
                 orangeBoxesCount--;
 
-                Debug.Log("Exit a crate2 on orange button! Count: " + orangeBoxesCount);
+               // Debug.Log("Exit a crate2 on orange button! Count: " + orangeBoxesCount);
             }
         }
 
@@ -90,7 +92,7 @@ public class Puzzle6Pressures : MonoBehaviour
                 transform.parent.Find("Light (" + (greenBoxesCount) + ")").gameObject.SetActive(false);
                 greenBoxesCount--;
 
-                Debug.Log("Exit a crate1 on green button! Count: " + greenBoxesCount);
+               // Debug.Log("Exit a crate1 on green button! Count: " + greenBoxesCount);
             }
         }
     }

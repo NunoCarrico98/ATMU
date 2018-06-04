@@ -10,7 +10,7 @@ public class CheckBoxesUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.gameObject.tag == "HeavyBox" || col.gameObject.tag == "LightBox"))
+        if ((col.tag == "HeavyBox" || col.tag == "LightBox"))
         {
             if (transform.parent.tag == "LightBox")
             {
@@ -26,12 +26,14 @@ public class CheckBoxesUp : MonoBehaviour
             {
                 transform.parent.tag = "DontKillPlayer";
                 transform.parent.gameObject.layer = 22;
+                transform.gameObject.layer = 22;
             }
 
             if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 11)
             {
                 transform.parent.tag = "Ungrababble";
                 transform.parent.gameObject.layer = 9;
+                transform.gameObject.layer = 9;
             }
         }
     }
@@ -50,14 +52,19 @@ public class CheckBoxesUp : MonoBehaviour
             heavyBox = false;
             transform.parent.tag = "HeavyBox";
         }
-        if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 9)
+        if (col.tag == "HeavyBox" || col.tag == "LightBox")
         {
-            transform.parent.gameObject.layer = 23;
-        }
+            if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 9)
+            {
+                transform.parent.gameObject.layer = 23;
+                transform.gameObject.layer = 23;
+            }
 
-        if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 9)
-        {
-            transform.parent.gameObject.layer = 11;
+            if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 9)
+            {
+                transform.parent.gameObject.layer = 11;
+                transform.gameObject.layer = 11;
+            }
         }
     }
 }

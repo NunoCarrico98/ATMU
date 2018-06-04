@@ -130,12 +130,20 @@ public class GrabBox : MonoBehaviour
                     boxCollider.position = holdpoint.position;
                     boxCollider.GetComponent<Collider2D>().enabled = true;
                     box.transform.GetChild(1).gameObject.SetActive(true);
-                    box.transform.GetChild(0).gameObject.layer = 11;
+                    
                     box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
                     box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
                     box.GetComponent<Collider2D>().enabled = false;
+                    //Change graphics object to layer "Boxes"
+                    box.transform.GetChild(0).gameObject.layer = 11;
+                    //Change ColliderForBoxes object to layer "Boxes"
+                    box.transform.GetChild(1).gameObject.layer = 11;
+                    //Change object to layer "Boxes"
                     box.gameObject.layer = 11;
+                    //Activate collider for puzzle 2
+                    box.transform.GetChild(2).gameObject.SetActive(true);
+
                     box.transform.SetParent(boxParent);
                 }
                 if(box.name == "Container")
