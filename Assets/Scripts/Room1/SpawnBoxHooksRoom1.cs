@@ -10,6 +10,7 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
     public float startTime = 0f;
     public float spawnTime = 2f;
     public bool stopRandomSpawn = false;
+    public bool moreLights = false;
     public bool moreHeavys = false;
     public int maxNumberOfBoxes;
 
@@ -97,7 +98,21 @@ public class SpawnBoxHooksRoom1 : MonoBehaviour
                 GetRandomBox();
             }
             //Instanciate 2 lights and 1 heavy
-            if(stopRandomSpawn && !moreHeavys)
+            if (stopRandomSpawn && !moreHeavys && !moreLights)
+            {
+                if (lightBoxCounter < 2)
+                {
+                    GetRandomLightBox();
+                }
+                lightBoxCounter++;
+                if (lightBoxCounter >= 3)
+                {
+                    GetRandomHeavyBox();
+                    lightBoxCounter = 0;
+                }
+            }
+            //Instanciate 4 lights and 1 heavy
+            if (stopRandomSpawn && !moreHeavys && moreLights)
             {
                 if (lightBoxCounter < 4)
                 {

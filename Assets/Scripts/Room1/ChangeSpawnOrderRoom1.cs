@@ -19,6 +19,10 @@ public class ChangeSpawnOrderRoom1 : MonoBehaviour {
             {
                 spawnBoxHooks.stopRandomSpawn = true;
             }
+            if(name == "GetMoreLights")
+            {
+                spawnBoxHooks.moreLights = true;
+            }
             if(name == "StopPlayerMove")
             {
                 spawnBoxHooks.moreHeavys = true;

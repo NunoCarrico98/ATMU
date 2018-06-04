@@ -10,10 +10,13 @@ public class RustFloorCollider : MonoBehaviour
     public GameObject collider1;
     public GameObject collider2;
 
-    private DestroyRustFloorBox box;
     private PlayerMovement pMove;
     private Transform parent;
-    private int counter = 0;
+    private int counter1 = 0;
+    private int counter2 = 0;
+    private int counter3 = 0;
+    private int counter4 = 0;
+    private int counter5 = 0;
     private float timer = 0;
 
     // Use this for initialization
@@ -21,7 +24,6 @@ public class RustFloorCollider : MonoBehaviour
     {
         parent = transform.parent.transform;
         pMove = FindObjectOfType<PlayerMovement>();
-        box = FindObjectOfType<DestroyRustFloorBox>();
     }
 
     // Update is called once per frame
@@ -29,7 +31,8 @@ public class RustFloorCollider : MonoBehaviour
     {
         if (parent.name == "RustFloor")
         {
-            if (box.activate1 && counter == 0)
+            if (transform.parent.GetChild(0).GetChild(0).GetComponent<DestroyRustFloorBox>().activate1
+                && counter1 == 0)
             {
                 if (timer < 0.1f) timer += Time.deltaTime;
                 if (timer > 0.05f)
@@ -39,14 +42,15 @@ public class RustFloorCollider : MonoBehaviour
                     Destroy(rustFloor);
                     Destroy(collider1);
                     Destroy(collider2);
-                    counter++;
+                    counter1++;
 
                 }
             }
         }
         if (parent.name == "RustFloor2")
         {
-            if (box.activate2 && counter == 0)
+            if (transform.parent.GetChild(0).GetChild(0).GetComponent<DestroyRustFloorBox>().activate2
+                && counter2 == 0)
             {
                 if (timer < 0.1f) timer += Time.deltaTime;
                 if (timer > 0.05f)
@@ -56,14 +60,15 @@ public class RustFloorCollider : MonoBehaviour
                     Destroy(rustFloor);
                     Destroy(collider1);
                     Destroy(collider2);
-                    counter++;
+                    counter2++;
 
                 }
             }
         }
         if (parent.name == "RustWall")
         {
-            if (box.activate3 && counter == 0)
+            if (transform.parent.GetChild(0).GetChild(0).GetComponent<DestroyRustFloorBox>().activate3
+                && counter3 == 0)
             {
                 if (timer < 0.1f) timer += Time.deltaTime;
                 if (timer > 0.05f)
@@ -73,7 +78,7 @@ public class RustFloorCollider : MonoBehaviour
                     Destroy(rustFloor);
                     Destroy(collider1);
                     Destroy(collider2);
-                    counter++;
+                    counter3++;
 
                 }
             }
@@ -82,7 +87,7 @@ public class RustFloorCollider : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (counter == 0 && col.tag == "Player" && name == "FloorCollider2" && pMove.grounded)
+        if (counter4 == 0 && col.tag == "Player" && name == "FloorCollider" && pMove.grounded)
         {
             if (timer < 0.1f) timer += Time.deltaTime;
             if (timer > 0.05f)
@@ -92,11 +97,11 @@ public class RustFloorCollider : MonoBehaviour
                 Destroy(rustFloor);
                 Destroy(collider1);
                 Destroy(collider2);
-                counter++;
+                counter4++;
 
             }
         }
-        if (counter == 0 && col.tag == "Player" && name == "FloorCollider2" && pMove.grounded)
+        if (counter5 == 0 && col.tag == "Player" && name == "FloorCollider2" && pMove.grounded)
         {
             if (timer < 0.1f) timer += Time.deltaTime;
             if (timer > 0.05f)
@@ -106,7 +111,7 @@ public class RustFloorCollider : MonoBehaviour
                 Destroy(rustFloor);
                 Destroy(collider1);
                 Destroy(collider2);
-                counter++;
+                counter5++;
             }
         }
     }
