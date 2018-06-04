@@ -93,9 +93,6 @@ public class GrabBox : MonoBehaviour
                 if ((hit.collider != null && (hit.collider.tag == "HeavyBox" || hit.collider.tag == "LightBox")) ||
                     (hitAngle.collider != null && (hitAngle.collider.tag == "HeavyBox" || hitAngle.collider.tag == "LightBox")))
                 {
-                    //if (hit.transform.name != "Container" && hit.transform.parent.transform.name != "Container"
-                    // && hitAngle.transform.name != "Container" && hitAngle.transform.parent.transform.name != "Container")
-                    //{
                     //If the detecting raycast is the fixed one
                     if (hit == true && hitAngle == false) box = hit.collider.gameObject;
                     //If the detecting raycast is the angle one
@@ -105,21 +102,7 @@ public class GrabBox : MonoBehaviour
                     {
                         box = box.transform.parent.gameObject;
                     }
-                    //}
-                    /*if(hit.transform.name == "Container" || hitAngle.transform.name == "Container")
-                    {
-                        //If the detecting raycast is the fixed one
-                        if (hit == true && hitAngle == false) box = hit.collider.gameObject;
-                        //If the detecting raycast is the angle one
-                        if (hitAngle == true) box = hitAngle.collider.gameObject;
-                    }
-                    if(hit.transform.parent.transform.name == "Container" || hitAngle.transform.parent.transform.name == "Container")
-                    {
-                        //If the detecting raycast is the fixed one
-                        if (hit == true && hitAngle == false) box = hit.transform.parent.gameObject;
-                        //If the detecting raycast is the angle one
-                        if (hitAngle == true) box = hitAngle.transform.parent.gameObject;
-                    }*/
+
 
                     grabbed = true;
                 }
@@ -130,7 +113,7 @@ public class GrabBox : MonoBehaviour
         {
             if (box != null)
             {
-                if (box.name != "Container")
+                if (box.name != "Container" && box.name != "Crate1" && box.name != "Crate2")
                 {
                     box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
                     boxCollider.position = holdpoint.position;
@@ -141,7 +124,21 @@ public class GrabBox : MonoBehaviour
                     box.GetComponent<Collider2D>().enabled = false;
                     box.transform.SetParent(boxParent);
                 }
-                else
+                if(box.name == "Crate1" || box.name == "Crate2")
+                {
+                    box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
+                    boxCollider.position = holdpoint.position;
+                    boxCollider.GetComponent<Collider2D>().enabled = true;
+                    box.transform.GetChild(1).gameObject.SetActive(true);
+                    box.transform.GetChild(0).gameObject.layer = 11;
+                    box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = false;
+                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
+                    box.GetComponent<Rigidbody2D>().isKinematic = true;
+                    box.GetComponent<Collider2D>().enabled = false;
+                    box.gameObject.layer = 11;
+                    box.transform.SetParent(boxParent);
+                }
+                if(box.name == "Container")
                 {
                     box.transform.position = holdpoint.position;            //box goes to the position of a hold point in front of the character
                     containerCollider.position = holdpoint.position;
@@ -174,7 +171,7 @@ public class GrabBox : MonoBehaviour
                 {
                     if (box != null)
                     {
-                        if (box.name != "Container")
+                        if (box.name != "Container" && box.name != "Crate1" && box.name != "Crate2")
                         {
                             boxCollider.GetComponent<Collider2D>().enabled = false;
                             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
@@ -183,7 +180,16 @@ public class GrabBox : MonoBehaviour
                             box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                             box.GetComponent<Collider2D>().enabled = true;
                         }
-                        else
+                        if (box.name == "Crate1" || box.name == "Crate2")
+                        {
+                            boxCollider.GetComponent<Collider2D>().enabled = false;
+                            box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                            box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                            box.GetComponent<Rigidbody2D>().isKinematic = false;
+                            box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
+                            box.GetComponent<Collider2D>().enabled = true;
+                        }
+                        if (box.name == "Container")
                         {
                             containerCollider.GetComponent<Collider2D>().enabled = false;
                             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
@@ -202,7 +208,7 @@ public class GrabBox : MonoBehaviour
                 {
                     if (box != null)
                     {
-                        if (box.name != "Container")
+                        if (box.name != "Container" && box.name != "Crate1" && box.name != "Crate2")
                         {
                             boxCollider.GetComponent<Collider2D>().enabled = false;
                             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
@@ -211,7 +217,16 @@ public class GrabBox : MonoBehaviour
                             box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
                             box.GetComponent<Collider2D>().enabled = true;
                         }
-                        else
+                        if (box.name == "Crate1" || box.name == "Crate2")
+                        {
+                            boxCollider.GetComponent<Collider2D>().enabled = false;
+                            box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                            box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                            box.GetComponent<Rigidbody2D>().isKinematic = false;
+                            box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+                            box.GetComponent<Collider2D>().enabled = true;
+                        }
+                        if(box.name == "Container")
                         {
                             containerCollider.GetComponent<Collider2D>().enabled = false;
                             box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;

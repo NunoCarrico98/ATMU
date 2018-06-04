@@ -22,8 +22,17 @@ public class CheckBoxesUp : MonoBehaviour
                 heavyBox = true;
             }
 
-            transform.parent.tag = "Ungrababble";
-            transform.parent.gameObject.layer = 9;
+            if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 11)
+            {
+                transform.parent.tag = "DontKillPlayer";
+                transform.parent.gameObject.layer = 22;
+            }
+
+            if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 11)
+            {
+                transform.parent.tag = "Ungrababble";
+                transform.parent.gameObject.layer = 9;
+            }
         }
     }
 
@@ -41,7 +50,14 @@ public class CheckBoxesUp : MonoBehaviour
             heavyBox = false;
             transform.parent.tag = "HeavyBox";
         }
+        if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 9)
+        {
+            transform.parent.gameObject.layer = 23;
+        }
 
-        transform.parent.gameObject.layer = 11;
+        if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 9)
+        {
+            transform.parent.gameObject.layer = 11;
+        }
     }
 }

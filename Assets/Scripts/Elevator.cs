@@ -36,7 +36,10 @@ public class Elevator : MonoBehaviour
         pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
 
         IsPressured();
-        ElevatorAnim();
+        if (name != "BigElevator2")
+        {
+            ElevatorAnim();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D col)

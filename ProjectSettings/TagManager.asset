@@ -26,6 +26,7 @@ TagManager:
   - HeavyBoxPiece
   - HeavyBoxPiece2
   - HeavyBoxPiece3
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -50,7 +51,7 @@ TagManager:
   - Puzzle2
   - Destroyers
   - IgnorePlayer
-  - 
+  - CratesOnly
   - 
   - 
   - 
