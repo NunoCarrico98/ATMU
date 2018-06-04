@@ -135,8 +135,9 @@ public class GrabBox : MonoBehaviour
                     box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation;
                     box.GetComponent<Rigidbody2D>().isKinematic = true;
                     box.GetComponent<Collider2D>().enabled = false;
-                    //Change graphics object to layer "Boxes"
+                    //Change graphics object to layer "Boxes" and change it's sorting layer
                     box.transform.GetChild(0).gameObject.layer = 11;
+                    box.transform.GetChild(0).GetComponent<SpriteRenderer>().sortingOrder = -1;
                     //Change ColliderForBoxes object to layer "Boxes"
                     box.transform.GetChild(1).gameObject.layer = 11;
                     //Change object to layer "Boxes"

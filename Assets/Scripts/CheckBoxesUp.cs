@@ -26,14 +26,12 @@ public class CheckBoxesUp : MonoBehaviour
             {
                 transform.parent.tag = "DontKillPlayer";
                 transform.parent.gameObject.layer = 22;
-                transform.gameObject.layer = 22;
             }
 
             if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 11)
             {
                 transform.parent.tag = "Ungrababble";
                 transform.parent.gameObject.layer = 9;
-                transform.gameObject.layer = 9;
             }
         }
     }
@@ -57,13 +55,11 @@ public class CheckBoxesUp : MonoBehaviour
             if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 9)
             {
                 transform.parent.gameObject.layer = 23;
-                transform.gameObject.layer = 23;
             }
 
             if ((transform.parent.name != "Crate1" && transform.parent.name != "Crate2") || transform.parent.gameObject.layer == 9)
             {
                 transform.parent.gameObject.layer = 11;
-                transform.gameObject.layer = 11;
             }
         }
     }

@@ -28,6 +28,9 @@ public class DestroyerOnOff : MonoBehaviour {
         if(on)
         {
             DestroyActivated();
+        } else
+        {
+            GoUp();
         }
     }
 
