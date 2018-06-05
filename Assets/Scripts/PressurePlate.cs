@@ -40,13 +40,14 @@ public class PressurePlate : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerStay2D(Collider2D col)
     {
         if (name != "PressurePlatePuzzle5")
         {
             if (col.tag == "Player" ||
             col.tag == "HeavyBox" ||
-            col.tag == "LightBox")
+            col.tag == "LightBox" ||
+            col.tag == "Ungrababble")
             {
                 pressured = true;
             }
