@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         facingRight = true;
-        grounded = true ;
+        grounded = true;
 
         initRotation = transform.rotation;
 
@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        if(transform.rotation != initRotation)
+        if (transform.rotation != initRotation)
         {
             transform.rotation = initRotation;
         }
@@ -107,8 +107,8 @@ public class PlayerMovement : MonoBehaviour
     private void SetJumpRequest()
     {
         // Check input 
-        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetButtonDown("Jump"))
         {
             // if on the ground
             if (grounded)
@@ -125,6 +125,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Character jumps
             Vector2 jump = new Vector2(0f, jumpForce);
+            myRigidbody2D.velocity = new Vector2(myRigidbody2D.velocity.x, 0f);
             myRigidbody2D.AddForce(jump);
 
             jumpRequest = false;

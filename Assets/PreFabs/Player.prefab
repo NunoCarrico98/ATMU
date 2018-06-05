@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: 61508535696722334}
   - component: {fileID: 114263558684609266}
   m_Layer: 22
-  m_Name: DropBoxCollider
+  m_Name: DropContainerCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -440,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837608787499600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 234, y: 96.6, z: 0}
+  m_LocalPosition: {x: 4.7, y: 3.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4014307353414296}
@@ -594,9 +594,9 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 0
+  m_HDR: 1
   m_AllowMSAA: 0
-  m_AllowDynamicResolution: 0
+  m_AllowDynamicResolution: 1
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
@@ -830,8 +830,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0009918213, y: -0.38034058}
-  m_Size: {x: 1.511322, y: 1.7636719}
+  m_Offset: {x: -0.0009918213, y: -0.37957454}
+  m_Size: {x: 1.511322, y: 1.765204}
   m_Direction: 0
 --- !u!81 &81044969268879048
 AudioListener:
@@ -935,7 +935,6 @@ MonoBehaviour:
   ragdollPreFab: {fileID: 1402210990541494, guid: 263c0824bb3cafd49a44725d825fc1a5,
     type: 2}
   ragdoll: {fileID: 1402210990541494, guid: 263c0824bb3cafd49a44725d825fc1a5, type: 2}
-  deathCamera: {fileID: 0}
   respawnPosition: {x: 4.2, y: 5.5}
   isDead: 0
   counter: 0
@@ -950,10 +949,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bad2808a73051b245b5175879907c47f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterAnim: {fileID: 95473007868878036}
+  boxHoldPoint: {fileID: 0}
+  groundCheckPoint: {fileID: 4504088309991656}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 3072
-  groundCheckPoint: {fileID: 4504088309991656}
   facingRight: 1
   jumpRequest: 0
   grounded: 1
@@ -961,8 +962,6 @@ MonoBehaviour:
   groundCheckRadius: 0.5
   movementSpeed: 8
   jumpForce: 625
-  characterAnim: {fileID: 95473007868878036}
-  boxHoldPoint: {fileID: 0}
 --- !u!114 &114379530547294116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1005,28 +1004,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ca1444783f6e8459ad657dd62b4e94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  positionOnScreen: {x: 0.5, y: 0.3333333}
-  mouseOnScreen: {x: 1.3212326, y: 0.8338277}
-  direction: {x: 0.85391504, y: 0.52041245}
-  grabbed: 0
-  distance: 1.5
-  distanceBack: 2
-  holdpoint: {fileID: 4503998055334710}
-  throwforce: 90
-  notgrabbed:
-    serializedVersion: 2
-    m_Bits: 4294965247
-  angle: -148.64008
-  angleOffSet: 0
+  box: {fileID: 0}
   notToHit:
     serializedVersion: 2
     m_Bits: 8390656
-  box: {fileID: 0}
-  backBoxR: 0
-  backBoxL: 0
+  positionOnScreen: {x: 0.5, y: 0.3333333}
+  mouseOnScreen: {x: 1.3212326, y: 0.8338277}
+  direction: {x: 0.85391504, y: 0.52041245}
   boxCollider: {fileID: 4044073582044334}
   containerCollider: {fileID: 4334217423754402}
   boxParent: {fileID: 0}
+  holdpoint: {fileID: 4503998055334710}
+  distance: 1.5
+  distanceBack: 2
+  throwforce: 90
+  angle: -148.64008
+  angleOffSet: 0
+  keyCount: 0
+  grabbed: 0
+  backBoxR: 0
+  backBoxL: 0
 --- !u!114 &114568400988363728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1201,8 +1198,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1964109711
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e97b3f286e4967a42a1b0e0b5d24636e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
