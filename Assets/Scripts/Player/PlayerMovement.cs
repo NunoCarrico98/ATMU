@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public LayerMask whatIsGround;
+    public Animator characterAnim;
+    public Transform boxHoldPoint;
     public Transform groundCheckPoint;
+    public LayerMask whatIsGround;
     public bool facingRight;
     public bool jumpRequest;
     public bool grounded;
@@ -18,9 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D myRigidbody2D;
     private Transform playerGraphics;
     private Transform playerHead;
-    public Animator characterAnim;
-    public Transform boxHoldPoint;
 
+    private Quaternion initRotation;
     private PlayerConveyorBelt conveyor;
 
     private float resetBoxPosition;
@@ -35,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
         facingRight = true;
         grounded = true ;
 
+        initRotation = transform.rotation;
+
         myRigidbody2D = GetComponent<Rigidbody2D>();
         characterAnim = GetComponent<Animator>();
         playerGraphics = transform.Find("Graphics");
@@ -47,6 +50,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        if(transform.rotation != initRotation)
+        {
+            transform.rotation = initRotation;
+        }
+
         SetJumpRequest();
         IsGrounded();
     }
@@ -97,7 +105,8 @@ public class PlayerMovement : MonoBehaviour
     private void SetJumpRequest()
     {
         // Check input 
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        //if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetButtonDown("Jump"))
         {
             // if on the ground
             if (grounded)

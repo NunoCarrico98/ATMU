@@ -26,7 +26,7 @@ public class TimeControll : MonoBehaviour {
         if(activateTimeScale)
         {
 
-            Time.timeScale = 1.5F;
+            Time.timeScale = 4F;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;
         } else
         {
