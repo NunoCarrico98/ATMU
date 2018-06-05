@@ -10,6 +10,7 @@ public class BigElevatorFall : MonoBehaviour
     public float waitTime;
     public float endWaitTime;
 
+    private bool activePart1 = false;
     private bool smallFall;
     private bool bigFall;
     private float currentSpeed;
@@ -49,6 +50,7 @@ public class BigElevatorFall : MonoBehaviour
         if (col.transform.tag == "Player")
         {
             smallFall = true;
+
         }
     }
 
@@ -57,9 +59,11 @@ public class BigElevatorFall : MonoBehaviour
         if (smallFall)
         {
             player.GetComponent<PlayerMovement>().characterAnim.SetFloat("Speed", 0);
+            player.GetComponent<PlayerMovement>().characterAnim.SetBool("Ground", true);
             player.GetComponent<PlayerMovement>().enabled = false;
             player.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
             player.transform.SetParent(elevator);
+
 
             elevator.GetComponent<SpringJoint2D>().enabled = false;
             elevator.GetComponent<Rigidbody2D>().isKinematic = true;
