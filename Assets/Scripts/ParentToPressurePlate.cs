@@ -6,18 +6,18 @@ public class ParentToPressurePlate : MonoBehaviour {
 
     private Transform parent;
 
-    private void OnTriggerStay2D(Collider2D col)
+    private void OnCollisionStay2D(Collision2D col)
     {
-        if(col.tag == "Player")
+        if(col.transform.tag == "Player")
         {
             parent = col.transform.parent;
             col.transform.SetParent(parent);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D col)
+    private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.tag == "Player")
+        if (col.transform.tag == "Player")
         {
             col.transform.SetParent(null);
         }

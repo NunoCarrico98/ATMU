@@ -5,84 +5,73 @@ using UnityEngine;
 public class StorageDoor : MonoBehaviour
 {
 
-    public Transform parent;
-    public float speed = 10f;
+    public GameObject prefab;
+    public Transform spawnPoint;
+    public Transform spawnPoint2;
     public float openTime = 0.4f;
-    public LayerMask layerMask;
+    public int instancesCounter = 6;
 
     private bool open = false;
     private bool close = true;
-    private static bool allow;
-    private static bool allow2 = true;
-    private Vector3 openVector;
-    private Vector3 closeVector;
-    private RaycastHit2D hit;
+    private static bool allow = true;
     private float timer = 0;
+    private int counter1 = 0;
+    private int counter2 = 0;
+    private int resetCounter = 0;
 
 
 
     // Use this for initialization
     void Start()
     {
-        openVector = new Vector3(parent.position.x, parent.position.y + 2, parent.position.z);
-        closeVector = new Vector3(parent.position.x, parent.position.y, parent.position.z);
+        resetCounter = instancesCounter;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (name == "DetectRags")
-        {
-            SendRaycast();
-        }
 
-        if (open && !close)
+        if (open)
         {
+            if (counter1 == 0)
+            {
+                counter2++;
+                counter1++;
+            }
             Open();
+
         }
-
-        Close();
-
     }
 
     private void Open()
     {
-        parent.position = Vector3.MoveTowards(parent.position, openVector, speed * Time.deltaTime);
-    }
+        if (instancesCounter > 0)
+        {
+            Debug.Log(instancesCounter);
+            Instantiate(prefab, spawnPoint.position, transform.rotation);
 
-    private void Close()
-    {
-        if (open)
-        {
-            timer += Time.deltaTime;
-        }
-        if (timer >= openTime)
-        {
-            close = true;
-            timer = 0;
-        }
-        if (close == true)
-        {
-            parent.position = Vector3.MoveTowards(parent.position, closeVector, speed * Time.deltaTime);
-        }
-        if (parent.position == closeVector)
-        {
-            close = false;
-            open = false;
+            if (counter2 % 2 == 0)
+            {
+                Instantiate(prefab, spawnPoint2.position, transform.rotation);
+                Instantiate(prefab, 
+                    new Vector3(spawnPoint2.position.x -1, spawnPoint2.position.y, spawnPoint2.position.z),
+                    transform.rotation);
+            }
+            instancesCounter--;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "LightBox" && name == "OpenCollider" && allow && allow2)
+        if (col.tag == "LightBox" && name == "OpenCollider" && allow)
         {
             open = true;
         }
 
-        if(col.tag == "Player" && name == "DetectPlayer")
+        if (col.tag == "Player" && name == "DetectPlayer")
         {
-            allow2 = false;
-            if(!allow2)
+            allow = false;
+            if (!allow)
             {
                 open = false;
             }
@@ -93,28 +82,13 @@ public class StorageDoor : MonoBehaviour
     {
         if (col.tag == "Player" && name == "DetectPlayer")
         {
-            allow2 = true;
-        }
-    }
-
-    private void SendRaycast()
-    {
-        hit = Physics2D.Raycast(transform.position, Vector3.right, 4.5f, layerMask);
-        if (hit == true && hit.transform.tag == "HeavyBoxPiece3")
-        {
             allow = true;
         }
-        if(hit == false)
+        if (col.tag == "LightBox" && name == "OpenCollider" && allow)
         {
-            allow = false;
             open = false;
+            counter1 = 0;
+            instancesCounter = resetCounter;
         }
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * 4.5f);
     }
 }

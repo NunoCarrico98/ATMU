@@ -11,6 +11,7 @@ public class KillPlayer : MonoBehaviour
     public bool isDead = false;
     public int counter = 0;
 
+    private FallingLavaPuzzle lavaPuzzle;
     private LevelManager gameLevelManager;
     private GameObject[] bodyparts = new GameObject[8];
     private GameObject player;
@@ -24,6 +25,8 @@ public class KillPlayer : MonoBehaviour
 
     private void Start()
     {
+        lavaPuzzle = FindObjectOfType<FallingLavaPuzzle>();
+
         player = GameObject.FindGameObjectWithTag("Player");
 
         gameLevelManager = FindObjectOfType<LevelManager>();
@@ -39,9 +42,13 @@ public class KillPlayer : MonoBehaviour
 
         //Allow suicide (dev mode)
         if (Input.GetKeyDown(KeyCode.R)) KillRagdoll();
-
+        if (Input.GetKeyDown(KeyCode.Tab)) NormalKill();
         //Kill on tunnel puzzle
-        if (FindObjectOfType<FallingLavaPuzzle>().kill) NormalKill();
+        /*if (lavaPuzzle.kill)
+        {
+            NormalKill();
+            lavaPuzzle.kill = false;
+        }*/
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -119,7 +126,7 @@ public class KillPlayer : MonoBehaviour
         }
     }
 
-    private void NormalKill()
+    public void NormalKill()
     {
         player.transform.SetParent(null);
         //player.SetActive(false);

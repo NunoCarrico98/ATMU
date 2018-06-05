@@ -27,8 +27,9 @@ public class FallingLavaPuzzle : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, Vector3.down, 9, layerMask);
         if (hit == true && hit.transform.tag == "Player")
         {
-            kill = true;
+            FindObjectOfType<KillPlayer>().NormalKill();
         }
+
         if (hit == true && (hit.transform.tag == "LightBox"
             || hit.transform.tag == "ColliderForBoxes" 
             || hit.transform.tag == "GetPiecesColliderGetPiecesCollider"

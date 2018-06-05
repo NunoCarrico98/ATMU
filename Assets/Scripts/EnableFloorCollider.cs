@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnableFloorCollider : MonoBehaviour {
 
+    public Transform floorPrefab;
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +22,13 @@ public class EnableFloorCollider : MonoBehaviour {
         {
             if (transform.parent.name == "FloorRoom6")
             {
-                transform.parent.gameObject.SetActive(false);
+                //transform.parent.gameObject.SetActive(false);
+                Destroy(transform.parent.gameObject);
+            }
+            if (transform.parent.name == "NewFloorRoom6")
+            {
+                //transform.parent.gameObject.SetActive(false);
+                //Instantiate(floorPrefab)
             }
         }
     }

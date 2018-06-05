@@ -2,33 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyerOnOff : MonoBehaviour {
+public class DestroyerOnOff : MonoBehaviour
+{
 
     public bool on;
-    public float speed = 20f;
+    public float upSpeed = 1f;
+    public float downSpeed = 2f;
+    public float upAcceleration = 1.2f;
+    public float downAcceleration = 1.2f;
 
     private Vector3 downVector;
     private Vector3 upVector;
     private bool up = true;
     private bool down = false;
+    private float resetDownSpeed;
+    private float resetUpSpeed;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         upVector = new Vector3(transform.position.x, 90, transform.position.z);
         downVector = new Vector3(transform.position.x, 86, transform.position.z);
+        resetDownSpeed = downSpeed;
+        resetUpSpeed = upSpeed;
     }
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private void FixedUpdate()
     {
-        if(on)
+        if (on)
         {
             DestroyActivated();
-        } else
+        }
+        else
         {
             GoUp();
         }
@@ -36,11 +47,11 @@ public class DestroyerOnOff : MonoBehaviour {
 
     private void DestroyActivated()
     {
-        if(up && !down)
+        if (up && !down)
         {
             GoDown();
         }
-        if(down && !up)
+        if (down && !up)
         {
             GoUp();
         }
@@ -48,9 +59,11 @@ public class DestroyerOnOff : MonoBehaviour {
 
     private void GoUp()
     {
-        transform.position = Vector3.MoveTowards(transform.position, upVector, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, upVector, upSpeed * Time.deltaTime);
+        upSpeed += upAcceleration;
         if (transform.position == upVector)
         {
+            downSpeed = resetDownSpeed;
             down = false;
             up = true;
         }
@@ -58,9 +71,11 @@ public class DestroyerOnOff : MonoBehaviour {
 
     private void GoDown()
     {
-        transform.position = Vector3.MoveTowards(transform.position, downVector, speed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, downVector, downSpeed * Time.deltaTime);
+        downSpeed += downAcceleration;
         if (transform.position == downVector)
         {
+            upSpeed = resetUpSpeed;
             up = false;
             down = true;
         }
@@ -68,7 +83,7 @@ public class DestroyerOnOff : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if(col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox")
+        if (col.transform.tag == "HeavyBox" || col.transform.tag == "LightBox")
         {
             down = true;
             up = false;

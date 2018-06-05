@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElevatorPuzzle6Behaviour : MonoBehaviour {
 
     public Transform checkPoint;
+    public Transform plate;
     public float speed;
     public bool inPlace = false;
 
@@ -18,23 +19,13 @@ public class ElevatorPuzzle6Behaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Puzzle6Pressures.puzzleSolved && inPlace == false)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, initPos, speed * Time.deltaTime);
-        }
-        if(Puzzle6Pressures.puzzleSolved == false)
+        if (Puzzle6Pressures.puzzleSolved && plate.GetComponent<PressurePlate>().pressured)
         {
             transform.position = Vector3.MoveTowards(transform.position, checkPoint.position, speed * Time.deltaTime);
-            inPlace = false;
         }
-
-        if(transform.position == initPos)
+        /*if (Puzzle6Pressures.puzzleSolved == false)
         {
-            inPlace = true;
-        }
-        else
-        {
-            inPlace = false;
-        }
+            transform.position = Vector3.MoveTowards(transform.position, initPos, speed * Time.deltaTime);
+        }*/
 	}
 }

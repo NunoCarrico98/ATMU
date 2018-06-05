@@ -65,6 +65,8 @@ public class LevelManager : MonoBehaviour
         player.transform.position = gamePlayer.respawnPosition;
         player.SetParent(null);
         player.gameObject.SetActive(true);
+        player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+        player.GetComponent<Rigidbody2D>().angularVelocity = 0;
     }
 
     public void StoreGameObjectPositions()

@@ -44,8 +44,7 @@ public class Elevator : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.transform.tag == "Player" && col.transform.parent == null
-            && name != "BigElevator2")
+        if (col.transform.tag == "Player" && col.transform.parent == null)
         {
             col.transform.SetParent(transform);
         }
@@ -53,7 +52,7 @@ public class Elevator : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D col)
     {
-        if (col.transform.tag == "Player" && name != "BigElevator2")
+        if (col.transform.tag == "Player")
         {
             col.transform.SetParent(null);
         }
@@ -90,7 +89,7 @@ public class Elevator : MonoBehaviour
             }
         }
 
-        if (!pressured)
+        if (!pressured && name != "BigElevator2")
         {
             if (lastAction != 1)
             {
