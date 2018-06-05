@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
 {
+    public Transform waypoint1;
+    public Transform waypoint2;
     public bool pressured;
 
     private Animator plateAnim;
@@ -13,7 +15,7 @@ public class PressurePlate : MonoBehaviour
 
     private void Start()
     {
-        plateAnim = GetComponent<Animator>();
+        if(name != "PressurePlateBigElevator") plateAnim = GetComponent<Animator>();
         colUp = transform.Find("ColliderUp").GetComponent<BoxCollider2D>();
         colDown = transform.Find("ColliderDown").GetComponent<BoxCollider2D>();
 
@@ -25,18 +27,21 @@ public class PressurePlate : MonoBehaviour
     private void Update()
     {
         IsPressured();
-        if(pressured)
+        if (name != "PressurePlateBigElevator")
         {
-            timer -= Time.deltaTime;
-            if (timer <= 0)
+            if (pressured)
             {
-                transform.Find("Point light").gameObject.SetActive(true);
+                timer -= Time.deltaTime;
+                if (timer <= 0)
+                {
+                    transform.Find("Point light").gameObject.SetActive(true);
+                }
             }
-        }
-        else
-        {
-            timer = 0.17f;
-            transform.Find("Point light").gameObject.SetActive(false);
+            else
+            {
+                timer = 0.17f;
+                transform.Find("Point light").gameObject.SetActive(false);
+            }
         }
     }
 
@@ -49,16 +54,21 @@ public class PressurePlate : MonoBehaviour
             col.tag == "LightBox" ||
             col.tag == "Ungrababble")
             {
+                if (name == "PressurePlateBigElevator")
+                {
+                    transform.position = waypoint1.position;
+                }
                 pressured = true;
             }
         }
-        else
+        if (name == "PressurePlatePuzzle5")
         {
             if (col.tag == "LightBox" && col.transform.Find("DetectIfFilled").GetComponent<ContainerPuzzle>().isFilled)
             {
                 pressured = true;
             }
         }
+
     }
 
     private void OnTriggerExit2D(Collider2D col)
@@ -67,6 +77,10 @@ public class PressurePlate : MonoBehaviour
         col.tag == "HeavyBox" ||
         col.tag == "LightBox")
         {
+            if (name == "PressurePlateBigElevator")
+            {
+                transform.position = waypoint2.position;
+            }
             pressured = false;
         }
 
@@ -76,16 +90,22 @@ public class PressurePlate : MonoBehaviour
     {
         if (pressured)
         {
-            plateAnim.SetBool("PlateMove", true);
-            colUp.enabled = false;
-            colDown.enabled = true;
+            if (name != "PressurePlateBigElevator")
+            {
+                plateAnim.SetBool("PlateMove", true);
+                colUp.enabled = false;
+                colDown.enabled = true;
+            }
         }
 
         if (!pressured)
         {
-            plateAnim.SetBool("PlateMove", false);
-            colUp.enabled = true;
-            colDown.enabled = false;
+            if (name != "PressurePlateBigElevator")
+            {
+                plateAnim.SetBool("PlateMove", false);
+                colUp.enabled = true;
+                colDown.enabled = false;
+            }
         }
 
     }
