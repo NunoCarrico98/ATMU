@@ -5,7 +5,6 @@ using UnityEngine;
 public class DropBoxIfOnAir : MonoBehaviour
 {
     public bool boxFoundCollider = false;
-    public float distance = 2f;
 
     private Transform player;
     private GameObject box;
@@ -72,6 +71,7 @@ public class DropBoxIfOnAir : MonoBehaviour
             boxFoundCollider = false;
 
         }
+
     }
 
     private void IsGrounded()
@@ -80,7 +80,7 @@ public class DropBoxIfOnAir : MonoBehaviour
         {
             if (boxFoundCollider && player.GetComponent<GrabBox>().grabbed)
             {
-                boxCollider.enabled = false;
+                //boxCollider.enabled = false;
                 if (box != null)
                 {
                     if (box.name != "Container" && box.name != "Crate1" && box.name != "Crate2")
