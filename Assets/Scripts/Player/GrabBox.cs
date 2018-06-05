@@ -84,6 +84,9 @@ public class GrabBox : MonoBehaviour
             if (angle <= 0 && angle >= -180)
             {
                 hitAngle = Physics2D.Raycast(transform.position, direction, distance * 1.5f, notToHit);
+            } else
+            {
+                hitAngle = Physics2D.Raycast(transform.position,direction,0);
             }
         }
 

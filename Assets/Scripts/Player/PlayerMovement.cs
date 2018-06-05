@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Quaternion initRotation;
     private PlayerConveyorBelt conveyor;
+    private GrabBox grabBox;
 
     private float resetBoxPosition;
     private float resetSpeed;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         playerHead = transform.Find("RotatingHead");
 
         conveyor = FindObjectOfType<PlayerConveyorBelt>();
+        grabBox = FindObjectOfType<GrabBox>();
 
         resetSpeed = movementSpeed;
     }
@@ -165,11 +167,11 @@ public class PlayerMovement : MonoBehaviour
     private void FlipPlayer()
     {
         // Get angle bewtween mouse and player
-        angle = GetComponent<GrabBox>().angle;
+        angle = grabBox.angle;
 
         // Get if player has a box behind him
-        backBoxR = GetComponent<GrabBox>().backBoxR;
-        backBoxL = GetComponent<GrabBox>().backBoxL;
+        backBoxR = grabBox.backBoxR;
+        backBoxL = grabBox.backBoxL;
 
         // If the input is moving the player right and the player is facing left...
         if (facingRight && (angle > -90 && angle < 90))
