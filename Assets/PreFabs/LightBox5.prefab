@@ -199,6 +199,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+  particlesPrefab: {fileID: 1562987718582192, guid: 0b9a42db7f6a7e04a911b9e19ff047db,
+    type: 2}
 --- !u!114 &114595696596926022
 MonoBehaviour:
   m_ObjectHideFlags: 1

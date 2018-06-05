@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 4363618472152066}
   - component: {fileID: 95473007868878036}
   - component: {fileID: 50556737908697072}
-  - component: {fileID: 58100587705881426}
+  - component: {fileID: 70845318162162106}
   - component: {fileID: 114103841028494828}
   - component: {fileID: 114448152091803282}
   - component: {fileID: 114875565189484360}
@@ -440,7 +440,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1837608787499600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 246, y: 53.5, z: 0}
+  m_LocalPosition: {x: 234, y: 96.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4014307353414296}
@@ -621,21 +621,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &58100587705881426
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1837608787499600}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.016465068, y: -0.2735548}
-  serializedVersion: 2
-  m_Radius: 0.975971
 --- !u!58 &58512452161747952
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -833,6 +818,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.2, y: 2.5}
   m_EdgeRadius: 0
+--- !u!70 &70845318162162106
+CapsuleCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1837608787499600}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 6200000, guid: fcc6a80495cf3044ea33f6b06ee1f9af, type: 2}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0009918213, y: -0.38034058}
+  m_Size: {x: 1.511322, y: 1.7636719}
+  m_Direction: 0
 --- !u!81 &81044969268879048
 AudioListener:
   m_ObjectHideFlags: 1
@@ -931,10 +931,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a31cb5755271e44a8426a95e1e9894b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pressKeyToRespawn: 0
+  pressKeyToRespawn: 1
   ragdollPreFab: {fileID: 1402210990541494, guid: 263c0824bb3cafd49a44725d825fc1a5,
     type: 2}
   ragdoll: {fileID: 1402210990541494, guid: 263c0824bb3cafd49a44725d825fc1a5, type: 2}
+  deathCamera: {fileID: 0}
   respawnPosition: {x: 4.2, y: 5.5}
   isDead: 0
   counter: 0

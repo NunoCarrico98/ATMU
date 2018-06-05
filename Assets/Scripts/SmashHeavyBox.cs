@@ -46,7 +46,7 @@ public class SmashHeavyBox : MonoBehaviour {
             activate = true;
         }
 
-        if(col.tag == "HeavyBoxPiece" && transform.parent.name != "Destroyer (1)")
+        if(col.tag == "HeavyBoxPiece" /*&& transform.parent.name != "Destroyer (1)"*/)
         {
             box = col.gameObject;
             GetVelocity();
@@ -54,7 +54,7 @@ public class SmashHeavyBox : MonoBehaviour {
             Destroy(col.gameObject);
         }
 
-        if (col.tag == "HeavyBoxPiece2" && transform.parent.name != "Destroyer (1)" && transform.parent.name != "Destroyer (2)")
+        if (col.tag == "HeavyBoxPiece2"/* && transform.parent.name != "Destroyer (1)" && transform.parent.name != "Destroyer (2)"*/)
         {
             box = col.gameObject;
             GetVelocity();

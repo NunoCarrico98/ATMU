@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
         
 
     // Use this for initialization
-    void Awake()
+    void Start()
     {
         if (transform.parent.name == "Player")
         {

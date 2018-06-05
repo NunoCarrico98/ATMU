@@ -49,7 +49,8 @@ public class KillPlayer : MonoBehaviour
         //A ragdoll of the player appears
         if (other.tag != "Player" && other.tag != "DeathZone"
             && other.tag != "DontKillPlayer" && other.tag != "Checkpoint"
-            && other.tag != "BoxCollider" && other.tag != "HeavyBoxPiece3")
+            && other.tag != "BoxCollider" && other.tag != "HeavyBoxPiece3"
+            && other.tag != "Ungrababble")
         {
             KillRagdoll();
         }

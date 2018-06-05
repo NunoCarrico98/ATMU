@@ -25,11 +25,10 @@ public class DropBoxIfOnAir : MonoBehaviour
         {
             if (player.GetComponent<GrabBox>().grabbed)
             {
-                //if box is heigher than the player
-                //if (transform.parent.position.y > player.position.y)
-                //{
+                if (box.GetComponent<Collider2D>().enabled == false)
+                {
                     boxFoundCollider = true;
-                //}
+                }
             }
         }
     }
@@ -45,19 +44,34 @@ public class DropBoxIfOnAir : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         grounded = player.GetComponent<PlayerMovement>().grounded;
         box = player.GetComponent<GrabBox>().box;
 
+        IsGrounded();
+
+        if (player.GetComponent<GrabBox>().grabbed == true && box.name != "Container")
+        {
+            if (name == "DropBoxCollider")
+            {
+                transform.GetComponent<Collider2D>().enabled = true;
+            }
+
+        }
+        if (player.GetComponent<GrabBox>().grabbed == true && box.name == "Container")
+        {
+            if (name == "DropContainerCollider")
+            {
+                transform.GetComponent<Collider2D>().enabled = true;
+            }
+
+        }
         if (player.GetComponent<GrabBox>().grabbed == false)
         {
             transform.GetComponent<Collider2D>().enabled = false;
             boxFoundCollider = false;
-        } else
-        {
-            transform.GetComponent<Collider2D>().enabled = true;
-        }
 
-        IsGrounded();
+        }
     }
 
     private void IsGrounded()
@@ -69,19 +83,36 @@ public class DropBoxIfOnAir : MonoBehaviour
                 boxCollider.enabled = false;
                 if (box != null)
                 {
-                    box.GetComponent<Rigidbody2D>().isKinematic = false;
-                    box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
-                    box.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-                    if (box.name != "Container")
+                    if (box.name != "Container" && box.name != "Crate1" && box.name != "Crate2")
                     {
-                        box.GetComponent<Collider2D>().enabled = true;         //disable collider 
+                        boxCollider.GetComponent<Collider2D>().enabled = false;
+                        box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                        box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        box.GetComponent<Rigidbody2D>().isKinematic = false;
+                        box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
+                        box.GetComponent<Collider2D>().enabled = true;
                     }
-                    else
+                    if (box.name == "Crate1" || box.name == "Crate2")
                     {
+                        boxCollider.GetComponent<Collider2D>().enabled = false;
+                        box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                        box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        box.GetComponent<Rigidbody2D>().isKinematic = false;
+                        box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
+                        box.GetComponent<Collider2D>().enabled = true;
+                    }
+                    if (box.name == "Container")
+                    {
+                        boxCollider.GetComponent<Collider2D>().enabled = false;
+                        box.transform.Find("ColliderForBoxes").transform.GetComponent<Collider2D>().enabled = true;
+                        box.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
+                        box.GetComponent<Rigidbody2D>().isKinematic = false;
+                        box.GetComponent<Rigidbody2D>().velocity = new Vector3(box.GetComponent<Rigidbody2D>().velocity.x, 0, 0);
                         box.GetComponent<PolygonCollider2D>().enabled = true;
+                        box.transform.SetParent(null);
                     }
-                    boxCollider.enabled = false;
                 }
+                player.GetComponent<GrabBox>().keyCount = 0;
                 player.GetComponent<GrabBox>().grabbed = false;
             }
         }

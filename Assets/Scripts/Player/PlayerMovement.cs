@@ -78,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (conveyor.isOnConveyor && grounded)
             {
-                movement = new Vector2(moveHorizontal * movementSpeed + conveyor.conveyorSpeed - 10.75f, myRigidbody2D.velocity.y);
+                movement = new Vector2(moveHorizontal * movementSpeed + conveyor.conveyorSpeed - 10f, myRigidbody2D.velocity.y);
             }
         }
 
@@ -144,13 +144,13 @@ public class PlayerMovement : MonoBehaviour
     {
         // Verify if player is touching the ground
         //grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
-        grounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(1.6f, 0.4f), 0, whatIsGround);
+        grounded = Physics2D.OverlapBox(groundCheckPoint.position, new Vector2(1f, 0.4f), 0, whatIsGround);
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(groundCheckPoint.position, new Vector2(1.6f, 0.4f));
+        Gizmos.DrawWireCube(groundCheckPoint.position, new Vector2(1f, 0.4f));
     }
 
     private void FlipPlayer()

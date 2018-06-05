@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 50784712222349490}
   - component: {fileID: 61577146615983804}
   - component: {fileID: 114157134172665490}
-  - component: {fileID: 114736229627402230}
   m_Layer: 11
   m_Name: LightBox6
   m_TagString: LightBox
@@ -189,6 +188,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+  particlesPrefab: {fileID: 1562987718582192, guid: 0b9a42db7f6a7e04a911b9e19ff047db,
+    type: 2}
 --- !u!114 &114207284925087396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -209,17 +210,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114736229627402230
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1217046857232818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f1a808214ed9f14db82ee2da586e5cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114799795868706716

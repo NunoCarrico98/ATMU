@@ -4,37 +4,39 @@ using UnityEngine;
 
 public class GrabBox : MonoBehaviour
 {
-
-    private int keyCount = 0;
+    private Transform rotateBoxPoint;
+    private Rigidbody2D playerRb;
     private float xMouse;
     private float yMouse;
-    private Transform rotateBoxPoint;
     private bool facingRight;
     private bool crouched = false;
-    private Rigidbody2D playerRb;
 
+
+    public GameObject box;
+    public LayerMask notToHit;
     public Vector2 positionOnScreen;
     public Vector2 mouseOnScreen;
     public Vector2 direction;
-    public bool grabbed;
+    public Transform boxCollider;
+    public Transform containerCollider;
+    public Transform boxParent;
+    public Transform holdpoint;
     public RaycastHit2D hit;
     public RaycastHit2D hitAngle;
     public RaycastHit2D hit360;
     public RaycastHit2D hitBack;
     public float distance = 2f;
     public float distanceBack = 2f;
-    public Transform holdpoint;
     public float throwforce;
-    public LayerMask notgrabbed;
     public float angle;
     public int angleOffSet = 0;
-    public LayerMask notToHit;
-    public GameObject box;
+    public int keyCount = 0;
+    public bool grabbed;
     public bool backBoxR = false;
     public bool backBoxL = false;
-    public Transform boxCollider;
-    public Transform containerCollider;
-    public Transform boxParent;
+
+
+
 
     // Use this for initialization
     void Start()
@@ -102,8 +104,6 @@ public class GrabBox : MonoBehaviour
                     {
                         box = box.transform.parent.gameObject;
                     }
-
-
                     grabbed = true;
                 }
             }

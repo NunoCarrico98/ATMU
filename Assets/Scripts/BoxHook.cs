@@ -155,6 +155,7 @@ public class BoxHook : MonoBehaviour
                 hookAnim.SetBool("Close", false);
                 stopMovement = false;
             }
+            beginDetection = false;
         }
     }
 

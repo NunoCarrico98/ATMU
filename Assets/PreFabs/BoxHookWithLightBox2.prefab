@@ -288,7 +288,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1449491405201656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57, y: 50, z: 0}
+  m_LocalPosition: {x: 61, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4126173304584626}
@@ -422,7 +422,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1586747272721822}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 57, y: 54, z: 0}
+  m_LocalPosition: {x: 61, y: 54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4126173304584626}
@@ -575,6 +575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+  particlesPrefab: {fileID: 1562987718582192, guid: 0b9a42db7f6a7e04a911b9e19ff047db,
+    type: 2}
 --- !u!114 &114747619346247330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -611,10 +613,12 @@ MonoBehaviour:
   - {fileID: 4250769008336522}
   - {fileID: 4250769008336522}
   - {fileID: 4892389206912252}
+  speedWaypoints: []
   boxParent: {fileID: 0}
   start: 0
   currentWaypoint: 0
   speed: 7
+  fasterSpeed: 0
   lowSpeed: 5
   grabSpeed: 1
   animationTime: 0.3
@@ -625,6 +629,7 @@ MonoBehaviour:
   closeHook: 0
   pickBox: 0
   dropBox: 1
+  hasSpeedPoints: 0
   startsWithBox: 1
   destroyAfterLastWaypoint: 1
 --- !u!114 &114955593358522700

@@ -6,7 +6,10 @@ public class DestroyLightBox : MonoBehaviour
 {
     public float velocityToDestroyX;
     public float velocityToDestroyY;
+    public GameObject particlesPrefab;
+
     private Transform boxesParent;
+    private Quaternion initRotation;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -18,6 +21,7 @@ public class DestroyLightBox : MonoBehaviour
 
     private void Start()
     {
+        initRotation = transform.rotation;
         boxesParent = GameObject.FindGameObjectWithTag("BoxesParent").transform;
     }
 
@@ -25,28 +29,14 @@ public class DestroyLightBox : MonoBehaviour
     {
         if (col.gameObject.tag == "HeavyBox")
         {
-            //if (transform.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
-            //{
-            
-                if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
-                    col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||
-                    col.transform.GetComponent<Rigidbody2D>().velocity.y >= velocityToDestroyY ||
-                    col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY)
-                {
-                    DestroyBox(col);
-                }
-            //}
-            /*else
-            {
-                if (col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
+            if ((col.transform.GetComponent<Rigidbody2D>().velocity.x >= velocityToDestroyX ||
                 col.transform.GetComponent<Rigidbody2D>().velocity.x <= -velocityToDestroyX ||
                 col.transform.GetComponent<Rigidbody2D>().velocity.y >= velocityToDestroyY ||
-                col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY)
-                {
-                    DestroyBox(col);
-                }
-            }*/
-
+                col.transform.GetComponent<Rigidbody2D>().velocity.y <= -velocityToDestroyY) ||
+                transform.GetComponent<Rigidbody2D>().isKinematic == true)
+            {
+                DestroyBox(col);
+            }
         }
     }
 
@@ -60,5 +50,6 @@ public class DestroyLightBox : MonoBehaviour
         }
         col.transform.SetParent(boxesParent);
         Destroy(transform.gameObject, 0.05f);
+        Instantiate(particlesPrefab, transform.position, initRotation);
     }
 }
