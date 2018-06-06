@@ -47,7 +47,6 @@ public class StorageDoor : MonoBehaviour
     {
         if (instancesCounter > 0)
         {
-            Debug.Log(instancesCounter);
             Instantiate(prefab, spawnPoint.position, transform.rotation);
 
             if (counter2 % 2 == 0)

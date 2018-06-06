@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class EnableFloorCollider : MonoBehaviour {
 
-    public Transform floorPrefab;
+    public GameObject newWalls;
+    public GameObject newObjects;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private ContainerBeacon[] containers;
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,15 +18,16 @@ public class EnableFloorCollider : MonoBehaviour {
     {
         if(col.tag == "Player")
         {
-            if (transform.parent.name == "FloorRoom6")
-            {
-                //transform.parent.gameObject.SetActive(false);
                 Destroy(transform.parent.gameObject);
-            }
-            if (transform.parent.name == "NewFloorRoom6")
+                newWalls.SetActive(true);
+                newObjects.SetActive(true);
+
+            containers = FindObjectsOfType<ContainerBeacon>();
+
+            for(int i = 0; i < containers.Length; i++)
             {
-                //transform.parent.gameObject.SetActive(false);
-                //Instantiate(floorPrefab)
+                containers[i].gameObject.layer = 9;
+                containers[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Default";
             }
         }
     }

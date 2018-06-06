@@ -48,6 +48,10 @@ public class ContainerPuzzle : MonoBehaviour {
         {
             isFilled = false;
         }
+        if (hit == false)
+        {
+            isFilled = false;
+        }
     }
 
     void OnDrawGizmos()

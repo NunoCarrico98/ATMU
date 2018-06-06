@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 114596859534504670}
   - component: {fileID: 114064318525394904}
   - component: {fileID: 114562736852031268}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 4610773968942386}
   - component: {fileID: 61798937435157484}
   - component: {fileID: 114695648861255470}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: ContainerCollider
   m_TagString: DontKillPlayer
   m_Icon: {fileID: 0}
@@ -241,13 +241,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.0047913, y: 0.9631653}
-      - {x: 1.0021362, y: -0.75115967}
-      - {x: -1.0028076, y: -0.7493744}
-      - {x: -0.99850464, y: 0.9584427}
+    - - {x: 0.8795166, y: 0.9631653}
+      - {x: 0.7581482, y: -0.61935425}
+      - {x: -0.76049805, y: -0.6257782}
+      - {x: -0.86587524, y: 0.94369507}
       - {x: -1.2744446, y: 0.95856476}
-      - {x: -1.2773743, y: -0.9953308}
-      - {x: 1.2494812, y: -1.0060272}
+      - {x: -1.2773743, y: -0.9681549}
+      - {x: 1.2494812, y: -0.9679718}
       - {x: 1.2425232, y: 0.9630203}
 --- !u!61 &61627739375150294
 BoxCollider2D:
@@ -261,7 +261,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0050964355, y: 0.7877762}
+  m_Offset: {x: 0.0050964355, y: 0.87290955}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -272,7 +272,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9404907, y: 1.7755524}
+  m_Size: {x: 1.9404907, y: 1.6052856}
   m_EdgeRadius: 0
 --- !u!61 &61798937435157484
 BoxCollider2D:
@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocityToDestroyX: 8
   velocityToDestroyY: 0.4
+  particlesPrefab: {fileID: 0}
 --- !u!114 &114814916403283136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -442,9 +443,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -1483359453
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300500, guid: 4f16419cff74261498a0bd9b7430fd04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
