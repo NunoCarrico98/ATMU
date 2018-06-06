@@ -86,7 +86,6 @@ public class BoxHook : MonoBehaviour
     public void Movement()
     {
 
-
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypoint].position, currentSpeed * Time.deltaTime);
 
 

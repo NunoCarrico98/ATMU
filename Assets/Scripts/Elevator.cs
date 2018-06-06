@@ -6,6 +6,7 @@ public class Elevator : MonoBehaviour
 {
     public Sprite[] elevSprites;
     public GameObject pressurePlate;
+    public Vector3 endPos;
     public float elevatorSpeedUp = 5f;
     public float elevatorSpeedDown = 3f;
     public float distanceToMove = 10f;
@@ -18,7 +19,6 @@ public class Elevator : MonoBehaviour
     private float currentSpeed;
 
     private Vector3 initialPos;
-    private Vector3 endPos;
 
     // Use this for initialization
     private void Start()
