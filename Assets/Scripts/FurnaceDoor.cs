@@ -70,9 +70,12 @@ public class FurnaceDoor : MonoBehaviour
 
 
         }
-        if (!openTrap.open && opened)
+        if (!openTrap.open)
         {
-            timer -= Time.deltaTime;
+            if (opened)
+            {
+                timer -= Time.deltaTime;
+            }
             if (timer <= 0)
             {
                 transform.position = Vector2.MoveTowards(transform.position, closeVector, speed * Time.deltaTime);
@@ -80,6 +83,14 @@ public class FurnaceDoor : MonoBehaviour
                 {
                     opened = false;
                     timer = resetTimer;
+                }
+            }
+            if (timer == resetTimer)
+            {
+                transform.position = Vector2.MoveTowards(transform.position, closeVector, speed * Time.deltaTime);
+                if ((Vector2)transform.position == closeVector)
+                {
+                    opened = false;
                 }
             }
 

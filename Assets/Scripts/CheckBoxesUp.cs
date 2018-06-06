@@ -21,22 +21,7 @@ public class CheckBoxesUp : MonoBehaviour
             {
                 heavyBox = true;
             }
-
-            if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 11)
-            {
-                transform.parent.tag = "Ungrababble";
-                transform.parent.gameObject.layer = 22;
-            }
-
-            if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer == 11)
-            {
-                transform.parent.tag = "Ungrababble";
-                transform.parent.gameObject.layer = 9;
-            }
-            if (transform.parent.name != "Crate1" && transform.parent.name != "Crate2")
-            {
-                transform.parent.tag = "Ungrababble";
-            }
+            transform.parent.tag = "Ungrababble";
         }
     }
 
@@ -53,20 +38,6 @@ public class CheckBoxesUp : MonoBehaviour
         {
             heavyBox = false;
             transform.parent.tag = "HeavyBox";
-        }
-        if (col.tag == "HeavyBox" || col.tag == "LightBox")
-        {
-            if ((transform.parent.name == "Crate1" || transform.parent.name == "Crate2") && transform.parent.gameObject.layer != 9)
-            {
-                transform.parent.gameObject.layer = 23;
-                transform.parent.tag = "HeavyBox";
-            }
-
-            if ((transform.parent.name == "Crate1" && transform.parent.name == "Crate2") || transform.parent.gameObject.layer == 9)
-            {
-                transform.parent.gameObject.layer = 11;
-                transform.parent.tag = "HeavyBox";
-            }
         }
     }
 }
