@@ -36,7 +36,7 @@ public class SmashHeavyBox : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "HeavyBox")
+        if(col.tag == "HeavyBox" || col.tag == "LightBox")
         {
             box = col.gameObject;
             GetVelocity();
