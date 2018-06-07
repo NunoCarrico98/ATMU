@@ -10,7 +10,7 @@ public class DestroyHeavyBox : MonoBehaviour
         {
             if (transform.tag == "HeavyBoxPiece3")
             {
-                if (transform.parent.name == "HeavyBoxRagdoll3")
+                if (col.transform != null && transform.parent.name == "HeavyBoxRagdoll3")
                 {
                     Destroy(transform.parent.gameObject, 0.05f);
                 }
