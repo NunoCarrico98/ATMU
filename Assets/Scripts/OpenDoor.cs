@@ -47,10 +47,6 @@ public class OpenDoor : MonoBehaviour
                 {
                     transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
                 }
-                else
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, initialPos, speed / 2 * Time.deltaTime);
-                }
             }
         }
     }

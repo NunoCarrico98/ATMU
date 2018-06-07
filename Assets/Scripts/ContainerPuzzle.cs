@@ -12,7 +12,7 @@ public class ContainerPuzzle : MonoBehaviour {
 
 
             // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (name == "DetectIfFilled")
         {

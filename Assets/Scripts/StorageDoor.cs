@@ -8,6 +8,7 @@ public class StorageDoor : MonoBehaviour
     public GameObject prefab;
     public Transform spawnPoint;
     public Transform spawnPoint2;
+    public Transform parent;
     public float openTime = 0.4f;
     public int instancesCounter = 6;
 
@@ -47,14 +48,14 @@ public class StorageDoor : MonoBehaviour
     {
         if (instancesCounter > 0)
         {
-            Instantiate(prefab, spawnPoint.position, transform.rotation);
+            Instantiate(prefab, spawnPoint.position, transform.rotation, parent);
 
             if (counter2 % 2 == 0)
             {
-                Instantiate(prefab, spawnPoint2.position, transform.rotation);
+                Instantiate(prefab, spawnPoint2.position, transform.rotation, parent);
                 Instantiate(prefab, 
                     new Vector3(spawnPoint2.position.x -1, spawnPoint2.position.y, spawnPoint2.position.z),
-                    transform.rotation);
+                    transform.rotation, parent);
             }
             instancesCounter--;
         }
