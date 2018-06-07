@@ -83,7 +83,7 @@ public class GrabBox : MonoBehaviour
             //Raycast that follows mouse position on top side
             if (angle <= 0 && angle >= -180)
             {
-                hitAngle = Physics2D.Raycast(transform.position, direction, distance * 1.5f, notToHit);
+                hitAngle = Physics2D.Raycast(transform.position, direction, distance * 1.7f, notToHit);
             } else
             {
                 hitAngle = Physics2D.Raycast(transform.position,direction,0);
