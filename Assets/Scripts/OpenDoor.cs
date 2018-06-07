@@ -28,13 +28,30 @@ public class OpenDoor : MonoBehaviour
     {
         pressured = pressurePlate.GetComponent<PressurePlate>().pressured;
 
-        if (pressured)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+        if (name != "DoorPuzzle8") {
+            if (pressured)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, initialPos, speed / 2 * Time.deltaTime);
+            }
         }
-        else
+
+        if(name == "DoorPuzzle8")
         {
-            transform.position = Vector3.MoveTowards(transform.position, initialPos, speed/2 * Time.deltaTime);
+            if (Puzzle8Pressures.puzzleSolved)
+            {
+                if (pressured)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, endPos, speed * Time.deltaTime);
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, initialPos, speed / 2 * Time.deltaTime);
+                }
+            }
         }
     }
 

@@ -10,7 +10,7 @@ public class CheckBoxesUp : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if ((col.tag == "HeavyBox" || col.tag == "LightBox"))
+        if ((col.tag == "HeavyBox" || col.tag == "LightBox" || col.tag == "Ungrabbable"))
         {
             if (transform.parent.tag == "LightBox")
             {

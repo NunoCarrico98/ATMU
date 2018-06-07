@@ -51,7 +51,7 @@ public class Puzzle6Pressures : MonoBehaviour
         if (transform.parent.name == "Orange Button")
         {
 
-            if (col.tag == "HeavyBox" && col.name == "Crate2")
+            if (col.tag == "LightBox" && col.name == "Crate2")
             {
 
                 orangeBoxesCount++;
@@ -62,7 +62,7 @@ public class Puzzle6Pressures : MonoBehaviour
 
         if (transform.parent.name == "Green Button")
         {
-            if (col.tag == "HeavyBox" && col.name == "Crate1")
+            if (col.tag == "LightBox" && col.name == "Crate1")
             {
 
                 greenBoxesCount++;
@@ -76,7 +76,7 @@ public class Puzzle6Pressures : MonoBehaviour
     {
         if (transform.parent.name == "Orange Button")
         {
-            if (col.tag == "HeavyBox" && col.name == "Crate2")
+            if (col.tag == "LightBox" && col.name == "Crate2")
             {
                 transform.parent.Find("Light (" + (orangeBoxesCount) + ")").gameObject.SetActive(false);
                 orangeBoxesCount--;
@@ -87,7 +87,7 @@ public class Puzzle6Pressures : MonoBehaviour
 
         if (transform.parent.name == "Green Button")
         {
-            if (col.tag == "HeavyBox" && col.name == "Crate1")
+            if (col.tag == "LightBox" && col.name == "Crate1")
             {
                 transform.parent.Find("Light (" + (greenBoxesCount) + ")").gameObject.SetActive(false);
                 greenBoxesCount--;
