@@ -23,7 +23,7 @@ public class DontStopCollider : MonoBehaviour
         {
             if (name == "LimitsCollider")
             {
-                if (col != null && col.transform.parent.name == "HeavyBoxRagdoll3(Clone)")
+                if (col.transform.parent != null && col.transform.parent.name == "HeavyBoxRagdoll3(Clone)")
                 {
                     Destroy(col.transform.gameObject);
                     Destroy(col.transform.parent.gameObject);
