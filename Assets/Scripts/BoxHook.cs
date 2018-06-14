@@ -97,7 +97,7 @@ public class BoxHook : MonoBehaviour
             }
             currentWaypoint++;
             if (currentWaypoint == waypoints.Length && !destroyAfterLastWaypoint) currentWaypoint = 0;
-            if (currentWaypoint == waypoints.Length && destroyAfterLastWaypoint) Destroy(gameObject);
+            if (currentWaypoint == waypoints.Length && destroyAfterLastWaypoint) Destroy(transform.parent.gameObject);
         }
     }
 

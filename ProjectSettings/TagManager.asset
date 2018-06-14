@@ -28,6 +28,7 @@ TagManager:
   - HeavyBoxPiece3
   - Crate
   - Ropes
+  - CratePiece
   layers:
   - Default
   - TransparentFX

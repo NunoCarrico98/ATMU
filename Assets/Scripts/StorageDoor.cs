@@ -5,7 +5,10 @@ using UnityEngine;
 public class StorageDoor : MonoBehaviour
 {
 
-    public GameObject prefab;
+    public GameObject prefab1;
+    public GameObject prefab2;
+    public GameObject prefab3;
+
     public Transform spawnPoint;
     public Transform spawnPoint2;
     public Transform parent;
@@ -19,6 +22,7 @@ public class StorageDoor : MonoBehaviour
     private int counter1 = 0;
     private int counter2 = 0;
     private int resetCounter = 0;
+    private int rand;
 
 
 
@@ -48,15 +52,49 @@ public class StorageDoor : MonoBehaviour
     {
         if (instancesCounter > 0)
         {
-            Instantiate(prefab, spawnPoint.position, transform.rotation, parent);
+            rand = Random.Range(1, 3);
+
+            switch (rand)
+            {
+                case 1:
+                    Instantiate(prefab1, spawnPoint.position, transform.rotation, parent);
+                    break;
+                case 2:
+                    Instantiate(prefab2, spawnPoint.position, transform.rotation, parent);
+                    break;
+                case 3:
+                    Instantiate(prefab3, spawnPoint.position, transform.rotation, parent);
+                    break;
+            }
 
             if (counter2 % 2 == 0)
             {
-                Instantiate(prefab, spawnPoint2.position, transform.rotation, parent);
-                Instantiate(prefab, 
-                    new Vector3(spawnPoint2.position.x -1, spawnPoint2.position.y, spawnPoint2.position.z),
-                    transform.rotation, parent);
+
+                switch (rand)
+                {
+                    case 1:
+                        Instantiate(prefab1, spawnPoint2.position, transform.rotation, parent);
+                        Instantiate(prefab1,
+                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                            transform.rotation, parent);
+                        break;
+
+                    case 2:
+                        Instantiate(prefab2, spawnPoint2.position, transform.rotation, parent);
+                        Instantiate(prefab2,
+                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                            transform.rotation, parent);
+                        break;
+
+                    case 3:
+                        Instantiate(prefab3, spawnPoint2.position, transform.rotation, parent);
+                        Instantiate(prefab3,
+                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                            transform.rotation, parent);
+                        break;
+                }
             }
+
             instancesCounter--;
         }
     }

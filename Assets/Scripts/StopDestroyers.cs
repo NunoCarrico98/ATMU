@@ -7,6 +7,12 @@ public class StopDestroyers : MonoBehaviour
 
     public Transform[] destroyer;
     public Transform[] pressurePlate;
+    public GameObject[] destroyer1Lights;
+    public GameObject[] destroyer2Lights;
+    public GameObject[] destroyer3Lights;
+    public GameObject[] destroyer4Lights;
+    public GameObject[] destroyer5Lights;
+
     public bool[] pressured;
 
     private int destroyer1Number = 0;
@@ -41,6 +47,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer1Number++;
             destroyer2Number++;
             destroyer4Number++;
+
+            destroyer1Lights[0].SetActive(true);
+            destroyer2Lights[0].SetActive(true);
+            destroyer4Lights[0].SetActive(true);
+
             counter1++;
         }
         //If plate 1 isnt pressured
@@ -49,6 +60,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer1Number--;
             destroyer2Number--;
             destroyer4Number--;
+
+            destroyer1Lights[0].SetActive(false);
+            destroyer2Lights[0].SetActive(false);
+            destroyer4Lights[0].SetActive(false);
+
             counter1--;
         }
 
@@ -58,6 +74,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer1Number++;
             destroyer2Number++;
             destroyer5Number++;
+
+            destroyer1Lights[1].SetActive(true);
+            destroyer2Lights[1].SetActive(true);
+            destroyer5Lights[1].SetActive(true);
+
             counter2++;
         }
         //If plate 2 isnt pressured
@@ -66,6 +87,10 @@ public class StopDestroyers : MonoBehaviour
             destroyer1Number--;
             destroyer2Number--;
             destroyer5Number--;
+
+            destroyer1Lights[1].SetActive(false);
+            destroyer2Lights[1].SetActive(false);
+            destroyer5Lights[1].SetActive(false);
             counter2--;
         }
 
@@ -75,6 +100,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer2Number++;
             destroyer3Number++;
             destroyer4Number++;
+
+            destroyer2Lights[2].SetActive(true);
+            destroyer3Lights[2].SetActive(true);
+            destroyer4Lights[2].SetActive(true);
+
             counter3++;
         }
         //If plate 3 isnt pressured
@@ -83,6 +113,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer2Number--;
             destroyer3Number--;
             destroyer4Number--;
+
+            destroyer2Lights[2].SetActive(false);
+            destroyer3Lights[2].SetActive(false);
+            destroyer4Lights[2].SetActive(false);
+
             counter3--;
         }
 
@@ -92,6 +127,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer2Number++;
             destroyer4Number++;
             destroyer5Number++;
+
+            destroyer2Lights[3].SetActive(true);
+            destroyer4Lights[3].SetActive(true);
+            destroyer5Lights[3].SetActive(true);
+
             counter4++;
         }
         //If plate 4 isnt pressured
@@ -100,6 +140,11 @@ public class StopDestroyers : MonoBehaviour
             destroyer2Number--;
             destroyer4Number--;
             destroyer5Number--;
+
+            destroyer2Lights[3].SetActive(false);
+            destroyer4Lights[3].SetActive(false);
+            destroyer5Lights[3].SetActive(false);
+
             counter4--;
         }
     }

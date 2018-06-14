@@ -7,6 +7,7 @@ public class PressurePlate : MonoBehaviour
     public Transform waypoint1;
     public Transform waypoint2;
     public bool pressured;
+    public bool pressured2; // if you are Nuno: Don't delete this bool!!
 
     private Animator plateAnim;
     private Collider2D colUp;
@@ -54,9 +55,10 @@ public class PressurePlate : MonoBehaviour
             col.tag == "LightBox" ||
             col.tag == "Ungrababble")
             {
-                if (name == "PressurePlateBigElevator")
+                if (col.tag == "Player" && name == "PressurePlateBigElevator")
                 {
                     transform.position = waypoint1.position;
+                    pressured2 = true;
                 }
                 pressured = true;
             }
@@ -82,6 +84,7 @@ public class PressurePlate : MonoBehaviour
                 transform.position = waypoint2.position;
             }
             pressured = false;
+            pressured2 = false;
         }
 
     }

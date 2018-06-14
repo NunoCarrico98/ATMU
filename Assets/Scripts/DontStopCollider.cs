@@ -19,11 +19,11 @@ public class DontStopCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "HeavyBoxPiece" || col.tag == "HeavyBoxPiece2" || col.tag == "HeavyBoxPiece3")
+        if (col.tag == "HeavyBoxPiece" || col.tag == "HeavyBoxPiece2" || col.tag == "HeavyBoxPiece3" || col.tag == "CratePiece")
         {
             if (name == "LimitsCollider")
             {
-                if (col.transform.parent != null && col.transform.parent.name == "HeavyBoxRagdoll3(Clone)")
+                if (col.transform.parent != null && col.transform.parent.childCount == 1)
                 {
                     Destroy(col.transform.gameObject);
                     Destroy(col.transform.parent.gameObject);
@@ -31,7 +31,6 @@ public class DontStopCollider : MonoBehaviour
                 else
                 {
                     Destroy(col.transform.gameObject);
-
                 }
             }
         }

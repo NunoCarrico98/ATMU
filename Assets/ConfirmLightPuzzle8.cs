@@ -6,19 +6,27 @@ public class ConfirmLightPuzzle8 : MonoBehaviour
 {
     public Transform plate;
     public Transform sprite;
+    public Transform rightWeighter;
+    public Transform leftWeighter;
     public Sprite green;
     public Sprite red;
     public float timeOn;
+    public float rotateSpeed;
+    public bool rotate = false;
 
+    private Quaternion lookRotation1;
+    private Quaternion lookRotation2;
+    private Quaternion initRotation;
     private float timer = 0;
     private bool activeTimer = false;
     private bool wrong = false;
     private bool correct = false;
+    private bool resetRotation = false;
 
     // Use this for initialization
     void Start()
     {
-
+        initRotation = rightWeighter.rotation;
     }
 
     // Update is called once per frame
@@ -28,7 +36,37 @@ public class ConfirmLightPuzzle8 : MonoBehaviour
         {
             timer += Time.deltaTime;
         }
-        if(correct)
+
+
+        if(rotate)
+        {
+
+            //Make Left Wighter turn
+            lookRotation1 = Quaternion.LookRotation(Vector3.forward, Vector3.right);
+            leftWeighter.rotation = Quaternion.RotateTowards(leftWeighter.rotation, lookRotation1, rotateSpeed);
+
+            //Make Right Wighter turn
+            lookRotation2 = Quaternion.LookRotation(Vector3.forward, Vector3.left);
+            rightWeighter.rotation = Quaternion.RotateTowards(rightWeighter.rotation, lookRotation2, rotateSpeed);
+            resetRotation = true;
+        }
+        else if(resetRotation)
+        {
+            //Make Left Wighter turn
+            lookRotation1 = Quaternion.LookRotation(Vector3.forward, Vector3.left);
+            leftWeighter.rotation = Quaternion.RotateTowards(leftWeighter.rotation, lookRotation1, rotateSpeed);
+            
+            //Make Right Weighter turn
+            lookRotation2 = Quaternion.LookRotation(Vector3.forward, Vector3.right);
+            rightWeighter.rotation = Quaternion.RotateTowards(rightWeighter.rotation, lookRotation2, rotateSpeed);
+
+            if(rightWeighter.rotation == initRotation)
+            {
+                resetRotation = false;
+            }
+        }
+
+        if (correct)
         {
             if (timer <= timeOn)
             {
@@ -52,9 +90,13 @@ public class ConfirmLightPuzzle8 : MonoBehaviour
                 sprite.GetComponent<SpriteRenderer>().enabled = true;
                 transform.GetComponent<Light>().color = Color.red;
                 sprite.GetComponent<SpriteRenderer>().sprite = red;
+
+                rotate = true;
             }
             else
             {
+                rotate = false;
+
                 transform.GetComponent<Light>().enabled = false;
                 sprite.GetComponent<SpriteRenderer>().enabled = false;
             }

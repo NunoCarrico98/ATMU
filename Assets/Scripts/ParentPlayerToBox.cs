@@ -29,7 +29,7 @@ public class ParentPlayerToBox : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.transform.tag == "Player")
+        if (col.transform.tag == "Player" && StopPlayerMoveTunnel.isDisabled == false)
         {
             if (col.gameObject.activeInHierarchy == true)
             {

@@ -78,38 +78,55 @@ public class Elevator : MonoBehaviour
 
     private void IsPressured()
     {
-        if (pressured)
+        if(name == "BigElevator2")
         {
-            lastAction = 1;
-            if (lastAction == 1)
+            if (pressurePlate.GetComponent<PressurePlate>().pressured2)
             {
-                ElevatorAcceleration();
-                transform.position = Vector3.MoveTowards(transform.position, endPos, currentSpeed * Time.deltaTime);
-                elevatorUp = true;
+                lastAction = 1;
+                if (lastAction == 1)
+                {
+                    ElevatorAcceleration();
+                    transform.position = Vector3.MoveTowards(transform.position, endPos, currentSpeed * Time.deltaTime);
+                    elevatorUp = true;
+                }
             }
         }
 
-        if (!pressured && name != "BigElevator2")
+        if (name != "BigElevator2")
         {
-            if (lastAction != 1)
-            {
-                ElevatorAcceleration();
-                transform.position = Vector3.MoveTowards(transform.position, initialPos, currentSpeed * Time.deltaTime);
-                if (transform.position == initialPos) elevatorDown = true;
-            }
-
-            if (elevatorUp)
-            {
-                lastAction = 0;
-                elevatorUp = false;
-                currentSpeed = elevatorSpeedDown / 8;
-            }
-
-            if (elevatorDown)
+            if (pressured)
             {
                 lastAction = 1;
-                elevatorDown = false;
-                currentSpeed = elevatorSpeedUp / 8;
+                if (lastAction == 1)
+                {
+                    ElevatorAcceleration();
+                    transform.position = Vector3.MoveTowards(transform.position, endPos, currentSpeed * Time.deltaTime);
+                    elevatorUp = true;
+                }
+            }
+
+            if (!pressured)
+            {
+                if (lastAction != 1)
+                {
+                    ElevatorAcceleration();
+                    transform.position = Vector3.MoveTowards(transform.position, initialPos, currentSpeed * Time.deltaTime);
+                    if (transform.position == initialPos) elevatorDown = true;
+                }
+
+                if (elevatorUp)
+                {
+                    lastAction = 0;
+                    elevatorUp = false;
+                    currentSpeed = elevatorSpeedDown / 8;
+                }
+
+                if (elevatorDown)
+                {
+                    lastAction = 1;
+                    elevatorDown = false;
+                    currentSpeed = elevatorSpeedUp / 8;
+                }
             }
         }
     }

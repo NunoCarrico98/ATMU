@@ -15,51 +15,51 @@ public class Puzzle8Pressures : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (orangeBoxesCount > 3) orangeBoxesCount = 3;
-        if (greenBoxesCount > 3) greenBoxesCount = 3;
+        if (!FindObjectOfType<ConfirmLightPuzzle8>().rotate)
+        {
+            if (orangeBoxesCount > 3) orangeBoxesCount = 3;
+            if (greenBoxesCount > 3) greenBoxesCount = 3;
 
-        if (orangeBoxesCount == 3)
-        {
-            placedOranges = true;
-        }
-        else
-        {
-            placedOranges = false;
-        }
+            if (orangeBoxesCount == 3)
+            {
+                placedOranges = true;
+            }
+            else
+            {
+                placedOranges = false;
+            }
 
-        if (greenBoxesCount == 2)
-        {
-            placedGreens = true;
-        }
-        else
-        {
-            placedGreens = false;
-        }
+            if (greenBoxesCount == 2)
+            {
+                placedGreens = true;
+            }
+            else
+            {
+                placedGreens = false;
+            }
 
-        if (placedOranges && placedGreens)
-        {
-            puzzleSolved = true;
-        }
-        else
-        {
-            puzzleSolved = false;
+            if (placedOranges && placedGreens)
+            {
+                puzzleSolved = true;
+            }
+            else
+            {
+                puzzleSolved = false;
+            }
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (transform.parent.name == "LeftWeighter")
+        if (col.tag == "LightBox")
         {
-
-            if (col.tag == "LightBox")
+            if (transform.name == "LeftColliderPuzzle")
             {
+
                 orangeBoxesCount++;
             }
-        }
 
-        if (transform.parent.name == "RightWeighter")
-        {
-            if (col.tag == "LightBox")
+            if (transform.name == "RightColliderPuzzle")
             {
                 greenBoxesCount++;
             }
@@ -68,17 +68,15 @@ public class Puzzle8Pressures : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (transform.parent.name == "LeftWeighter")
+        if (col.tag == "LightBox")
         {
-            if (col.tag == "LightBox")
+            if (transform.name == "LeftColliderPuzzle")
             {
+
                 orangeBoxesCount--;
             }
-        }
 
-        if (transform.parent.name == "RightWeighter")
-        {
-            if (col.tag == "LightBox")
+            if (transform.name == "RightColliderPuzzle")
             {
                 greenBoxesCount--;
             }

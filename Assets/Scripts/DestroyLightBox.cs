@@ -39,6 +39,8 @@ public class DestroyLightBox : MonoBehaviour
                 DestroyBox(col);
             }
         }
+
+        //if()
     }
 
     private void DestroyBox(Collision2D col)
@@ -52,6 +54,18 @@ public class DestroyLightBox : MonoBehaviour
         if (col.transform.GetComponent<Rigidbody2D>().isKinematic == false)
         {
             col.transform.SetParent(boxesParent);
+        }
+        Destroy(transform.gameObject, 0.05f);
+        Instantiate(particlesPrefab, transform.position, initRotation);
+    }
+
+    public void DestroyBox2()
+    {
+        int childCount = transform.childCount - 1;
+
+        if (transform.GetChild(childCount).tag == "Player")
+        {
+            transform.GetChild(childCount).SetParent(null);
         }
         Destroy(transform.gameObject, 0.05f);
         Instantiate(particlesPrefab, transform.position, initRotation);

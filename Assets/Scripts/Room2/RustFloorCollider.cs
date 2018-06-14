@@ -34,8 +34,8 @@ public class RustFloorCollider : MonoBehaviour
             if (transform.parent.GetChild(0).GetChild(0).GetComponent<DestroyRustFloorBox>().activate1
                 && counter1 == 0)
             {
-                if (timer < 0.1f) timer += Time.deltaTime;
-                if (timer > 0.05f)
+                if (timer < 0.11f) timer += Time.deltaTime;
+                if (timer > 0.1f)
                 {
                     //col.transform.position = new Vector2(parent.position.x, parent.position.y + 5);
                     Instantiate(ragdollPrefab, new Vector2(parent.position.x, parent.position.y), parent.rotation);
@@ -43,7 +43,6 @@ public class RustFloorCollider : MonoBehaviour
                     Destroy(collider1);
                     Destroy(collider2);
                     counter1++;
-
                 }
             }
         }

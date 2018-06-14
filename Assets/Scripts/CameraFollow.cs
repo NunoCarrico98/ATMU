@@ -5,24 +5,40 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
 
+    public Vector3 offset;
     public float heightOffset = 5f;
     public float minRadius = 0.3f;
     public float fraction;
     [Range(0,1)]
-    public float moveSpeed = 10f;
-    public Vector3 offset;
-    public Transform player;
+    public float moveSpeed = 1f;
 
+
+    private Transform player;
     private GrabBox grabBox;
     private Vector3 direction;
     private float mouseRadius;
     private bool activateMove;
     private float newFraction = 5;
+    private float minX;
+    private float maxX;
+    private float minY;
+    private float maxY;
         
+
+    //INICIO MIN x: = 9
+    //INICIO MIN Y: 12
+    
+    //PUZZLE 7 MAX: 345
+
 
     // Use this for initialization
     void Start()
     {
+        minX = 9;
+        maxX = 1000;
+        minY = 12;
+        maxY = 1000;
+
         if (transform.parent.name == "Player")
         {
             player = GameObject.Find("Player").transform;
@@ -31,20 +47,22 @@ public class CameraFollow : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("PlayerRagdoll").transform;
         }
+
         grabBox = FindObjectOfType<GrabBox>();
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
+    private void Update()
     {
-        if(name == "MainCamera") player = GameObject.Find("Player").transform;
+        if (name == "MainCamera") player = GameObject.Find("Player").transform;
         if (name == "RagdollCamera") player = transform.parent.GetChild(0);
-        FollowPlayer();
         if (name == "MainCamera")
         {
             MoveCamera();
         }
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
         //if (activateMove) MoveCamera();
+        FollowPlayer();
     }
 
     private void FollowPlayer()

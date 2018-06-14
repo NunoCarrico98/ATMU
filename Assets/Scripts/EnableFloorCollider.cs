@@ -23,6 +23,7 @@ public class EnableFloorCollider : MonoBehaviour {
             {
                 containers[i].gameObject.layer = 22;
                 containers[i].transform.GetChild(0).GetComponent<SpriteRenderer>().sortingLayerName = "Default";
+                containers[i].transform.GetChild(1).gameObject.layer = 22;
             }
         }
     }

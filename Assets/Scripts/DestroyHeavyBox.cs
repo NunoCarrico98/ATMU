@@ -8,22 +8,27 @@ public class DestroyHeavyBox : MonoBehaviour
     {
         if (col.tag == "DeathZone")
         {
-            if (transform.tag == "HeavyBoxPiece3")
-            {
-                if (col.transform != null && transform.parent.name == "HeavyBoxRagdoll3")
-                {
-                    Destroy(transform.parent.gameObject, 0.05f);
-                }
-                else
-                {
-                    Destroy(transform.gameObject);
-                }
-
-            }
-            if (transform.tag == "HeavyBox")
+            if (transform.parent.tag == "HeavyBox" || transform.parent.tag == "LightBox")
             {
                 Destroy(transform.parent.gameObject, 0.05f);
             }
+            if (transform != null)
+            {
+                if (transform.tag == "HeavyBoxPiece3")
+                {
+                    if (transform.parent.transform.childCount < 2 && transform.parent.name == "HeavyBoxRagdoll3")
+                    {
+                        Destroy(transform.parent.gameObject, 0.05f);
+                    }
+                    else
+                    {
+                        Destroy(transform.gameObject);
+                    }
+
+                }
+            }
+
+
         }
     }
 }

@@ -27,7 +27,7 @@ public class BackgroundCloner : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(!hasLeftClone || !hasRightClone)
+		if((!hasLeftClone || !hasRightClone) && cam != null)
         {
             float camHorizontalExtend = cam.orthographicSize * Screen.width / Screen.height;
 
