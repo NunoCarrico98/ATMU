@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 60463466392530650}
   - component: {fileID: 114764017886556568}
   - component: {fileID: 114903468024656304}
+  - component: {fileID: 114550461777019076}
   m_Layer: 11
   m_Name: Container
   m_TagString: LightBox
@@ -55,7 +56,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4814324114423088}
   - component: {fileID: 61627739375150294}
-  m_Layer: 11
+  - component: {fileID: 60936791451174984}
+  m_Layer: 22
   m_Name: GetPiecesCollider
   m_TagString: DontKillPlayer
   m_Icon: {fileID: 0}
@@ -77,6 +79,22 @@ GameObject:
   m_Layer: 0
   m_Name: ColliderForBoxes
   m_TagString: BoxCollider
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1525167359694386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4874119189708010}
+  - component: {fileID: 60005642890960976}
+  m_Layer: 18
+  m_Name: LavaCollider
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,6 +147,7 @@ Transform:
   - {fileID: 4610773968942386}
   - {fileID: 4814324114423088}
   - {fileID: 4271343243895542}
+  - {fileID: 4874119189708010}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -197,6 +216,19 @@ Transform:
   m_Father: {fileID: 4071199304300050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4874119189708010
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525167359694386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4071199304300050}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50184608458510684
 Rigidbody2D:
   serializedVersion: 4
@@ -217,6 +249,42 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!60 &60005642890960976
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1525167359694386}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.7}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.63931274, y: 0.06286925}
+      - {x: -0.63308716, y: 0.07889098}
+      - {x: -0.6367798, y: 1.7019074}
+      - {x: -0.9946289, y: 1.7038453}
+      - {x: -0.99572754, y: -0.16875917}
+      - {x: -0.8719177, y: -0.17432863}
+      - {x: -0.8703003, y: -0.24407655}
+      - {x: 0.8735962, y: -0.24084169}
+      - {x: 0.87371826, y: -0.17348939}
+      - {x: 0.99365234, y: -0.17294008}
+      - {x: 0.9937439, y: 1.695041}
+      - {x: 0.6314087, y: 1.6893036}
 --- !u!60 &60463466392530650
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -241,14 +309,50 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8795166, y: 0.9631653}
-      - {x: 0.7581482, y: -0.61935425}
-      - {x: -0.76049805, y: -0.6257782}
-      - {x: -0.86587524, y: 0.94369507}
+    - - {x: 0.8119354, y: 0.96022797}
+      - {x: 0.7358093, y: -0.62594604}
+      - {x: -0.7341919, y: -0.62509155}
+      - {x: -0.8085785, y: 0.95544815}
       - {x: -1.2744446, y: 0.95856476}
-      - {x: -1.2773743, y: -0.9681549}
-      - {x: 1.2494812, y: -0.9679718}
+      - {x: -1.2853088, y: -0.94462585}
+      - {x: 1.2522583, y: -0.94799805}
       - {x: 1.2425232, y: 0.9630203}
+--- !u!60 &60936791451174984
+PolygonCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1181218365980594}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.63931274, y: 0.06286925}
+      - {x: -0.63308716, y: 0.07889098}
+      - {x: -0.6367798, y: 1.7019074}
+      - {x: -0.9946289, y: 1.7038453}
+      - {x: -0.99572754, y: -0.16875917}
+      - {x: -0.8719177, y: -0.17432863}
+      - {x: -0.8703003, y: -0.24407655}
+      - {x: 0.8735962, y: -0.24084169}
+      - {x: 0.87371826, y: -0.17348939}
+      - {x: 0.99365234, y: -0.17294008}
+      - {x: 0.9937439, y: 1.695041}
+      - {x: 0.6314087, y: 1.6893036}
 --- !u!61 &61627739375150294
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -261,7 +365,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0050964355, y: 0.87290955}
+  m_Offset: {x: 0.0050964355, y: 0.81256104}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -272,7 +376,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.9404907, y: 1.6052856}
+  m_Size: {x: 1.9404907, y: 1.7259827}
   m_EdgeRadius: 0
 --- !u!61 &61798937435157484
 BoxCollider2D:
@@ -333,6 +437,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9484da77fe38fc4a905e1a8b1c261dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114550461777019076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1073611925335376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab88b9c52c2473e4e984671f6991cd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114562736852031268

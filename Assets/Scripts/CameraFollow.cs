@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
     public float fraction;
     [Range(0,1)]
     public float moveSpeed = 1f;
+    public bool limitsOn = false;
 
 
     private Transform player;
@@ -60,7 +61,10 @@ public class CameraFollow : MonoBehaviour
             MoveCamera();
         }
 
-        transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
+        if (limitsOn)
+        {
+            transform.position = new Vector3(Mathf.Clamp(transform.position.x, minX, maxX), Mathf.Clamp(transform.position.y, minY, maxY), transform.position.z);
+        }
         //if (activateMove) MoveCamera();
         FollowPlayer();
     }

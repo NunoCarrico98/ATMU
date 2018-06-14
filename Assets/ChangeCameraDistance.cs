@@ -15,7 +15,7 @@ public class ChangeCameraDistance : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        size = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().orthographicSize;
+        size = Camera.main.orthographicSize;
 	}
 	
 	// Update is called once per frame

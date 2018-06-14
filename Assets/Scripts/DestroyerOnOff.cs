@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyerOnOff : MonoBehaviour
 {
-
+    public Transform light;
     public bool on;
     public float upSpeed = 1f;
     public float downSpeed = 2f;
@@ -38,10 +38,14 @@ public class DestroyerOnOff : MonoBehaviour
         if (on)
         {
             DestroyActivated();
+            light.GetComponent<SpriteRenderer>().color = Color.green;
+            light.GetComponent<Light>().color = Color.green;
         }
         else
         {
             GoUp();
+            light.GetComponent<SpriteRenderer>().color = Color.red;
+            light.GetComponent<Light>().color = Color.red;
         }
     }
 

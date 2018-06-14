@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool jumpRequest;
     public bool grounded;
     public bool crouched = false;
+    public float timeToFallAsleep;
     public float groundCheckRadius;
 
     [SerializeField] public float movementSpeed = 10f;
@@ -28,8 +29,11 @@ public class PlayerMovement : MonoBehaviour
     private float resetBoxPosition;
     private float resetSpeed;
     private float angle = 0f;
+    private float timer = 0;
     private bool backBoxR;
     private bool backBoxL;
+    private bool isSleeping;
+    private bool wakeUp;
 
     // Use this for initialization
     private void Awake()
@@ -59,15 +63,65 @@ public class PlayerMovement : MonoBehaviour
 
         SetJumpRequest();
         IsGrounded();
+
+        PutToSleep();
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Movement();
-        FlipPlayer();
-        Jump();
+        if (!isSleeping)
+        {
+            Movement();
+            FlipPlayer();
+            Jump();
+        }
+
         //Crouch();
+    }
+
+    private void PutToSleep()
+    {
+        if (!Input.anyKey)
+        {
+            if (!isSleeping)
+            {
+                timer += Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (!isSleeping)
+            {
+                timer = 0;
+            }
+        }
+
+        if (timer >= timeToFallAsleep)
+        {
+            isSleeping = true;
+            characterAnim.SetBool("Sleeping", isSleeping);
+
+
+            if (Input.anyKey)
+            {
+                wakeUp = true;
+                timer = 0;
+            }
+        }
+        if (wakeUp)
+        {
+            timer += Time.deltaTime;
+            characterAnim.SetBool("Sleeping", false);
+            if (timer > 0.8f)
+            {
+                isSleeping = false;
+                wakeUp = false;
+                timer = 0;
+                ;
+            }
+        }
+
     }
 
     private void Movement()

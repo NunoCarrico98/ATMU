@@ -19,7 +19,10 @@ public class DontStopCollider : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == "HeavyBoxPiece" || col.tag == "HeavyBoxPiece2" || col.tag == "HeavyBoxPiece3" || col.tag == "CratePiece")
+        if (col.tag == "HeavyBoxPiece" || col.tag == "HeavyBoxPiece2" || 
+            col.tag == "HeavyBoxPiece3" || col.tag == "CratePiece" || 
+            (col.tag == "LightBox" && col.name != "Container" &&
+            col.name != "Crate1" && col.name != "Crate2"))
         {
             if (name == "LimitsCollider")
             {
