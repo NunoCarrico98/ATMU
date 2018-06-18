@@ -13216,6 +13216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pressedSprite: {fileID: 21300000, guid: 68b8b8eeebcad0c468af96fd8301f8b5, type: 3}
   blackCanvas: {fileID: 1113326944}
+  door: {fileID: 623553240}
   spaceShip: {fileID: 605504481}
   oldRobot: {fileID: 1070869114}
   badRobot: {fileID: 1501118129}

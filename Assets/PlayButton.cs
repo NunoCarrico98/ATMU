@@ -8,6 +8,7 @@ public class PlayButton : MonoBehaviour {
 
     public Sprite pressedSprite;
     public Transform blackCanvas;
+    public Transform door;
     public Transform spaceShip;
     public Transform oldRobot;
     public Transform badRobot;
@@ -22,6 +23,7 @@ public class PlayButton : MonoBehaviour {
 
     private Sprite resetSprite;
     private Color blackColor;
+    private Color doorColor;
     private float counter = 0;
     private bool stop = false;
     private bool kickAss = false;
@@ -33,7 +35,6 @@ public class PlayButton : MonoBehaviour {
     // Use this for initialization
     void Start () {
         resetSprite = transform.GetComponent<SpriteRenderer>().sprite;
-
         }
 	
 	    // Update is called once per frame
@@ -52,6 +53,10 @@ public class PlayButton : MonoBehaviour {
                     stop = true;
                 }
             }
+
+            doorColor = door.GetComponent<SpriteRenderer>().color;
+            doorColor.a -= fadeSpeed * 2 * Time.deltaTime;
+            door.GetComponent<SpriteRenderer>().color = doorColor;
 
             badRobot.transform.position = Vector3.MoveTowards(badRobot.transform.position, badRobotVector, badRobotSpeed * Time.deltaTime);
             if (badRobot.transform.position == badRobotVector) kickAss = true;
