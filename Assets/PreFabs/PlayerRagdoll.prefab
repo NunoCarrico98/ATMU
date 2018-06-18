@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 61529060395563220}
   m_Layer: 0
   m_Name: Right Leg
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 61545952790045792}
   m_Layer: 0
   m_Name: LeftArm
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 61378247958460644}
   m_Layer: 0
   m_Name: LeftLeg
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 61582411117583582}
   m_Layer: 0
   m_Name: Head
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 61869941575639746}
   m_Layer: 0
   m_Name: Neck
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 61764563214196622}
   m_Layer: 0
   m_Name: Chest
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 61561452763379902}
   m_Layer: 0
   m_Name: RightArm
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -225,7 +225,7 @@ GameObject:
   - component: {fileID: 61673760039635516}
   m_Layer: 0
   m_Name: Waist
-  m_TagString: LightBox
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1026,12 +1026,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82b68d1306a0214db2361a8f957dc84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offset: {x: 0, y: 3, z: -30}
   heightOffset: 5
   minRadius: 0
   fraction: 5
   moveSpeed: 0.25
-  offset: {x: 0, y: 3, z: -30}
-  player: {fileID: 0}
+  limitsOn: 0
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0
 --- !u!114 &114625894725950582
 MonoBehaviour:
   m_ObjectHideFlags: 1

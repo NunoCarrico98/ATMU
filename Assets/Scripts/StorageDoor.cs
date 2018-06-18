@@ -69,29 +69,31 @@ public class StorageDoor : MonoBehaviour
 
             if (counter2 % 2 == 0)
             {
-
-                switch (rand)
+                if (StopPlayerMoveTunnel.canSpawn)
                 {
-                    case 1:
-                        Instantiate(prefab1, spawnPoint2.position, transform.rotation, parent);
-                        Instantiate(prefab1,
-                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
-                            transform.rotation, parent);
-                        break;
+                    switch (rand)
+                    {
+                        case 1:
+                            Instantiate(prefab1, spawnPoint2.position, transform.rotation, parent);
+                            Instantiate(prefab1,
+                                new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                                transform.rotation, parent);
+                            break;
 
-                    case 2:
-                        Instantiate(prefab2, spawnPoint2.position, transform.rotation, parent);
-                        Instantiate(prefab2,
-                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
-                            transform.rotation, parent);
-                        break;
+                        case 2:
+                            Instantiate(prefab2, spawnPoint2.position, transform.rotation, parent);
+                            Instantiate(prefab2,
+                                new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                                transform.rotation, parent);
+                            break;
 
-                    case 3:
-                        Instantiate(prefab3, spawnPoint2.position, transform.rotation, parent);
-                        Instantiate(prefab3,
-                            new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
-                            transform.rotation, parent);
-                        break;
+                        case 3:
+                            Instantiate(prefab3, spawnPoint2.position, transform.rotation, parent);
+                            Instantiate(prefab3,
+                                new Vector3(spawnPoint2.position.x - 1, spawnPoint2.position.y, spawnPoint2.position.z),
+                                transform.rotation, parent);
+                            break;
+                    }
                 }
             }
 

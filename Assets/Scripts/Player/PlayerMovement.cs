@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public bool jumpRequest;
     public bool grounded;
     public bool crouched = false;
+    public bool stopHorizontalMovement = false;
     public float timeToFallAsleep;
     public float groundCheckRadius;
 
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float timer = 0;
     private bool backBoxR;
     private bool backBoxL;
-    private bool isSleeping;
+    public bool isSleeping;
     private bool wakeUp;
 
     // Use this for initialization
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PutToSleep()
     {
-        if (!Input.anyKey)
+        if (!Input.anyKey && Input.GetAxis("Mouse X") == 0 && Input.GetAxis("Mouse Y") == 0)
         {
             if (!isSleeping)
             {
@@ -103,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             characterAnim.SetBool("Sleeping", isSleeping);
 
 
-            if (Input.anyKey)
+            if (Input.anyKey || Input.GetAxis("Mouse X") != 0 || Input.GetAxis("Mouse Y") != 0)
             {
                 wakeUp = true;
                 timer = 0;
@@ -146,7 +147,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        myRigidbody2D.velocity = movement;
+        if (!stopHorizontalMovement)
+        {
+            myRigidbody2D.velocity = movement;
+        }
 
         // Set movement animation
         characterAnim.SetBool("Ground", grounded);

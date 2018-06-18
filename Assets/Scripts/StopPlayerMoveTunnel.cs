@@ -5,6 +5,7 @@ using UnityEngine;
 public class StopPlayerMoveTunnel : MonoBehaviour
 {
     public static bool isDisabled;
+    public static bool canSpawn = false;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -27,6 +28,7 @@ public class StopPlayerMoveTunnel : MonoBehaviour
             col.GetComponent<PlayerMovement>().enabled = true;
             col.transform.Find("ConveyorCollider").GetComponent<Collider2D>().enabled = true;
             //FindObjectOfType<KillPlayer>().enabled = true;
+            canSpawn = true;
         }
     }
 }

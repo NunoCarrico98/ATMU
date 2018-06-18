@@ -12,7 +12,12 @@ public class CameraFollow : MonoBehaviour
     [Range(0,1)]
     public float moveSpeed = 1f;
     public bool limitsOn = false;
-
+    
+    //Camera Limits changed in CameraLimitsColliders.cs
+    public float minX;
+    public float maxX;
+    public float minY;
+    public float maxY;
 
     private Transform player;
     private GrabBox grabBox;
@@ -20,16 +25,27 @@ public class CameraFollow : MonoBehaviour
     private float mouseRadius;
     private bool activateMove;
     private float newFraction = 5;
-    private float minX;
-    private float maxX;
-    private float minY;
-    private float maxY;
+
+
         
 
-    //INICIO MIN x: = 9
+    //INICIO MIN X: = 9
     //INICIO MIN Y: 12
     
-    //PUZZLE 7 MAX: 345
+    //ELEVATOR 1 MIN X: 9
+    //ELEVATOR 1 MIN Y: NO MATTER
+
+    //PUZZLE 1 MIN X: 2.8
+    //PUZZLE 1 MIN Y: 12
+    
+        //BETWEEN = NONE
+
+    //TUNNEL MIN X: NONE
+    //TUNNEL MAX Y: 48 (needs testing)
+
+    //PUZZLE 7 MAX X: 345
+
+    
 
 
     // Use this for initialization
@@ -37,7 +53,7 @@ public class CameraFollow : MonoBehaviour
     {
         minX = 9;
         maxX = 1000;
-        minY = 12;
+        minY = 0;
         maxY = 1000;
 
         if (transform.parent.name == "Player")
@@ -98,25 +114,28 @@ public class CameraFollow : MonoBehaviour
 
         mouseRadius = Mathf.Sqrt(Mathf.Pow(direction.x, 2) + Mathf.Pow(direction.y, 2));
 
-        if (mouseRadius > minRadius)
-        {
-            if (newFraction > 0.5)
+        //if (!FindObjectOfType<CameraLimitsColliders>().moveIt)
+        //{
+            if (mouseRadius > minRadius)
             {
-                newFraction = fraction / (mouseRadius * 10);
-            }
-            Vector3 moveVector = new Vector3(direction.x / newFraction, direction.y / newFraction, 0);
+                if (newFraction > 0.5)
+                {
+                    newFraction = fraction / (mouseRadius * 10);
+                }
+                Vector3 moveVector = new Vector3(direction.x / newFraction, direction.y / newFraction, 0);
 
-            if (transform.position != moveVector)
-            {
-                if ((direction.x > 0 && direction.y > 0) || (direction.x < 0 && direction.y < 0))
+                if (transform.position != moveVector)
                 {
-                    transform.position += moveVector;
-                }
-                if ((direction.x > 0 && direction.y < 0) || (direction.x < 0 && direction.y > 0))
-                {
-                    transform.position += moveVector;
+                    if ((direction.x > 0 && direction.y > 0) || (direction.x < 0 && direction.y < 0))
+                    {
+                        transform.position += moveVector;
+                    }
+                    if ((direction.x > 0 && direction.y < 0) || (direction.x < 0 && direction.y > 0))
+                    {
+                        transform.position += moveVector;
+                    }
                 }
             }
-        }
+        //}
     }
 }

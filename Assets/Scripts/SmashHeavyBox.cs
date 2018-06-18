@@ -81,111 +81,114 @@ public class SmashHeavyBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        counter = 0;
-
-        if (col.tag == "HeavyBox" || col.tag == "LightBox")
+        if (transform.parent.GetComponent<DestroyerOnOff>().on)
         {
-            box = col.gameObject;
-            GetVelocity();
+            counter = 0;
 
-            if (box.name == "HeavyBox1" || box.name == "HeavyBox2")
+            if (col.tag == "HeavyBox" || col.tag == "LightBox")
             {
-                Instantiate(prefabHeavyRagdoll1, col.transform.position, box.transform.GetChild(0).transform.rotation);
-                activate1 = true;
+                box = col.gameObject;
+                GetVelocity();
+
+                if (box.name == "HeavyBox1" || box.name == "HeavyBox2")
+                {
+                    Instantiate(prefabHeavyRagdoll1, col.transform.position, box.transform.GetChild(0).transform.rotation);
+                    activate1 = true;
+                }
+
+                if (box.name == "HeavyBox3" || box.name == "HeavyBox4")
+                {
+                    Instantiate(prefabHeavyRagdoll2, col.transform.position, box.transform.GetChild(0).transform.rotation);
+                    activate2 = true;
+                }
+
+                if (box.name == "Crate1" || box.name == "Crate2")
+                {
+                    Instantiate(prefabCrateRagdoll, col.transform.position, box.transform.GetChild(0).transform.rotation);
+                    activate3 = true;
+                }
+
+                if (col.tag == "LightBox" && (col.name != "Crate1" && col.name != "Crate2"))
+                {
+                    col.transform.GetComponent<DestroyLightBox>().DestroyBox2();
+                }
+                else
+                {
+                    Destroy(col.gameObject);
+                    counter++;
+                }
             }
 
-            if (box.name == "HeavyBox3" || box.name == "HeavyBox4")
+            if (col.tag == "HeavyBoxPiece" && transform.parent.name != "Destroyer (1)" && counter == 0)
             {
-                Instantiate(prefabHeavyRagdoll2, col.transform.position, box.transform.GetChild(0).transform.rotation);
-                activate2 = true;
-            }
+                box = col.gameObject;
 
-            if (box.name == "Crate1" || box.name == "Crate2")
-            {
-                Instantiate(prefabCrateRagdoll, col.transform.position, box.transform.GetChild(0).transform.rotation);
-                activate3 = true;
-            }
+                GetVelocity();
 
-            if(col.tag == "LightBox" && (col.name != "Crate1" && col.name != "Crate2"))
-            {
-                col.transform.GetComponent<DestroyLightBox>().DestroyBox2();
+                rand = GetRandomNumber();
+
+                switch (rand)
+                {
+                    case 1:
+                        Instantiate(smallerHeavyRag1, col.transform.position, transform.rotation);
+                        break;
+                    case 2:
+                        Instantiate(smallerHeavyRag2, col.transform.position, transform.rotation);
+                        break;
+                    case 3:
+                        Instantiate(smallerHeavyRag3, col.transform.position, transform.rotation);
+                        break;
+                }
+
+                Destroy(col.gameObject);
             }
-            else
+            if (col.tag == "CratePiece" && transform.parent.name != "Destroyer (1)" && counter == 0)
             {
+                box = col.gameObject;
+                GetVelocity();
+
+                rand = GetRandomNumber();
+
+                switch (rand)
+                {
+                    case 1:
+                        Instantiate(smallerCrateRag1, col.transform.position, transform.rotation);
+                        break;
+                    case 2:
+                        Instantiate(smallerCrateRag2, col.transform.position, transform.rotation);
+                        break;
+                    case 3:
+                        Instantiate(smallerCrateRag3, col.transform.position, transform.rotation);
+                        break;
+                }
+
                 Destroy(col.gameObject);
                 counter++;
             }
-        }
 
-        if (col.tag == "HeavyBoxPiece" && transform.parent.name != "Destroyer (1)" && counter == 0)
-        {
-            box = col.gameObject;
 
-            GetVelocity();
-
-            rand = GetRandomNumber();
-
-            switch (rand)
+            if (col.tag == "HeavyBoxPiece2" && transform.parent.name != "Destroyer (1)" && transform.parent.name != "Destroyer (2)" && counter == 0)
             {
-                case 1:
-                    Instantiate(smallerHeavyRag1, col.transform.position, transform.rotation);
-                    break;
-                case 2:
-                    Instantiate(smallerHeavyRag2, col.transform.position, transform.rotation);
-                    break;
-                case 3:
-                    Instantiate(smallerHeavyRag3, col.transform.position, transform.rotation);
-                    break;
+                box = col.gameObject;
+                GetVelocity();
+
+                rand = GetRandomNumber();
+
+                switch (rand)
+                {
+                    case 1:
+                        Instantiate(tinyRag1, col.transform.position, transform.rotation);
+                        break;
+                    case 2:
+                        Instantiate(tinyRag2, col.transform.position, transform.rotation);
+                        break;
+                    case 3:
+                        Instantiate(tinyRag3, col.transform.position, transform.rotation);
+                        break;
+                }
+
+                Destroy(col.gameObject);
             }
-
-            Destroy(col.gameObject);
-        }
-        if (col.tag == "CratePiece" && transform.parent.name != "Destroyer (1)" && counter == 0)
-        {
-            box = col.gameObject;
-            GetVelocity();
-
-            rand = GetRandomNumber();
-
-            switch (rand)
-            {
-                case 1:
-                    Instantiate(smallerCrateRag1, col.transform.position, transform.rotation);
-                    break;
-                case 2:
-                    Instantiate(smallerCrateRag2, col.transform.position, transform.rotation);
-                    break;
-                case 3:
-                    Instantiate(smallerCrateRag3, col.transform.position, transform.rotation);
-                    break;
-            }
-
-            Destroy(col.gameObject);
-            counter++;
-        }
-
-
-        if (col.tag == "HeavyBoxPiece2" && transform.parent.name != "Destroyer (1)" && transform.parent.name != "Destroyer (2)" && counter == 0)
-        {
-            box = col.gameObject;
-            GetVelocity();
-
-            rand = GetRandomNumber();
-
-            switch (rand)
-            {
-                case 1:
-                    Instantiate(tinyRag1, col.transform.position, transform.rotation);
-                    break;
-                case 2:
-                    Instantiate(tinyRag2, col.transform.position, transform.rotation);
-                    break;
-                case 3:
-                    Instantiate(tinyRag3, col.transform.position, transform.rotation);
-                    break;
-            }
-
-            Destroy(col.gameObject);
         }
     }
 
