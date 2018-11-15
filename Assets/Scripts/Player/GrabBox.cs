@@ -90,7 +90,8 @@ public class GrabBox : MonoBehaviour
             }
         }
 
-        if (Input.GetButtonDown("Fire2") && !crouched)
+        //Grab
+        if (Input.GetButtonDown("Fire1") && !crouched)
         {
             if (!grabbed && !ContainerPuzzle.isInside)
             {
@@ -170,16 +171,17 @@ public class GrabBox : MonoBehaviour
                 direction = DirectionVector(positionOnScreen, mouseOnScreen);
                 direction = CreateVersor(direction);
 
-                if (Input.GetButtonUp("Fire2"))
+                if (Input.GetButtonUp("Fire1"))
                 {
                     keyCount += 1;
-                    if (keyCount >= 2)
+                    if (keyCount >= 1)
                     {
-                        keyCount = 2;
+                        keyCount = 1;
                     }
                 }
 
-                if ((Input.GetButtonUp("Fire2") && keyCount == 2) || crouched)
+
+                if (Input.GetButtonUp("Fire2") || crouched)
                 {
                     if (box != null)
                     {
@@ -216,7 +218,7 @@ public class GrabBox : MonoBehaviour
                     keyCount = 0;
                 }
 
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && keyCount == 1)
                 {
                     if (box != null)
                     {
